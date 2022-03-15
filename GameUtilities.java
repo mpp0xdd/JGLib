@@ -48,22 +48,6 @@ public final class GameUtilities {
   }
 
   /**
-   * 座標(x, y) を左上隅として文字列(複数行) を描画します。
-   *
-   * @param g 文字列の描画に使用するグラフィックスコンテキスト。
-   * @param font 文字列のフォント。
-   * @param x 文字列の左上隅のx座標。
-   * @param y 文字列の左上隅のy座標。
-   * @param lines 描画する文字列。
-   */
-  public static void drawString(Graphics g, Font font, int x, int y, String... lines) {
-    Font tmp = g.getFont();
-    g.setFont(font);
-    drawString(g, x, y, lines);
-    g.setFont(tmp);
-  }
-
-  /**
    * 座標(x, y) を中心として文字列(複数行) を描画します。
    *
    * @param g 文字列の描画に使用するグラフィックスコンテキスト。
@@ -80,21 +64,5 @@ public final class GameUtilities {
       g.drawString(line, x - fontMetrics.stringWidth(line) / 2, y);
       y += height;
     }
-  }
-
-  /**
-   * 座標(x, y) を中心として文字列(複数行) を描画します。
-   *
-   * @param g 文字列の描画に使用するグラフィックスコンテキスト。
-   * @param font 文字列のフォント。
-   * @param x 文字列の左上隅のx座標。
-   * @param y 文字列の左上隅のy座標。
-   * @param lines 描画する文字列。
-   */
-  public static void drawStringAfterCentering(Graphics g, Font font, int x, int y, String... lines) {
-    Font tmp = g.getFont();
-    g.setFont(font);
-    drawStringAfterCentering(g, x, y, lines);
-    g.setFont(tmp);
   }
 }

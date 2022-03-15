@@ -80,8 +80,9 @@ class FunctionalString extends FunctionalObject {
 
   @Override
   public void draw(Graphics g) {
-//    GameUtilities.drawStringAfterCentering(g, font, x, y, lines);
-    GameUtilities.drawString(g, font, x, y, lines);
+    g.setFont(font);
+//    GameUtilities.drawStringAfterCentering(g, x, y, lines);
+    GameUtilities.drawString(g, x, y, lines);
   }
 }
 
