@@ -104,7 +104,7 @@ public class TestScreen extends GameScreen {
   }
 
   @Override
-  public void runGameLoop() {
+  protected void runGameLoop() {
 //    System.err.printf("id:%d: Game loop running..., Current Time: %d\n", id, System.currentTimeMillis());
     for(Movable mObj : fObjs) {
       mObj.move();

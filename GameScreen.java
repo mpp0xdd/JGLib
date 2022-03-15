@@ -66,7 +66,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
   }
 
   /** ゲームループの実際の処理を行います。 */
-  public abstract void runGameLoop();
+  protected abstract void runGameLoop();
 
   @Override
   public final void run() {
