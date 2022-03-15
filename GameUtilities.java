@@ -48,6 +48,25 @@ public final class GameUtilities {
   }
 
   /**
+   * 座標(x, y) を右上隅として文字列(複数行) を描画します。
+   *
+   * @param g 文字列の描画に使用するグラフィックスコンテキスト。
+   * @param x 文字列の右上隅のx座標。
+   * @param y 文字列の右上隅のy座標。
+   * @param lines 描画する文字列。
+   */
+  public static void drawStringFromTopRight(Graphics g, int x, int y, String... lines) {
+    FontMetrics fontMetrics = g.getFontMetrics();
+    final int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
+
+    y += fontMetrics.getMaxAscent();
+    for(String line : lines) {
+      g.drawString(line, x - fontMetrics.stringWidth(line), y);
+      y += height;
+    }
+  }
+
+  /**
    * 座標(x, y) を中心として文字列(複数行) を描画します。
    *
    * @param g 文字列の描画に使用するグラフィックスコンテキスト。

@@ -83,6 +83,7 @@ class FunctionalString extends FunctionalObject {
     g.setFont(font);
 //    GameUtilities.drawStringAfterCentering(g, x, y, lines);
     GameUtilities.drawString(g, x, y, lines);
+    GameUtilities.drawStringFromTopRight(g, x, y, lines);
   }
 }
 
