@@ -65,6 +65,26 @@ public abstract class GameScreen extends JPanel implements Runnable {
     gameLoopThread = null;
   }
 
+  /**
+   * ゲームループが終了するのを待機します。
+   * @throws IllegalStateException ゲームループが既に停止している場合
+   * @see #runGameLoop()
+   * @see #startGameLoop()
+   * @see #stopGameLoop()
+   */
+  public final void joinGameLoop() {
+    if(gameLoopThread == null) {
+      throw (new IllegalStateException("開始していないゲームループの終了を待機することはできません。"));
+    }
+
+    try {
+      gameLoopThread.join();
+    }
+    catch(InterruptedException ie) {
+      ie.printStackTrace();
+    }
+  }
+
   /** ゲームループの実際の処理を行います。 */
   protected abstract void runGameLoop();
 

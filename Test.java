@@ -17,27 +17,22 @@ public class Test {
     fObjs[3] = new FunctionalString("Hello\nWorld", font, 0, 400);
     fObjs[3].func = x -> (int)(400 - 50 * Math.sin(x*0.01));
 
-    FunctionalObject[] fObjs2 = new FunctionalObject[1];
-    fObjs2[0] = new FunctionalBall(Color.green, 10, 0, 400);
-    fObjs2[0].func = x -> 400 - x;
-
-    TestScreen screen = new TestScreen(fObjs);
-    TestScreen screen2 = new TestScreen(fObjs2);
+    GameScreen screen = new TestScreen(fObjs);
 
     window.switchGameScreen(screen);
     window.pack();
     window.setVisible(true);
 
-    while(true) {
-      window.switchGameScreen(screen);
-      screen.startGameLoop();
-      GameUtilities.sleep(10000);
-      screen.stopGameLoop();
+    screen.startGameLoop();
+    GameUtilities.sleep(5000);
+    screen.stopGameLoop();
+    GameUtilities.sleep(1000);
 
-      window.switchGameScreen(screen2);
-      screen2.startGameLoop();
-      GameUtilities.sleep(10000);
-      screen2.stopGameLoop();
-    }
+    GameScreen screen2 = new EphemeralTestScreen();
+    window.switchGameScreen(screen2);
+    screen2.startGameLoop();
+
+    screen2.joinGameLoop();
+    System.err.println("テスト完了");
   }
 }
