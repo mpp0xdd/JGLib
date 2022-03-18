@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Gameのユーティリティ・メソッドのコレクションです。
  *
- * @author mpp0xdd
+ * @author mpp
  */
 public final class GameUtilities {
 

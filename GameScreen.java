@@ -5,7 +5,7 @@ import java.awt.Dimension;
 /**
  * ゲーム画面の作成を円滑に進めていく為に用意された抽象基底クラスです。
  *
- * @author mpp0xdd
+ * @author mpp
  */
 public abstract class GameScreen extends JPanel implements Runnable {
 

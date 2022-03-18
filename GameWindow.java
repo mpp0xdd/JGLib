@@ -9,7 +9,7 @@ import java.awt.Container;
  * このクラスを継承したウィンドウのレイアウト・マネージャの変更は行わないようにしてください。<br>
  * レイアウト・マネージャの変更が行われた状態で，このクラスで定義されたメソッドを呼び出した場合の動作は未定義です。
  *
- * @author mpp0xdd
+ * @author mpp
  */
 public abstract class GameWindow extends JFrame {
 
