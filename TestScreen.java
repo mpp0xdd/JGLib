@@ -112,6 +112,5 @@ public class TestScreen extends GameScreen {
       mObj.move();
     }
     repaint();
-    GameUtilities.sleep(10);
   }
 }

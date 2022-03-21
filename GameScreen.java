@@ -15,8 +15,14 @@ public abstract class GameScreen extends JPanel implements Runnable {
   /** このゲーム画面のデフォルトの推奨サイズ(縦幅) を表します。 */
   public static final int DEFAULT_PREFERRED_HEIGHT = 480;
 
+  /** このゲーム画面で実行されるゲームループのデフォルトの実行間隔(ミリ秒) を表します。 */
+  public static final long DEFAULT_GAME_LOOP_INTERVAL = 1000L / 50L;
+
   /** ゲームループを実行するスレッドを表します。この値がnullでないならゲームループが実行されています。 */
   private volatile Thread gameLoopThread = null;
+
+  /** ゲームループの実行間隔(ミリ秒) を表します。 */
+  private volatile long gameLoopInterval = DEFAULT_GAME_LOOP_INTERVAL;
 
   /**
    * 指定された推奨サイズでゲーム画面を作成します。
@@ -32,6 +38,15 @@ public abstract class GameScreen extends JPanel implements Runnable {
    */
   public GameScreen() {
     this(DEFAULT_PREFERRED_WIDTH, DEFAULT_PREFERRED_HEIGHT);
+  }
+
+  /**
+   * このゲーム画面で実行されるゲームループの実行間隔(ミリ秒) を変更します。<br>
+   * デフォルト値は{@value #DEFAULT_GAME_LOOP_INTERVAL} です。
+   * @param gameLoopInterval ゲームループの実行間隔(ミリ秒)
+   */
+  public void setGameLoopInterval(long gameLoopInterval) {
+    this.gameLoopInterval = gameLoopInterval;
   }
 
   /**
@@ -93,6 +108,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
     Thread thisThread = Thread.currentThread();
     while(thisThread == gameLoopThread) {
       runGameLoop();
+      GameUtilities.sleep(gameLoopInterval);
     }
   }
 }
