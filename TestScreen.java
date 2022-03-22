@@ -26,8 +26,8 @@ abstract class FunctionalObject extends DrawableObject implements Movable {
   private final int iy;
 
   public IntFunction<Integer> func = x -> x;
-  public IntPredicate domain = x -> 0 <= x && x < GameScreen.DEFAULT_PREFERRED_WIDTH;
-  public IntPredicate range = y -> 0 <= y && y < GameScreen.DEFAULT_PREFERRED_HEIGHT;
+  public IntPredicate domain = x -> 0 <= x && x < GameScreen.DEFAULT_WIDTH;
+  public IntPredicate range = y -> 0 <= y && y < GameScreen.DEFAULT_HEIGHT;
 
   public FunctionalObject(int x, int y) {
     super(x, y);

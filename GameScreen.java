@@ -9,11 +9,11 @@ import java.awt.Dimension;
  */
 public abstract class GameScreen extends JPanel implements Runnable {
 
-  /** このゲーム画面のデフォルトの推奨サイズ(横幅) を表します。 */
-  public static final int DEFAULT_PREFERRED_WIDTH  = 640;
+  /** このゲーム画面のデフォルトのサイズ(横幅) を表します。 */
+  public static final int DEFAULT_WIDTH  = 640;
 
-  /** このゲーム画面のデフォルトの推奨サイズ(縦幅) を表します。 */
-  public static final int DEFAULT_PREFERRED_HEIGHT = 480;
+  /** このゲーム画面のデフォルトのサイズ(縦幅) を表します。 */
+  public static final int DEFAULT_HEIGHT = 480;
 
   /** このゲーム画面で実行されるゲームループのデフォルトの実行間隔(ミリ秒) を表します。 */
   public static final long DEFAULT_GAME_LOOP_INTERVAL = 1000L / 50L;
@@ -25,19 +25,21 @@ public abstract class GameScreen extends JPanel implements Runnable {
   private volatile long gameLoopInterval = DEFAULT_GAME_LOOP_INTERVAL;
 
   /**
-   * 指定された推奨サイズでゲーム画面を作成します。
-   * @param preferredWidth 推奨される横幅
-   * @param preferredHeight 推奨される縦幅
+   * 指定されたサイズでゲーム画面を作成します。
+   * @param width ゲーム画面の横幅
+   * @param height ゲーム画面の縦幅
    */
-  public GameScreen(int preferredWidth, int preferredHeight) {
-    setPreferredSize(new Dimension(preferredWidth, preferredHeight));
+  public GameScreen(int width, int height) {
+    Dimension size = new Dimension(width, height);
+    setPreferredSize(size);
+    setSize(size);
   }
 
   /**
-   * 推奨サイズが{@value #DEFAULT_PREFERRED_WIDTH} * {@value #DEFAULT_PREFERRED_HEIGHT} に設定されたゲーム画面を作成します。
+   * サイズが{@value #DEFAULT_WIDTH} * {@value #DEFAULT_HEIGHT} に設定されたゲーム画面を作成します。
    */
   public GameScreen() {
-    this(DEFAULT_PREFERRED_WIDTH, DEFAULT_PREFERRED_HEIGHT);
+    this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
   }
 
   /**
