@@ -27,6 +27,5 @@ public class EphemeralTestScreen extends GameScreen {
     }
 
     repaint();
-    GameUtilities.sleep(20);
   }
 }
