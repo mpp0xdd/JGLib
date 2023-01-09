@@ -1,6 +1,5 @@
-import javax.swing.JPanel;
 import java.awt.Dimension;
-
+import javax.swing.JPanel;
 
 /**
  * ゲーム画面の作成を円滑に進めていく為に用意された抽象基底クラスです。
@@ -10,7 +9,7 @@ import java.awt.Dimension;
 public abstract class GameScreen extends JPanel implements Runnable {
 
   /** このゲーム画面のデフォルトのサイズ(横幅) を表します。 */
-  public static final int DEFAULT_WIDTH  = 640;
+  public static final int DEFAULT_WIDTH = 640;
 
   /** このゲーム画面のデフォルトのサイズ(縦幅) を表します。 */
   public static final int DEFAULT_HEIGHT = 480;
@@ -26,6 +25,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
 
   /**
    * 指定されたサイズでゲーム画面を作成します。
+   *
    * @param width ゲーム画面の横幅
    * @param height ゲーム画面の縦幅
    */
@@ -35,9 +35,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
     setSize(size);
   }
 
-  /**
-   * サイズが{@value #DEFAULT_WIDTH} * {@value #DEFAULT_HEIGHT} に設定されたゲーム画面を作成します。
-   */
+  /** サイズが{@value #DEFAULT_WIDTH} * {@value #DEFAULT_HEIGHT} に設定されたゲーム画面を作成します。 */
   public GameScreen() {
     this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
   }
@@ -45,6 +43,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
   /**
    * このゲーム画面で実行されるゲームループの実行間隔(ミリ秒) を変更します。<br>
    * デフォルト値は{@value #DEFAULT_GAME_LOOP_INTERVAL} です。
+   *
    * @param gameLoopInterval ゲームループの実行間隔(ミリ秒)
    */
   public void setGameLoopInterval(long gameLoopInterval) {
@@ -54,12 +53,13 @@ public abstract class GameScreen extends JPanel implements Runnable {
   /**
    * ゲームループを開始します。<br>
    * このメソッドによって開始されたゲームループを終了したい場合は，{@code stopGameLoop()}を呼び出してください。
+   *
    * @throws IllegalStateException ゲームループが既に開始されている場合
    * @see #runGameLoop()
    * @see #stopGameLoop()
    */
   public final void startGameLoop() {
-    if(gameLoopThread != null) {
+    if (gameLoopThread != null) {
       throw (new IllegalStateException("実行中のゲームループを開始させることはできません。"));
     }
 
@@ -70,12 +70,13 @@ public abstract class GameScreen extends JPanel implements Runnable {
   /**
    * ゲームループを停止します。<br>
    * このメソッドによって停止されたゲームループを再び開始したい場合は，{@code startGameLoop()}を呼び出してください。
+   *
    * @throws IllegalStateException ゲームループが既に停止している場合
    * @see #runGameLoop()
    * @see #startGameLoop()
    */
   public final void stopGameLoop() {
-    if(gameLoopThread == null) {
+    if (gameLoopThread == null) {
       throw (new IllegalStateException("開始していないゲームループを停止させることはできません。"));
     }
 
@@ -84,20 +85,20 @@ public abstract class GameScreen extends JPanel implements Runnable {
 
   /**
    * ゲームループが終了するのを待機します。
+   *
    * @throws IllegalStateException ゲームループが既に停止している場合
    * @see #runGameLoop()
    * @see #startGameLoop()
    * @see #stopGameLoop()
    */
   public final void joinGameLoop() {
-    if(gameLoopThread == null) {
+    if (gameLoopThread == null) {
       throw (new IllegalStateException("開始していないゲームループの終了を待機することはできません。"));
     }
 
     try {
       gameLoopThread.join();
-    }
-    catch(InterruptedException ie) {
+    } catch (InterruptedException ie) {
       ie.printStackTrace();
     }
   }
@@ -108,7 +109,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
   @Override
   public final void run() {
     Thread thisThread = Thread.currentThread();
-    while(thisThread == gameLoopThread) {
+    while (thisThread == gameLoopThread) {
       runGameLoop();
       GameUtilities.sleep(gameLoopInterval);
     }

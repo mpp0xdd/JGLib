@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
 
-
 public class Test {
   public static void main(String[] args) {
     TestWindow window = new TestWindow();
@@ -10,12 +9,12 @@ public class Test {
     FunctionalObject[] fObjs = new FunctionalObject[4];
     fObjs[0] = new FunctionalBall(Color.red, 5, 0, 0);
     fObjs[1] = new FunctionalBall(Color.blue, 10, 0, 100);
-    fObjs[1].func = x -> (int)(100 - 100 * Math.sin(x*0.01));
+    fObjs[1].func = x -> (int) (100 - 100 * Math.sin(x * 0.01));
     fObjs[2] = new FunctionalBall(Color.yellow, 10, 0, 100);
-    fObjs[2].func = x -> (int)(100 - 100 * Math.cos(x*0.01));
+    fObjs[2].func = x -> (int) (100 - 100 * Math.cos(x * 0.01));
     Font font = new Font(Font.SERIF, Font.PLAIN, 20);
     fObjs[3] = new FunctionalString("Hello\nWorld", font, 0, 400);
-    fObjs[3].func = x -> (int)(400 - 50 * Math.sin(x*0.01));
+    fObjs[3].func = x -> (int) (400 - 50 * Math.sin(x * 0.01));
 
     GameScreen screen = new TestScreen(fObjs);
 

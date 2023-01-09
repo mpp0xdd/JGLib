@@ -1,8 +1,6 @@
-import java.awt.Graphics;
-import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.util.concurrent.TimeUnit;
-
 
 /**
  * Gameのユーティリティ・メソッドのコレクションです。
@@ -16,14 +14,14 @@ public final class GameUtilities {
   /**
    * 指定されたミリ秒数の間，スリープ(一時的にゲームの実行を停止) させます。<br>
    * このメソッドは {@code TimeUnit.MILLISECONDS.sleep()} の単なるラッパーです。
+   *
    * @param millis ミリ秒単位のスリープ時間の長さ
    * @see java.util.concurrent.TimeUnit#sleep(long)
    */
   public static void sleep(long millis) {
     try {
       TimeUnit.MILLISECONDS.sleep(millis);
-    }
-    catch(InterruptedException ie) {
+    } catch (InterruptedException ie) {
       ie.printStackTrace();
     }
   }
@@ -41,7 +39,7 @@ public final class GameUtilities {
     final int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
 
     y += fontMetrics.getMaxAscent();
-    for(String line : lines) {
+    for (String line : lines) {
       g.drawString(line, x, y);
       y += height;
     }
@@ -60,7 +58,7 @@ public final class GameUtilities {
     final int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
 
     y += fontMetrics.getMaxAscent();
-    for(String line : lines) {
+    for (String line : lines) {
       g.drawString(line, x - fontMetrics.stringWidth(line), y);
       y += height;
     }
@@ -79,7 +77,7 @@ public final class GameUtilities {
     final int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
 
     y += (fontMetrics.getMaxAscent() - fontMetrics.getMaxDescent()) / 2;
-    for(String line : lines) {
+    for (String line : lines) {
       g.drawString(line, x - fontMetrics.stringWidth(line) / 2, y);
       y += height;
     }

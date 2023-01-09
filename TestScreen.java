@@ -1,9 +1,8 @@
-import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.util.function.IntFunction;
 import java.util.function.IntPredicate;
-
 
 interface Movable {
   public abstract void move();
@@ -39,12 +38,11 @@ abstract class FunctionalObject extends DrawableObject implements Movable {
   public void move() {
     y = func.apply(x++);
 
-    if(!domain.test(x) || !range.test(y)) {
+    if (!domain.test(x) || !range.test(y)) {
       x = ix;
       y = iy;
     }
   }
-
 }
 
 class FunctionalBall extends FunctionalObject {
@@ -81,7 +79,7 @@ class FunctionalString extends FunctionalObject {
   @Override
   public void draw(Graphics g) {
     g.setFont(font);
-//    GameUtilities.drawStringAfterCentering(g, x, y, lines);
+    // GameUtilities.drawStringAfterCentering(g, x, y, lines);
     GameUtilities.drawString(g, x, y, lines);
     GameUtilities.drawStringFromTopRight(g, x, y, lines);
   }
@@ -100,15 +98,16 @@ public class TestScreen extends GameScreen {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    for(DrawableObject dObj : fObjs) {
+    for (DrawableObject dObj : fObjs) {
       dObj.draw(g);
     }
   }
 
   @Override
   protected void runGameLoop() {
-//    System.err.printf("id:%d: Game loop running..., Current Time: %d\n", id, System.currentTimeMillis());
-    for(Movable mObj : fObjs) {
+    // System.err.printf("id:%d: Game loop running..., Current Time: %d\n", id,
+    // System.currentTimeMillis());
+    for (Movable mObj : fObjs) {
       mObj.move();
     }
     repaint();
