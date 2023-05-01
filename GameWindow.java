@@ -5,14 +5,11 @@ import javax.swing.OverlayLayout;
 /**
  * ゲームウィンドウの作成を円滑に進めていく為に用意された抽象基底クラスです。
  *
- * <h2>注意点:</h2>
- *
- * このクラスを継承したウィンドウのレイアウト・マネージャの変更は行わないようにしてください。<br>
- * レイアウト・マネージャの変更が行われた状態で，このクラスで定義されたメソッドを呼び出した場合の動作は未定義です。
- *
  * @author mpp
  */
-public abstract class GameWindow extends JFrame {
+public abstract class GameWindow {
+
+  private JFrame frame;
 
   /**
    * 指定されたタイトルで不可視のウィンドウを作成します。
@@ -20,9 +17,9 @@ public abstract class GameWindow extends JFrame {
    * @param title フレームのタイトル。
    */
   public GameWindow(String title) {
-    super(title);
-    setLayout(new OverlayLayout(getContentPane()));
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    this.frame = new JFrame(title);
+    this.frame.setLayout(new OverlayLayout(this.frame.getContentPane()));
+    this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
   /** 不可視のウィンドウを作成します。 */
@@ -31,15 +28,36 @@ public abstract class GameWindow extends JFrame {
   }
 
   /**
+   * @see javax.swing.JFrame#setResizable(boolean)
+   */
+  public void setResizable(boolean resizable) {
+    this.frame.setResizable(resizable);
+  }
+
+  /**
+   * @see javax.swing.JFrame#pack()
+   */
+  public void pack() {
+    this.frame.pack();
+  }
+
+  /**
+   * @see javax.swing.JFrame#setVisible(boolean)
+   */
+  public void setVisible(boolean b) {
+    this.frame.setVisible(b);
+  }
+
+  /**
    * このウィンドウ上に表示されているゲーム画面を切り替えます。
    *
    * @param screen 切り替え先のゲーム画面。
    */
   public void switchGameScreen(GameScreen screen) {
-    Container contentPane = getContentPane();
+    Container contentPane = this.frame.getContentPane();
 
     contentPane.removeAll();
     contentPane.add(screen);
-    validate();
+    this.frame.validate();
   }
 }
