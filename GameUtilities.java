@@ -141,4 +141,15 @@ public final class GameUtilities {
   public static Optional<Clip> loadClip(String pathname) {
     return loadClip(new File(pathname));
   }
+
+  /**
+   * クリップのオーディオ・データの先頭から再生を開始します。
+   *
+   * @param clip 再生したいClip
+   */
+  public static void playClip(Clip clip) {
+    clip.stop();
+    clip.setFramePosition(0);
+    clip.start();
+  }
 }
