@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Optional;
+import javax.sound.sampled.Clip;
 
 public class Test {
   public static void main(String[] args) {
@@ -22,6 +24,11 @@ public class Test {
     window.pack();
     window.setVisible(true);
 
+    Optional<Clip> clip = GameUtilities.loadClip(Test.class.getResource("bgm.mid"));
+    // Optional<Clip> clip = GameUtilities.loadClip(new java.io.File("bgm.mid"));
+    // Optional<Clip> clip = GameUtilities.loadClip("bgm.mid");
+    clip.ifPresent(c -> c.start());
+
     screen.startGameLoop();
     GameUtilities.sleep(5000);
     screen.stopGameLoop();
@@ -30,6 +37,9 @@ public class Test {
     GameScreen screen2 = new EphemeralTestScreen();
     window.switchGameScreen(screen2);
     screen2.startGameLoop();
+
+    Optional<Clip> clip2 = GameUtilities.loadClip("effect.wav");
+    clip2.ifPresent(c -> c.start());
 
     screen2.joinGameLoop();
     System.err.println("テスト完了");

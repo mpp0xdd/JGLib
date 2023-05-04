@@ -1,2 +1,4 @@
 *.class
 doc
+*.wav
+*.mid

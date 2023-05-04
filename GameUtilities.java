@@ -1,6 +1,12 @@
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.io.File;
+import java.net.URL;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  * Gameのユーティリティ・メソッドのコレクションです。
@@ -81,5 +87,58 @@ public final class GameUtilities {
       g.drawString(line, x - fontMetrics.stringWidth(line) / 2, y);
       y += height;
     }
+  }
+
+  /**
+   * 指定されたURLからopen済みのClipを取得します。
+   *
+   * @param url Clipを構築するURL
+   * @return open済みのClip
+   */
+  public static Optional<Clip> loadClip(URL url) {
+    Clip clip;
+    try {
+      clip = AudioSystem.getClip();
+      try (AudioInputStream stream =
+          AudioSystem.getAudioInputStream(clip.getFormat(), AudioSystem.getAudioInputStream(url))) {
+        clip.open(stream);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      clip = null;
+    }
+    return Optional.ofNullable(clip);
+  }
+
+  /**
+   * 指定されたFileからopen済みのClipを取得します。
+   *
+   * @param file Clipを構築するFile
+   * @return open済みのClip
+   */
+  public static Optional<Clip> loadClip(File file) {
+    Clip clip;
+    try {
+      clip = AudioSystem.getClip();
+      try (AudioInputStream stream =
+          AudioSystem.getAudioInputStream(
+              clip.getFormat(), AudioSystem.getAudioInputStream(file))) {
+        clip.open(stream);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      clip = null;
+    }
+    return Optional.ofNullable(clip);
+  }
+
+  /**
+   * パス名pathnameで指定される実ファイルからopen済みのClipを取得します。
+   *
+   * @param pathname パス名文字列
+   * @return open済みのClip
+   */
+  public static Optional<Clip> loadClip(String pathname) {
+    return loadClip(new File(pathname));
   }
 }
