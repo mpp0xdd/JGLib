@@ -46,7 +46,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
    *
    * @param gameLoopInterval ゲームループの実行間隔(ミリ秒)
    */
-  public void setGameLoopInterval(long gameLoopInterval) {
+  public final void setGameLoopInterval(long gameLoopInterval) {
     this.gameLoopInterval = gameLoopInterval;
   }
 
