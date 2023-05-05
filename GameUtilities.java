@@ -156,6 +156,17 @@ public final class GameUtilities {
   }
 
   /**
+   * クリップのオーディオ・データの先頭からリピート再生を開始します。
+   *
+   * @param clip リピート再生したいClip
+   */
+  public static void repeatClip(Clip clip) {
+    clip.stop();
+    clip.setFramePosition(0);
+    clip.loop(Clip.LOOP_CONTINUOUSLY);
+  }
+
+  /**
    * 指定されたURLからImageを取得します。
    *
    * @param url Imageを構築するURL
