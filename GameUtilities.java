@@ -1,9 +1,11 @@
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -151,5 +153,49 @@ public final class GameUtilities {
     clip.stop();
     clip.setFramePosition(0);
     clip.start();
+  }
+
+  /**
+   * 指定されたURLからImageを取得します。
+   *
+   * @param url Imageを構築するURL
+   * @return Image
+   */
+  public static Optional<BufferedImage> loadImage(URL url) {
+    BufferedImage image;
+    try {
+      image = ImageIO.read(url);
+    } catch (Exception e) {
+      e.printStackTrace();
+      image = null;
+    }
+    return Optional.ofNullable(image);
+  }
+
+  /**
+   * 指定されたFileからImageを取得します。
+   *
+   * @param file Imageを構築するFile
+   * @return Image
+   */
+  public static Optional<BufferedImage> loadImage(File file) {
+    BufferedImage image;
+    try {
+      image = ImageIO.read(file);
+    } catch (Exception e) {
+      e.printStackTrace();
+      image = null;
+    }
+    return Optional.ofNullable(image);
+  }
+
+  /**
+   * パス名pathnameで指定される実ファイルからImageを取得します。
+   *
+   * @param pathname パス名文字列
+   * @return Image
+   */
+  public static Optional<BufferedImage> loadImage(String pathname) {
+    return loadImage(new File(pathname));
   }
 }
