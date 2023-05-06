@@ -1,4 +1,6 @@
 #!/bin/bash
+Classes="classes"
+Test="TestExecutor"
 Formatter="../Lib/google-java-format-1.15.0-all-deps.jar"
 
 usage () {
@@ -20,15 +22,15 @@ format () {
 }
 
 clean () {
-  rm -f *.class
+  rm -f "$Classes"/*.class
 }
 
 make () {
-  javac -encoding UTF-8 *.java
+  find -name '*.java' | xargs javac -d "$Classes" -encoding UTF-8
 }
 
 test () {
-  java -ea TestExecutor
+  java -cp "$Classes" -ea "$Test"
 }
 
 
