@@ -3,6 +3,7 @@ import static java.util.Objects.*;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+@TestClass
 public class SpriteSheetTest {
 
   // Image for test
@@ -11,7 +12,8 @@ public class SpriteSheetTest {
   private final int imageType = BufferedImage.TYPE_INT_RGB;
   private final BufferedImage image = new BufferedImage(width, height, imageType);
 
-  private void testConstructor() {
+  @TestMethod
+  void testConstructor() {
     System.err.println(">> Start testConstructor()");
 
     Test.assertThrows(
@@ -168,7 +170,8 @@ public class SpriteSheetTest {
                 + " equal");
   }
 
-  private void testAccessor() {
+  @TestMethod
+  void testAccessor() {
     System.err.println(">> Start testAccessor()");
 
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
@@ -256,7 +259,8 @@ public class SpriteSheetTest {
     assert exception.getSuppressed().length == 0;
   }
 
-  private void testFirstMethod() {
+  @TestMethod
+  void testFirstMethod() {
     System.err.println(">> Start testFirstMethod()");
 
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
@@ -274,7 +278,8 @@ public class SpriteSheetTest {
     assert !target.isAfterLast();
   }
 
-  private void testBeforeFirstMethod() {
+  @TestMethod
+  void testBeforeFirstMethod() {
     System.err.println(">> Start testBeforeFirstMethod()");
 
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
@@ -299,7 +304,8 @@ public class SpriteSheetTest {
     assert !target.isAfterLast();
   }
 
-  private void testLastMethod() {
+  @TestMethod
+  void testLastMethod() {
     System.err.println(">> Start testLastMethod()");
 
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
@@ -317,7 +323,8 @@ public class SpriteSheetTest {
     assert !target.isAfterLast();
   }
 
-  private void testAfterLastMethod() {
+  @TestMethod
+  void testAfterLastMethod() {
     System.err.println(">> Start testAfterLastMethod()");
 
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
@@ -335,7 +342,8 @@ public class SpriteSheetTest {
     assert target.isAfterLast();
   }
 
-  private void testPreviousMethod() {
+  @TestMethod
+  void testPreviousMethod() {
     System.err.println(">> Start testPreviousMethod()");
 
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
@@ -368,7 +376,8 @@ public class SpriteSheetTest {
     assert !target.isAfterLast();
   }
 
-  private void testNextMethod() {
+  @TestMethod
+  void testNextMethod() {
     System.err.println(">> Start testNextMethod()");
 
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
@@ -401,7 +410,8 @@ public class SpriteSheetTest {
     assert target.isAfterLast();
   }
 
-  private void testDrawMethod() {
+  @TestMethod
+  void testDrawMethod() {
     System.err.println(">> Start testDrawMethod()");
 
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
@@ -415,22 +425,5 @@ public class SpriteSheetTest {
 
     target.afterLast();
     Test.assertThrows(null, "target.draw(null)", () -> target.draw(null));
-  }
-
-  public static void main(String[] args) {
-    final String name = "SpriteSheetTest";
-    SpriteSheetTest test = new SpriteSheetTest();
-
-    System.err.printf("> Start %s.%n", name);
-    test.testConstructor();
-    test.testAccessor();
-    test.testFirstMethod();
-    test.testBeforeFirstMethod();
-    test.testLastMethod();
-    test.testAfterLastMethod();
-    test.testPreviousMethod();
-    test.testNextMethod();
-    test.testDrawMethod();
-    System.err.printf("> %s completed successfully.%n", name);
   }
 }

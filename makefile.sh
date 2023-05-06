@@ -28,7 +28,7 @@ make () {
 }
 
 test () {
-  java -ea SpriteSheetTest
+  java -ea TestExecutor
 }
 
 
