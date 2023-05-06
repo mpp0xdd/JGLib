@@ -209,4 +209,63 @@ public final class GameUtilities {
   public static Optional<BufferedImage> loadImage(String pathname) {
     return loadImage(new File(pathname));
   }
+
+  /**
+   * 指定されたURLからSpriteSheetを取得します。
+   *
+   * @param url スプライトシートを構築するURL
+   * @param width 各グラフィックの横幅
+   * @param height 各グラフィックの縦幅
+   * @param rows スプライトシートの行数（並べられているグラフィックの数）
+   * @param columns スプライトシートの列数（並べられているグラフィックの数）
+   * @return SpriteSheet
+   */
+  public static Optional<SpriteSheet> loadSpriteSheet(
+      URL url, int width, int height, int rows, int columns) {
+    SpriteSheet spriteSheet;
+    try {
+      spriteSheet = new SpriteSheet(ImageIO.read(url), width, height, rows, columns);
+    } catch (Exception e) {
+      e.printStackTrace();
+      spriteSheet = null;
+    }
+    return Optional.ofNullable(spriteSheet);
+  }
+
+  /**
+   * 指定されたFileからSpriteSheetを取得します。
+   *
+   * @param file スプライトシートを構築するFile
+   * @param width 各グラフィックの横幅
+   * @param height 各グラフィックの縦幅
+   * @param rows スプライトシートの行数（並べられているグラフィックの数）
+   * @param columns スプライトシートの列数（並べられているグラフィックの数）
+   * @return SpriteSheet
+   */
+  public static Optional<SpriteSheet> loadSpriteSheet(
+      File file, int width, int height, int rows, int columns) {
+    SpriteSheet spriteSheet;
+    try {
+      spriteSheet = new SpriteSheet(ImageIO.read(file), width, height, rows, columns);
+    } catch (Exception e) {
+      e.printStackTrace();
+      spriteSheet = null;
+    }
+    return Optional.ofNullable(spriteSheet);
+  }
+
+  /**
+   * パス名pathnameで指定される実ファイルからSpriteSheetを取得します。
+   *
+   * @param pathname パス名文字列
+   * @param width 各グラフィックの横幅
+   * @param height 各グラフィックの縦幅
+   * @param rows スプライトシートの行数（並べられているグラフィックの数）
+   * @param columns スプライトシートの列数（並べられているグラフィックの数）
+   * @return SpriteSheet
+   */
+  public static Optional<SpriteSheet> loadSpriteSheet(
+      String pathname, int width, int height, int rows, int columns) {
+    return loadSpriteSheet(new File(pathname), width, height, rows, columns);
+  }
 }
