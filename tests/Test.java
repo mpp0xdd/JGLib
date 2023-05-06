@@ -48,15 +48,14 @@ public interface Test {
         message != null && !message.isEmpty()
             ? message.replaceAll("(?m)^", "    ")
             : "    No message.");
-    System.err.println("---------------------------------");
+    System.err.println();
     return Optional.ofNullable(exception);
   }
 
   static void invokeTestClass(Object object) {
     requireNonNull(object);
     if (!object.getClass().isAnnotationPresent(TestClass.class)) {
-      System.err.println("Not a test class, so cannot be invoked.");
-      System.err.println(" => " + object);
+      System.err.println("[ERROR] Not a test class, so cannot be invoked: " + object.getClass());
       System.exit(1);
     }
 
@@ -67,15 +66,21 @@ public interface Test {
             .collect(Collectors.toList());
 
     if (testMethods.isEmpty()) {
-      System.err.println("Test method not found");
-      System.err.println(" => " + object);
+      System.err.println("[ERROR] Test method not found: " + object.getClass());
       System.exit(1);
     }
 
     try {
       System.err.printf("> Start %s.%n", object.getClass().getSimpleName());
-      for (Method method : testMethods) method.invoke(object);
+      System.err.println("-----------------------------------------------------------------");
+      for (Method method : testMethods) {
+        System.err.printf(String.format(">> Start %s()%n", method.getName()));
+        method.invoke(object);
+        System.err.printf(String.format(">> %s() completed successfully.%n", method.getName()));
+        System.err.println("---------------------------------------------------");
+      }
       System.err.printf("> %s completed successfully.%n", object.getClass().getSimpleName());
+      System.err.println("-----------------------------------------------------------------");
     } catch (Exception e) {
       e.printStackTrace();
       System.exit(1);

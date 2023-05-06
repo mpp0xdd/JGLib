@@ -14,8 +14,6 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testConstructor() {
-    System.err.println(">> Start testConstructor()");
-
     Test.assertThrows(
         null, "new SpriteSheet(image, 32, 32, 3, 6)", () -> new SpriteSheet(image, 32, 32, 3, 6));
     Test.assertThrows(
@@ -172,8 +170,6 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testAccessor() {
-    System.err.println(">> Start testAccessor()");
-
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == -1;
     assert target.getLocation().equals(new Point());
@@ -261,8 +257,6 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testFirstMethod() {
-    System.err.println(">> Start testFirstMethod()");
-
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == -1;
     assert !target.isFirst();
@@ -280,8 +274,6 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testBeforeFirstMethod() {
-    System.err.println(">> Start testBeforeFirstMethod()");
-
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == -1;
     assert !target.isFirst();
@@ -306,8 +298,6 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testLastMethod() {
-    System.err.println(">> Start testLastMethod()");
-
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == -1;
     assert !target.isFirst();
@@ -325,8 +315,6 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testAfterLastMethod() {
-    System.err.println(">> Start testAfterLastMethod()");
-
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == -1;
     assert !target.isFirst();
@@ -344,8 +332,6 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testPreviousMethod() {
-    System.err.println(">> Start testPreviousMethod()");
-
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == -1;
     assert !target.isFirst();
@@ -378,8 +364,6 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testNextMethod() {
-    System.err.println(">> Start testNextMethod()");
-
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == -1;
     assert !target.isFirst();
@@ -412,8 +396,6 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testDrawMethod() {
-    System.err.println(">> Start testDrawMethod()");
-
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     Test.assertThrows(null, "target.draw(null)", () -> target.draw(null));
 
