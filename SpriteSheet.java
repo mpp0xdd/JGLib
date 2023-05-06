@@ -58,7 +58,6 @@ public class SpriteSheet {
     this.rows = rows;
     this.columns = columns;
     this.point = new Point();
-    this.beforeFirst();
 
     // Validate each field except image
     final List<RuntimeException> validationResults = new ArrayList<>();
@@ -106,6 +105,7 @@ public class SpriteSheet {
     if (exception.isPresent()) {
       throw exception.get();
     }
+    this.beforeFirst();
   }
 
   /**

@@ -10,6 +10,7 @@ usage () {
       -f      format source code
       -c      remove all class files
       -m      run compile
+      -t      run test
 EOF
   exit
 }
@@ -26,16 +27,21 @@ make () {
   javac -encoding UTF-8 *.java
 }
 
+test () {
+  java -ea SpriteSheetTest
+}
+
 
 if [ $# -eq 0 ]; then
   usage
 fi
 
-while getopts 'hfcm' opt; do
+while getopts 'hfcmt' opt; do
   case "$opt" in
     h) usage ;;
     f) format ;;
     c) clean ;;
     m) make ;;
+    t) format && make && test ;;
   esac
 done
