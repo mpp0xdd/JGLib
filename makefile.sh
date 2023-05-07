@@ -18,7 +18,7 @@ EOF
 }
 
 format () {
-  java -jar "$Formatter" -i *.java
+  find -name '*.java' | xargs java -jar "$Formatter" -i
 }
 
 clean () {
