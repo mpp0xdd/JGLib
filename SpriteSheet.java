@@ -254,15 +254,15 @@ public class SpriteSheet {
   /**
    * {@link draw(Graphics)} で描画されるスプライトシートのグラフィック番号を設定します。<br>
    * 無効なグラフィック番号（グラフィック番号の有効範囲については {@link getIndex()} を参照してください）が設定されようとした場合は {@link
-   * IllegalArgumentException} をスローします。
+   * IndexOutOfBoundsException} をスローします。
    *
    * @param index 設定される グラフィック番号
-   * @throws IllegalArgumentException グラフィック番号に無効な値を設定しようとした場合
+   * @throws IndexOutOfBoundsException グラフィック番号に無効な値を設定しようとした場合
    * @see getIndex()
    */
   public void setIndex(int index) {
     if (index < -1 || index > this.rows * this.columns) {
-      throw (new IllegalArgumentException(
+      throw (new IndexOutOfBoundsException(
           String.format("%d (index must be between -1 and %d)", index, rows * columns)));
     }
     this.index = index;

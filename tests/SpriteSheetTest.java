@@ -242,14 +242,14 @@ public class SpriteSheetTest {
 
     Exception exception =
         Test.assertThrows(
-                IllegalArgumentException.class, "target.setIndex(-2)", () -> target.setIndex(-2))
+                IndexOutOfBoundsException.class, "target.setIndex(-2)", () -> target.setIndex(-2))
             .get();
     assert exception.getMessage().equals("-2 (index must be between -1 and 18)");
     assert exception.getSuppressed().length == 0;
 
     exception =
         Test.assertThrows(
-                IllegalArgumentException.class, "target.setIndex(19)", () -> target.setIndex(19))
+                IndexOutOfBoundsException.class, "target.setIndex(19)", () -> target.setIndex(19))
             .get();
     assert exception.getMessage().equals("19 (index must be between -1 and 18)");
     assert exception.getSuppressed().length == 0;
