@@ -1,4 +1,6 @@
 #!/bin/bash
+CFlags="-J-Dfile.encoding=UTF-8"
+JFlags="-Dfile.encoding=UTF-8"
 Classes="classes"
 Test="TestExecutor"
 Formatter="../Lib/google-java-format-1.15.0-all-deps.jar"
@@ -18,7 +20,7 @@ EOF
 }
 
 format () {
-  find -name '*.java' | xargs java -jar "$Formatter" -i
+  find -name '*.java' | xargs java "$JFlags" -jar "$Formatter" -i
 }
 
 clean () {
@@ -26,11 +28,11 @@ clean () {
 }
 
 make () {
-  find -name '*.java' | xargs javac -d "$Classes" -encoding UTF-8
+  find -name '*.java' | xargs javac "$CFlags" -d "$Classes"
 }
 
 test () {
-  java -cp "$Classes" -ea "$Test"
+  java "$JFlags" -cp "$Classes" -ea "$Test"
 }
 
 
