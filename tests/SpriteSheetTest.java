@@ -171,14 +171,14 @@ public class SpriteSheetTest {
   @TestMethod
   void testAccessor() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
-    assert target.getIndex() == -1;
+    assert target.getIndex() == 18;
     assert target.getLocation().equals(new Point());
     assert target.getX() == 0;
     assert target.getY() == 0;
     assert !target.isFirst();
-    assert target.isBeforeFirst();
+    assert !target.isBeforeFirst();
     assert !target.isLast();
-    assert !target.isAfterLast();
+    assert target.isAfterLast();
 
     target.setX(42);
     assert target.getLocation().equals(new Point(42, 0));
@@ -258,11 +258,11 @@ public class SpriteSheetTest {
   @TestMethod
   void testFirstMethod() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
-    assert target.getIndex() == -1;
+    assert target.getIndex() == 18;
     assert !target.isFirst();
-    assert target.isBeforeFirst();
+    assert !target.isBeforeFirst();
     assert !target.isLast();
-    assert !target.isAfterLast();
+    assert target.isAfterLast();
 
     target.first();
     assert target.getIndex() == 0;
@@ -275,11 +275,11 @@ public class SpriteSheetTest {
   @TestMethod
   void testBeforeFirstMethod() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
-    assert target.getIndex() == -1;
+    assert target.getIndex() == 18;
     assert !target.isFirst();
-    assert target.isBeforeFirst();
+    assert !target.isBeforeFirst();
     assert !target.isLast();
-    assert !target.isAfterLast();
+    assert target.isAfterLast();
 
     target.first();
     assert target.getIndex() == 0;
@@ -299,11 +299,11 @@ public class SpriteSheetTest {
   @TestMethod
   void testLastMethod() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
-    assert target.getIndex() == -1;
+    assert target.getIndex() == 18;
     assert !target.isFirst();
-    assert target.isBeforeFirst();
+    assert !target.isBeforeFirst();
     assert !target.isLast();
-    assert !target.isAfterLast();
+    assert target.isAfterLast();
 
     target.last();
     assert target.getIndex() == 17;
@@ -316,9 +316,16 @@ public class SpriteSheetTest {
   @TestMethod
   void testAfterLastMethod() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
-    assert target.getIndex() == -1;
+    assert target.getIndex() == 18;
     assert !target.isFirst();
-    assert target.isBeforeFirst();
+    assert !target.isBeforeFirst();
+    assert !target.isLast();
+    assert target.isAfterLast();
+
+    target.setIndex(2);
+    assert target.getIndex() == 2;
+    assert !target.isFirst();
+    assert !target.isBeforeFirst();
     assert !target.isLast();
     assert !target.isAfterLast();
 
@@ -333,20 +340,12 @@ public class SpriteSheetTest {
   @TestMethod
   void testPreviousMethod() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
-    assert target.getIndex() == -1;
+    assert target.getIndex() == 18;
     assert !target.isFirst();
-    assert target.isBeforeFirst();
+    assert !target.isBeforeFirst();
     assert !target.isLast();
-    assert !target.isAfterLast();
+    assert target.isAfterLast();
 
-    target.previous();
-    assert target.getIndex() == -1;
-    assert !target.isFirst();
-    assert target.isBeforeFirst();
-    assert !target.isLast();
-    assert !target.isAfterLast();
-
-    target.afterLast();
     target.previous();
     assert target.getIndex() == 17;
     assert !target.isFirst();
@@ -365,12 +364,20 @@ public class SpriteSheetTest {
   @TestMethod
   void testNextMethod() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
-    assert target.getIndex() == -1;
+    assert target.getIndex() == 18;
     assert !target.isFirst();
-    assert target.isBeforeFirst();
+    assert !target.isBeforeFirst();
     assert !target.isLast();
-    assert !target.isAfterLast();
+    assert target.isAfterLast();
 
+    target.next();
+    assert target.getIndex() == 18;
+    assert !target.isFirst();
+    assert !target.isBeforeFirst();
+    assert !target.isLast();
+    assert target.isAfterLast();
+
+    target.beforeFirst();
     target.next();
     assert target.getIndex() == 0;
     assert target.isFirst();
@@ -384,14 +391,6 @@ public class SpriteSheetTest {
     assert !target.isBeforeFirst();
     assert !target.isLast();
     assert !target.isAfterLast();
-
-    target.afterLast();
-    target.next();
-    assert target.getIndex() == 18;
-    assert !target.isFirst();
-    assert !target.isBeforeFirst();
-    assert !target.isLast();
-    assert target.isAfterLast();
   }
 
   @TestMethod

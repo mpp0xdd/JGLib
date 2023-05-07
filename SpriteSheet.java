@@ -105,7 +105,7 @@ public class SpriteSheet {
     if (exception.isPresent()) {
       throw exception.get();
     }
-    this.beforeFirst();
+    this.afterLast();
   }
 
   /**
