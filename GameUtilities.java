@@ -2,6 +2,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -106,7 +107,7 @@ public final class GameUtilities {
         clip.open(stream);
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      (new IOException("Load failed: " + url, e)).printStackTrace();
       clip = null;
     }
     return Optional.ofNullable(clip);
@@ -128,7 +129,7 @@ public final class GameUtilities {
         clip.open(stream);
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      (new IOException("Load failed: " + file, e)).printStackTrace();
       clip = null;
     }
     return Optional.ofNullable(clip);
@@ -177,7 +178,7 @@ public final class GameUtilities {
     try {
       image = ImageIO.read(url);
     } catch (Exception e) {
-      e.printStackTrace();
+      (new IOException("Load failed: " + url, e)).printStackTrace();
       image = null;
     }
     return Optional.ofNullable(image);
@@ -194,7 +195,7 @@ public final class GameUtilities {
     try {
       image = ImageIO.read(file);
     } catch (Exception e) {
-      e.printStackTrace();
+      (new IOException("Load failed: " + file, e)).printStackTrace();
       image = null;
     }
     return Optional.ofNullable(image);
@@ -226,7 +227,7 @@ public final class GameUtilities {
     try {
       spriteSheet = new SpriteSheet(ImageIO.read(url), width, height, rows, columns);
     } catch (Exception e) {
-      e.printStackTrace();
+      (new IOException("Load failed: " + url, e)).printStackTrace();
       spriteSheet = null;
     }
     return Optional.ofNullable(spriteSheet);
@@ -248,7 +249,7 @@ public final class GameUtilities {
     try {
       spriteSheet = new SpriteSheet(ImageIO.read(file), width, height, rows, columns);
     } catch (Exception e) {
-      e.printStackTrace();
+      (new IOException("Load failed: " + file, e)).printStackTrace();
       spriteSheet = null;
     }
     return Optional.ofNullable(spriteSheet);
