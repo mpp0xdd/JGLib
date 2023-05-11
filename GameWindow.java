@@ -20,25 +20,12 @@ public abstract class GameWindow {
     this.frame = new JFrame(title);
     this.frame.setLayout(new OverlayLayout(this.frame.getContentPane()));
     this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.frame.setResizable(false);
   }
 
   /** 不可視のウィンドウを作成します。 */
   public GameWindow() {
     this("Game");
-  }
-
-  /**
-   * @see javax.swing.JFrame#setResizable(boolean)
-   */
-  public void setResizable(boolean resizable) {
-    this.frame.setResizable(resizable);
-  }
-
-  /**
-   * @see javax.swing.JFrame#pack()
-   */
-  public void pack() {
-    this.frame.pack();
   }
 
   /**
@@ -59,5 +46,6 @@ public abstract class GameWindow {
     contentPane.removeAll();
     contentPane.add(screen);
     this.frame.validate();
+    this.frame.pack();
   }
 }

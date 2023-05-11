@@ -14,7 +14,6 @@ classDiagram
   SpriteSheet <-- MainScreen :use
   class GameWindow {
     <<abstract>>
-    +pack()
     +setVisible()
     +switchGameScreen()
   }
