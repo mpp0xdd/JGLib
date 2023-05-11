@@ -22,8 +22,7 @@ import java.util.stream.Stream;
 public interface Test {
   void test() throws Exception;
 
-  static Optional<Exception> assertThrows(
-      Class<? extends Exception> expected, String code, Test test) {
+  static Optional<Exception> assertThrows(Class<? extends Exception> expected, Test test) {
     Exception exception;
     Class<? extends Exception> actual;
     String message;
@@ -31,23 +30,13 @@ public interface Test {
       test.test();
       exception = null;
       actual = null;
-      message = null;
     } catch (Exception e) {
       exception = e;
       actual = e.getClass();
-      message = e.getMessage();
     }
-
-    System.err.println(code);
     assert nonNull(expected)
         ? nonNull(exception) && expected.equals(actual)
         : isNull(exception) && isNull(actual);
-    System.err.printf(" => Exception %s thrown as expected.\n", expected);
-    System.err.println(
-        message != null && !message.isEmpty()
-            ? message.replaceAll("(?m)^", "    ")
-            : "    No message.");
-    System.err.println();
     return Optional.ofNullable(exception);
   }
 
@@ -70,16 +59,15 @@ public interface Test {
     }
 
     try {
-      System.err.printf("> Start %s.%n", object.getClass().getSimpleName());
-      System.err.println("-----------------------------------------------------------------");
-      for (Method method : testMethods) {
-        System.err.printf(String.format(">> Start %s()%n", method.getName()));
-        method.invoke(object);
-        System.err.printf(String.format(">> %s() completed successfully.%n", method.getName()));
-        System.err.println("---------------------------------------------------");
+      System.err.printf("> Start %s%n", object.getClass().getSimpleName());
+      for (Method testMethod : testMethods) {
+        System.err.println();
+        System.err.printf(String.format(">> Start %s()%n", testMethod.getName()));
+        testMethod.invoke(object);
+        System.err.printf(String.format(">> %s() completed successfully.%n", testMethod.getName()));
       }
+      System.err.println();
       System.err.printf("> %s completed successfully.%n", object.getClass().getSimpleName());
-      System.err.println("-----------------------------------------------------------------");
     } catch (Exception e) {
       e.printStackTrace();
       System.exit(1);
