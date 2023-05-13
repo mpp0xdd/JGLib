@@ -41,7 +41,7 @@ public class SpriteSheet {
 
   /**
    * 指定された {@link BufferedImage} で新しい SpriteSheet を構築します。<br>
-   * SpriteSheet の座標の初期値は座標空間の原点 (0, 0) となることに注意してください。<br>
+   * SpriteSheet の座標の初期値は座標空間の原点 (0, 0) に，グラフィック番号（添え字）の初期値は最大値にそれぞれなることに注意してください。<br>
    * SpriteSheet の構築に失敗した場合（imageにnullが渡された場合など）は， {@link RuntimeException} をスローします。
    *
    * @param image スプライトシート
@@ -50,6 +50,7 @@ public class SpriteSheet {
    * @param rows スプライトシートの行数（並べられているグラフィックの数）
    * @param columns スプライトシートの列数（並べられているグラフィックの数）
    * @throws RuntimeException SpriteSheetの構築に失敗した場合
+   * @see getIndex()
    */
   public SpriteSheet(BufferedImage image, int width, int height, int rows, int columns) {
     this.image = Objects.requireNonNull(image);
