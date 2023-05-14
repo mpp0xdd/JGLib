@@ -174,9 +174,48 @@ public class SpriteSheet {
   }
 
   /**
+   * この SpriteSheet の {@link getIndex()} が返すグラフィック番号が指すグラフィックを返します。<br>
+   * （現在のグラフィック番号が指すグラフィックが存在しない場合(*)は 空のOptionalインスタンスが返されることに注意してください）<br>
+   * (*) {@link isBeforeFirst()} または {@link isAfterLast()} が true を返す場合
+   *
+   * @return グラフィック番号が指すグラフィック
+   * @see getIndex()
+   * @see setIndex(int)
+   */
+  public Optional<BufferedImage> getImage() {
+    if (isBeforeFirst() || isAfterLast()) return Optional.empty();
+    return Optional.of(
+        image.getSubimage(
+            (getIndex() % columns) * width, (getIndex() / columns) * height, width, height));
+  }
+
+  /**
+   * 指定されたグラフィック番号が指すグラフィックを返します（この SpriteSheet の現在のグラフィック番号の値は変更されません）。<br>
+   * ただし，指定されたグラフィック番号が指すグラフィックが存在しない場合(*) は 空のOptionalインスタンスを返します。<br>
+   * また無効なグラフィック番号（グラフィック番号の有効範囲については {@link getIndex()} を参照してください）が指定された場合は {@link
+   * IndexOutOfBoundsException} をスローします。<br>
+   * (*) {@link isBeforeFirst()} または {@link isAfterLast()} が true を返すグラフィック番号の場合
+   *
+   * @param index グラフィック番号
+   * @return グラフィック番号が指すグラフィック
+   * @see getIndex()
+   * @see setIndex(int)
+   * @throws IndexOutOfBoundsException グラフィック番号に無効な値を指定された場合
+   */
+  public Optional<BufferedImage> getImage(int index) {
+    final int currentIndex = getIndex(); // Back up the current index
+    try {
+      setIndex(index);
+      return getImage();
+    } finally {
+      setIndex(currentIndex); // Restore the index
+    }
+  }
+
+  /**
    * この SpriteSheet の描画を行います。<br>
-   * 描画は，この SpriteSheet の {@link getIndex()} が返すグラフィック番号が有効な場合(*) にのみ行われることに注意してください。<br>
-   * （グラフィック番号が無効の場合にこのメソッドが呼び出された時は，何も行わずに直ちに return します）<br>
+   * 描画は，この SpriteSheet の {@link getIndex()} が返すグラフィック番号が指すグラフィックが存在する場合のみ行われることに注意してください。<br>
+   * （グラフィック番号が指すグラフィックが存在しない場合(*) にこのメソッドが呼び出された時は，このメソッドは何も行いません）<br>
    * (*) {@link isBeforeFirst()} または {@link isAfterLast()} が true を返す場合
    *
    * @param g 文字列の描画に使用するグラフィックスコンテキスト。
@@ -184,10 +223,7 @@ public class SpriteSheet {
    * @see setIndex(int)
    */
   public void draw(Graphics g) {
-    if (isBeforeFirst() || isAfterLast()) return;
-    BufferedImage grid =
-        image.getSubimage((index % columns) * width, (index / columns) * height, width, height);
-    g.drawImage(grid, point.x, point.y, null);
+    getImage().ifPresent(image -> g.drawImage(image, point.x, point.y, null));
   }
 
   /**

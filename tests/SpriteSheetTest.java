@@ -1,7 +1,9 @@
 import static java.util.Objects.*;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 @TestClass
 public class SpriteSheetTest {
@@ -11,6 +13,33 @@ public class SpriteSheetTest {
   private final int height = 96;
   private final int imageType = BufferedImage.TYPE_INT_RGB;
   private final BufferedImage image = new BufferedImage(width, height, imageType);
+
+  private boolean equals(BufferedImage img1, BufferedImage img2) {
+    // if (img1 == img2) return true;
+
+    // If the width and height are different, it is false
+    if (img1.getWidth() != img2.getWidth()) return false;
+    if (img1.getHeight() != img2.getHeight()) return false;
+
+    // If height and width are equal, check if all integer pixels are equal
+    for (int y = 0; y < img1.getHeight(); y++)
+      for (int x = 0; x < img1.getWidth(); x++)
+        if (img1.getRGB(x, y) != img2.getRGB(x, y)) return false;
+    return true;
+  }
+
+  SpriteSheetTest() {
+    // Set each pixel of the image to a random RGB value
+    Random rnd = new Random();
+    for (int y = 0; y < image.getHeight(); y++) {
+      for (int x = 0; x < image.getWidth(); x++) {
+        int r = rnd.nextInt(256);
+        int g = rnd.nextInt(256);
+        int b = rnd.nextInt(256);
+        image.setRGB(x, y, (new Color(r, b, b)).getRGB());
+      }
+    }
+  }
 
   @TestMethod
   void testConstructor() {
@@ -147,6 +176,7 @@ public class SpriteSheetTest {
   void testAccessor() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
+    assert !target.getImage().isPresent();
     assert target.getLocation().equals(new Point());
     assert target.getX() == 0;
     assert target.getY() == 0;
@@ -181,6 +211,7 @@ public class SpriteSheetTest {
 
     target.setIndex(-1);
     assert target.getIndex() == -1;
+    assert !target.getImage().isPresent();
     assert !target.isFirst();
     assert target.isBeforeFirst();
     assert !target.isLast();
@@ -188,6 +219,8 @@ public class SpriteSheetTest {
 
     target.setIndex(0);
     assert target.getIndex() == 0;
+    assert target.getImage().isPresent();
+    assert equals(target.getImage().get(), image.getSubimage(0, 0, 32, 32));
     assert target.isFirst();
     assert !target.isBeforeFirst();
     assert !target.isLast();
@@ -195,6 +228,8 @@ public class SpriteSheetTest {
 
     target.setIndex(1);
     assert target.getIndex() == 1;
+    assert target.getImage().isPresent();
+    assert equals(target.getImage().get(), image.getSubimage(32, 0, 32, 32));
     assert !target.isFirst();
     assert !target.isBeforeFirst();
     assert !target.isLast();
@@ -202,6 +237,8 @@ public class SpriteSheetTest {
 
     target.setIndex(17);
     assert target.getIndex() == 17;
+    assert target.getImage().isPresent();
+    assert equals(target.getImage().get(), image.getSubimage(32 * 5, 32 * 2, 32, 32));
     assert !target.isFirst();
     assert !target.isBeforeFirst();
     assert target.isLast();
@@ -209,6 +246,7 @@ public class SpriteSheetTest {
 
     target.setIndex(18);
     assert target.getIndex() == 18;
+    assert !target.getImage().isPresent();
     assert !target.isFirst();
     assert !target.isBeforeFirst();
     assert !target.isLast();
@@ -222,6 +260,32 @@ public class SpriteSheetTest {
     exception = Test.assertThrows(IndexOutOfBoundsException.class, () -> target.setIndex(19)).get();
     assert exception.getMessage().equals("19 (index must be between -1 and 18)");
     assert exception.getSuppressed().length == 0;
+  }
+
+  @TestMethod
+  void testGetImageIndex() {
+    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+
+    target.setIndex(5);
+    Exception exception =
+        Test.assertThrows(IndexOutOfBoundsException.class, () -> target.getImage(-2)).get();
+    assert exception.getMessage().equals("-2 (index must be between -1 and 18)");
+    assert exception.getSuppressed().length == 0;
+    exception = Test.assertThrows(IndexOutOfBoundsException.class, () -> target.getImage(19)).get();
+    assert exception.getMessage().equals("19 (index must be between -1 and 18)");
+    assert exception.getSuppressed().length == 0;
+    assert target.getIndex() == 5;
+
+    target.setIndex(3);
+    assert !target.getImage(-1).isPresent();
+    assert !target.getImage(18).isPresent();
+    assert target.getIndex() == 3;
+
+    target.setIndex(0);
+    BufferedImage firstImage = target.getImage().get();
+    target.setIndex(1);
+    assert equals(firstImage, target.getImage(0).get());
+    assert target.getIndex() == 1;
   }
 
   @TestMethod
