@@ -176,7 +176,7 @@ public class SpriteSheetTest {
   void testAccessor() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
-    assert !target.getImage().isPresent();
+    assert target.getImage().isEmpty();
     assert target.getLocation().equals(new Point());
     assert target.getX() == 0;
     assert target.getY() == 0;
@@ -211,7 +211,7 @@ public class SpriteSheetTest {
 
     target.setIndex(-1);
     assert target.getIndex() == -1;
-    assert !target.getImage().isPresent();
+    assert target.getImage().isEmpty();
     assert !target.isFirst();
     assert target.isBeforeFirst();
     assert !target.isLast();
@@ -246,7 +246,7 @@ public class SpriteSheetTest {
 
     target.setIndex(18);
     assert target.getIndex() == 18;
-    assert !target.getImage().isPresent();
+    assert target.getImage().isEmpty();
     assert !target.isFirst();
     assert !target.isBeforeFirst();
     assert !target.isLast();
@@ -277,8 +277,8 @@ public class SpriteSheetTest {
     assert target.getIndex() == 5;
 
     target.setIndex(3);
-    assert !target.getImage(-1).isPresent();
-    assert !target.getImage(18).isPresent();
+    assert target.getImage(-1).isEmpty();
+    assert target.getImage(18).isEmpty();
     assert target.getIndex() == 3;
 
     target.setIndex(0);
