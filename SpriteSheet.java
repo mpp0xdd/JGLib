@@ -174,7 +174,7 @@ public class SpriteSheet {
   }
 
   /**
-   * この SpriteSheet の {@link getIndex()} が返すグラフィック番号が指すグラフィックを返します。<br>
+   * この SpriteSheet の {@link getIndex()} が返すグラフィック番号（現在のグラフィック番号）が指すグラフィックを返します。<br>
    * （現在のグラフィック番号が指すグラフィックが存在しない場合(*)は 空のOptionalインスタンスが返されることに注意してください）<br>
    * (*) {@link isBeforeFirst()} または {@link isAfterLast()} が true を返す場合
    *
