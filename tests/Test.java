@@ -40,6 +40,10 @@ public interface Test {
     return Optional.ofNullable(exception);
   }
 
+  static void assertDoesNotThrow(Test test) {
+    assertThrows(null, test);
+  }
+
   static void invokeTestClass(Object object) {
     requireNonNull(object);
     if (!object.getClass().isAnnotationPresent(TestClass.class)) {

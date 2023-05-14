@@ -43,8 +43,8 @@ public class SpriteSheetTest {
 
   @TestMethod
   void testConstructor() {
-    Test.assertThrows(null, () -> new SpriteSheet(image, 32, 32, 3, 6));
-    Test.assertThrows(null, () -> new SpriteSheet(image, 32, 32, 6, 3));
+    Test.assertDoesNotThrow(() -> new SpriteSheet(image, 32, 32, 3, 6));
+    Test.assertDoesNotThrow(() -> new SpriteSheet(image, 32, 32, 6, 3));
 
     Test.assertThrows(NullPointerException.class, () -> new SpriteSheet(null, 32, 32, 6, 3));
 
@@ -429,7 +429,7 @@ public class SpriteSheetTest {
   @TestMethod
   void testDrawMethod() {
     SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
-    Test.assertThrows(null, () -> target.draw(null));
+    Test.assertDoesNotThrow(() -> target.draw(null));
 
     target.first();
     Test.assertThrows(NullPointerException.class, () -> target.draw(null));
@@ -438,6 +438,6 @@ public class SpriteSheetTest {
     Test.assertThrows(NullPointerException.class, () -> target.draw(null));
 
     target.afterLast();
-    Test.assertThrows(null, () -> target.draw(null));
+    Test.assertDoesNotThrow(() -> target.draw(null));
   }
 }
