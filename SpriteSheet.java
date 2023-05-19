@@ -233,49 +233,49 @@ public class SpriteSheet {
    * グラフィック番号の最小値（最大値）が実際のグラフィック番号より一つ小さい（大きい）値になっていることに注意してください。<br>
    * これはユーザの利便のためです。
    *
-   * <table border="1">
+   * <table border="1" style="text-align:center">
    *   <caption>2行3列のスプライトシートの場合</caption>
-   *   <tr align="center">
-   *     <th bgcolor="#dee3e9">行番号</th>
-   *     <th bgcolor="#dee3e9">列番号</th>
-   *     <th bgcolor="#dee3e9">グラフィック番号</th>
+   *   <tr style="background-color:#dee3e9">
+   *     <th>行番号</th>
+   *     <th>列番号</th>
+   *     <th>グラフィック番号</th>
    *   </tr>
-   *   <tr align="center">
+   *   <tr>
    *     <td>-</td>
    *     <td>-</td>
    *     <td>-1</td>
    *   </tr>
-   *   <tr align="center">
+   *   <tr>
    *     <td>0</td>
    *     <td>0</td>
    *     <td>0</td>
    *   </tr>
-   *   <tr align="center">
+   *   <tr>
    *     <td>0</td>
    *     <td>1</td>
    *     <td>1</td>
    *   </tr>
-   *   <tr align="center">
+   *   <tr>
    *     <td>0</td>
    *     <td>2</td>
    *     <td>2</td>
    *   </tr>
-   *   <tr align="center">
+   *   <tr>
    *     <td>1</td>
    *     <td>0</td>
    *     <td>3</td>
    *   </tr>
-   *   <tr align="center">
+   *   <tr>
    *     <td>1</td>
    *     <td>1</td>
    *     <td>4</td>
    *   </tr>
-   *   <tr align="center">
+   *   <tr>
    *     <td>1</td>
    *     <td>2</td>
    *     <td>5</td>
    *   </tr>
-   *   <tr align="center">
+   *   <tr>
    *     <td>-</td>
    *     <td>-</td>
    *     <td>6</td>

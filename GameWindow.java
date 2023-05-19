@@ -29,6 +29,9 @@ public abstract class GameWindow {
   }
 
   /**
+   * パラメータbの値に応じて，このWindowを表示または非表示にします。
+   *
+   * @param b trueの場合はWindowを表示する。
    * @see javax.swing.JFrame#setVisible(boolean)
    */
   public void setVisible(boolean b) {
