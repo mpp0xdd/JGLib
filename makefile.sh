@@ -14,6 +14,7 @@ usage () {
       -f      format source code
       -c      remove all class files
       -m      run compile
+      -j      create jar
       -t      run test
 EOF
   exit
@@ -31,6 +32,11 @@ make () {
   find -name '*.java' | xargs javac "$CFLAGS" -d "$CLASSES"
 }
 
+makejar () {
+  javac "$CFLAGS" -d "$CLASSES" '*.java'
+  jar "$CFLAGS" cvf 'jglib.jar' '*.java' -C "$CLASSES" .
+}
+
 test () {
   java "$JFLAGS" -cp "$CLASSES" -ea "$TEST"
 }
@@ -40,12 +46,13 @@ if [ $# -eq 0 ]; then
   usage
 fi
 
-while getopts 'hfcmt' opt; do
+while getopts 'hfcmjt' opt; do
   case "$opt" in
     h) usage ;;
     f) format ;;
     c) clean ;;
     m) make ;;
+    j) clean && makejar ;;
     t) format && make && test ;;
   esac
 done
