@@ -1,9 +1,10 @@
-import static java.util.Objects.*;
+package jglib.tests;
 
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+import jglib.image.SpriteSheet;
 
 @TestClass
 public class SpriteSheetTest {

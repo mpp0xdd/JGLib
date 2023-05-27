@@ -1,5 +1,8 @@
+package jglib.component;
+
 import java.awt.Dimension;
 import javax.swing.JPanel;
+import jglib.util.GameUtilities;
 
 /**
  * ゲーム画面の作成を円滑に進めていく為に用意された抽象基底クラスです。

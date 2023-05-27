@@ -3,3 +3,4 @@
 doc
 *.wav
 *.mid
+/bin/

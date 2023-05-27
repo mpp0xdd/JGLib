@@ -1,3 +1,5 @@
+package jglib.util;
+
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -10,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import jglib.image.SpriteSheet;
 
 /**
  * Gameのユーティリティ・メソッドのコレクションです。

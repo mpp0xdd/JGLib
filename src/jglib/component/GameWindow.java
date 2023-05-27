@@ -1,3 +1,5 @@
+package jglib.component;
+
 import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.OverlayLayout;
