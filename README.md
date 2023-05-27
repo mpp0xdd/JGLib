@@ -5,7 +5,6 @@ classDiagram
   JFrame <--o GameWindow
   JPanel <|-- GameScreen
   Runnable <|.. GameScreen
-  GameWindow <|.. MainWindow
   GameScreen <|.. MainScreen
   GameScreen <-- GameWindow : use
   GameUtilities <-- MainScreen : use
@@ -13,7 +12,6 @@ classDiagram
   BufferedImage <-- MainScreen : use
   SpriteSheet <-- MainScreen :use
   class GameWindow {
-    <<abstract>>
     +setVisible()
     +switchGameScreen()
   }

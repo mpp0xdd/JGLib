@@ -5,11 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.OverlayLayout;
 
 /**
- * ゲームウィンドウの作成を円滑に進めていく為に用意された抽象基底クラスです。
+ * ゲームウィンドウを表したクラスです。
  *
  * @author mpp
  */
-public abstract class GameWindow {
+public class GameWindow {
 
   private JFrame frame;
 
