@@ -28,7 +28,6 @@ public interface Test {
   static Optional<Exception> assertThrows(Class<? extends Exception> expected, Test test) {
     Exception exception;
     Class<? extends Exception> actual;
-    String message;
     try {
       test.test();
       exception = null;

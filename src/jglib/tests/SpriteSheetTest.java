@@ -37,7 +37,7 @@ public class SpriteSheetTest {
         int r = rnd.nextInt(256);
         int g = rnd.nextInt(256);
         int b = rnd.nextInt(256);
-        image.setRGB(x, y, (new Color(r, b, b)).getRGB());
+        image.setRGB(x, y, (new Color(r, g, b)).getRGB());
       }
     }
   }
