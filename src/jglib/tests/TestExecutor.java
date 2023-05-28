@@ -5,6 +5,6 @@ public class TestExecutor {
     Test.invokeTestClass(new SpriteSheetTest());
 
     System.err.println();
-    System.err.println("All tests completed successfully.");
+    assert false : "All tests completed successfully.";
   }
 }
