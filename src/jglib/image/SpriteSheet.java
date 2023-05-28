@@ -324,7 +324,7 @@ public class SpriteSheet {
   /** この SpriteSheet のグラフィック番号をスプライトシートの先端，つまり先頭の直前（1つ前）に移動します。 */
   public void beforeFirst() {
     first();
-    setIndex(getIndex() - 1);
+    previous();
   }
 
   /**
@@ -353,7 +353,7 @@ public class SpriteSheet {
   /** この SpriteSheet のグラフィック番号をスプライトシートの終端，つまり最後の直後（1つ後）に移動します。 */
   public void afterLast() {
     last();
-    setIndex(getIndex() + 1);
+    next();
   }
 
   /**
