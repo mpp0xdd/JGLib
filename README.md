@@ -6,7 +6,7 @@ classDiagram
   JPanel <|-- GameScreen
   Runnable <|.. GameScreen
   GameScreen <|.. MainScreen
-  GameScreen <-- GameWindow : use
+  GameScreen <--* GameWindow
   GameUtilities <-- MainScreen : use
   Clip <-- MainScreen :use
   BufferedImage <-- MainScreen : use
