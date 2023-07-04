@@ -33,14 +33,24 @@ public abstract class GameScreen extends JPanel implements Runnable {
    * @param height ゲーム画面の縦幅
    */
   public GameScreen(int width, int height) {
-    Dimension size = new Dimension(width, height);
-    setPreferredSize(size);
-    setSize(size);
+    setScreenSize(width, height);
   }
 
   /** サイズが{@value #DEFAULT_WIDTH} * {@value #DEFAULT_HEIGHT} に設定されたゲーム画面を作成します。 */
   public GameScreen() {
     this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+  }
+
+  /**
+   * ゲーム画面のサイズを変更します。
+   *
+   * @param width ゲーム画面の横幅
+   * @param height ゲーム画面の縦幅
+   */
+  public final void setScreenSize(int width, int height) {
+    Dimension size = new Dimension(width, height);
+    setPreferredSize(size);
+    setSize(size);
   }
 
   /**
