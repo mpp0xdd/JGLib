@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import jglib.image.SpriteSheet;
 
 /**
@@ -146,6 +147,19 @@ public final class GameUtilities {
    */
   public static Optional<Clip> loadClip(String pathname) {
     return loadClip(new File(pathname));
+  }
+
+  /**
+   * Clipの音量を設定します。
+   *
+   * @param clip 音量を設定したいClip
+   * @param percentage 0f～1f
+   */
+  public static void setVolume(Clip clip, float percentage) {
+    FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+    float range = control.getMaximum() - control.getMinimum();
+    float volume = control.getMinimum() + range * percentage;
+    control.setValue(volume);
   }
 
   /**
