@@ -5,6 +5,8 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 import jglib.image.SpriteSheet;
+import jglib.test.Test.TestClass;
+import jglib.test.Test.TestMethod;
 
 @TestClass
 public class SpriteSheetTest {

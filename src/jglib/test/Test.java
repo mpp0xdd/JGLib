@@ -13,16 +13,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Target({ElementType.TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-@interface TestClass {}
-
-@Target({ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@interface TestMethod {}
-
 @FunctionalInterface
 public interface Test {
+
   void test() throws Exception;
 
   public static void complete() {
@@ -83,6 +76,14 @@ public interface Test {
       System.exit(1);
     }
   }
+
+  @Target({ElementType.TYPE})
+  @Retention(RetentionPolicy.RUNTIME)
+  public @interface TestClass {}
+
+  @Target({ElementType.METHOD})
+  @Retention(RetentionPolicy.RUNTIME)
+  public @interface TestMethod {}
 
   private static boolean completeImpl() {
     System.err.println();
