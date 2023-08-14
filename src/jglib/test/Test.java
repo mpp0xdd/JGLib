@@ -25,6 +25,10 @@ import java.util.stream.Stream;
 public interface Test {
   void test() throws Exception;
 
+  public static void complete() {
+    assert completeImpl();
+  }
+
   public static Optional<Exception> assertThrows(Class<? extends Exception> expected, Test test) {
     Exception exception;
     Class<? extends Exception> actual;
@@ -78,5 +82,11 @@ public interface Test {
       e.printStackTrace();
       System.exit(1);
     }
+  }
+
+  private static boolean completeImpl() {
+    System.err.println();
+    System.err.println("All tests completed successfully.");
+    return true;
   }
 }
