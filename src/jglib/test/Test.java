@@ -9,7 +9,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,7 +21,7 @@ public interface Test {
     assert completeImpl();
   }
 
-  public static Optional<Exception> assertThrows(Class<? extends Exception> expected, Test test) {
+  public static Exception assertThrows(Class<? extends Exception> expected, Test test) {
     Exception exception;
     Class<? extends Exception> actual;
     try {
@@ -36,7 +35,7 @@ public interface Test {
     assert nonNull(expected)
         ? nonNull(exception) && expected.equals(actual)
         : isNull(exception) && isNull(actual);
-    return Optional.ofNullable(exception);
+    return exception;
   }
 
   public static void assertDoesNotThrow(Test test) {
