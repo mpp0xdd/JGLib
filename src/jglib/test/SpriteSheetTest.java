@@ -1,4 +1,4 @@
-package jglib.tests;
+package jglib.test;
 
 import java.awt.Color;
 import java.awt.Point;

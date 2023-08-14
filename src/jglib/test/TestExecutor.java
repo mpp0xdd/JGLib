@@ -1,4 +1,4 @@
-package jglib.tests;
+package jglib.test;
 
 public class TestExecutor {
   public static void main(String[] args) {

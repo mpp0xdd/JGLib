@@ -1,4 +1,4 @@
-package jglib.tests;
+package jglib.test;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
