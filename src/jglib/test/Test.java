@@ -25,7 +25,7 @@ import java.util.stream.Stream;
 public interface Test {
   void test() throws Exception;
 
-  static Optional<Exception> assertThrows(Class<? extends Exception> expected, Test test) {
+  public static Optional<Exception> assertThrows(Class<? extends Exception> expected, Test test) {
     Exception exception;
     Class<? extends Exception> actual;
     try {
@@ -42,11 +42,11 @@ public interface Test {
     return Optional.ofNullable(exception);
   }
 
-  static void assertDoesNotThrow(Test test) {
+  public static void assertDoesNotThrow(Test test) {
     assertThrows(null, test);
   }
 
-  static void invokeTestClass(Object object) {
+  public static void invokeTestClass(Object object) {
     requireNonNull(object);
     if (!object.getClass().isAnnotationPresent(TestClass.class)) {
       System.err.println("[ERROR] Not a test class, so cannot be invoked: " + object.getClass());
