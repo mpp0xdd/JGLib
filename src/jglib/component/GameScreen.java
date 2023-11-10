@@ -1,6 +1,7 @@
 package jglib.component;
 
 import java.awt.Dimension;
+import java.util.Objects;
 import javax.swing.JPanel;
 import jglib.util.GameUtilities;
 
@@ -72,7 +73,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
    * @see #stopGameLoop()
    */
   public final void startGameLoop() {
-    if (gameLoopThread != null) {
+    if (Objects.nonNull(gameLoopThread)) {
       throw (new IllegalStateException("実行中のゲームループを開始させることはできません。"));
     }
 
@@ -89,7 +90,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
    * @see #startGameLoop()
    */
   public final void stopGameLoop() {
-    if (gameLoopThread == null) {
+    if (Objects.isNull(gameLoopThread)) {
       throw (new IllegalStateException("開始していないゲームループを停止させることはできません。"));
     }
 
@@ -105,7 +106,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
    * @see #stopGameLoop()
    */
   public final void joinGameLoop() {
-    if (gameLoopThread == null) {
+    if (Objects.isNull(gameLoopThread)) {
       throw (new IllegalStateException("開始していないゲームループの終了を待機することはできません。"));
     }
 
