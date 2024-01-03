@@ -9,7 +9,7 @@ import jglib.test.Test.TestClass;
 import jglib.test.Test.TestMethod;
 
 @TestClass
-public class SpriteSheetTest {
+class SpriteSheetTest {
 
   // Image for test
   private final int width = 192;

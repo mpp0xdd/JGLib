@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @FunctionalInterface
-public interface Test {
+interface Test {
 
   void test() throws Exception;
 
