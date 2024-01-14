@@ -18,7 +18,9 @@ interface Test {
   void test() throws Exception;
 
   public static void complete() {
-    assert completeImpl();
+    boolean isComplete = false;
+    assert isComplete = completeImpl();
+    if (!isComplete) throw new AssertionError();
   }
 
   public static Exception assertThrows(Class<? extends Exception> expected, Test test) {
