@@ -45,15 +45,17 @@ class SpriteSheetTest {
   }
 
   @TestMethod
-  void testConstructor() {
-    Test.assertDoesNotThrow(() -> new SpriteSheet(image, 32, 32, 3, 6));
-    Test.assertDoesNotThrow(() -> new SpriteSheet(image, 32, 32, 6, 3));
+  void testCreateSpriteSheet() {
+    Test.assertDoesNotThrow(() -> SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6));
+    Test.assertDoesNotThrow(() -> SpriteSheet.createSpriteSheet(image, 32, 32, 6, 3));
 
-    Test.assertThrows(NullPointerException.class, () -> new SpriteSheet(null, 32, 32, 6, 3));
+    Test.assertThrows(
+        NullPointerException.class, () -> SpriteSheet.createSpriteSheet(null, 32, 32, 6, 3));
 
     Exception exception =
         Test.assertThrows(
-            IllegalArgumentException.class, () -> new SpriteSheet(image, 0, 32, 6, 3));
+            IllegalArgumentException.class,
+            () -> SpriteSheet.createSpriteSheet(image, 0, 32, 6, 3));
     assert exception.getMessage().equals("0 (width value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -64,7 +66,8 @@ class SpriteSheetTest {
                 + " equal");
     exception =
         Test.assertThrows(
-            IllegalArgumentException.class, () -> new SpriteSheet(image, -1, 32, 6, 3));
+            IllegalArgumentException.class,
+            () -> SpriteSheet.createSpriteSheet(image, -1, 32, 6, 3));
     assert exception.getMessage().equals("-1 (width value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -76,7 +79,8 @@ class SpriteSheetTest {
 
     exception =
         Test.assertThrows(
-            IllegalArgumentException.class, () -> new SpriteSheet(image, 32, 0, 6, 3));
+            IllegalArgumentException.class,
+            () -> SpriteSheet.createSpriteSheet(image, 32, 0, 6, 3));
     assert exception.getMessage().equals("0 (height value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -87,7 +91,8 @@ class SpriteSheetTest {
                 + " equal");
     exception =
         Test.assertThrows(
-            IllegalArgumentException.class, () -> new SpriteSheet(image, 32, -1, 6, 3));
+            IllegalArgumentException.class,
+            () -> SpriteSheet.createSpriteSheet(image, 32, -1, 6, 3));
     assert exception.getMessage().equals("-1 (height value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -99,7 +104,8 @@ class SpriteSheetTest {
 
     exception =
         Test.assertThrows(
-            IllegalArgumentException.class, () -> new SpriteSheet(image, 32, 32, 0, 3));
+            IllegalArgumentException.class,
+            () -> SpriteSheet.createSpriteSheet(image, 32, 32, 0, 3));
     assert exception.getMessage().equals("0 (rows value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -110,7 +116,8 @@ class SpriteSheetTest {
                 + " equal");
     exception =
         Test.assertThrows(
-            IllegalArgumentException.class, () -> new SpriteSheet(image, 32, 32, -1, 3));
+            IllegalArgumentException.class,
+            () -> SpriteSheet.createSpriteSheet(image, 32, 32, -1, 3));
     assert exception.getMessage().equals("-1 (rows value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -122,7 +129,8 @@ class SpriteSheetTest {
 
     exception =
         Test.assertThrows(
-            IllegalArgumentException.class, () -> new SpriteSheet(image, 32, 32, 6, 0));
+            IllegalArgumentException.class,
+            () -> SpriteSheet.createSpriteSheet(image, 32, 32, 6, 0));
     assert exception.getMessage().equals("0 (columns value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -133,7 +141,8 @@ class SpriteSheetTest {
                 + " equal");
     exception =
         Test.assertThrows(
-            IllegalArgumentException.class, () -> new SpriteSheet(image, 32, 32, 6, -1));
+            IllegalArgumentException.class,
+            () -> SpriteSheet.createSpriteSheet(image, 32, 32, 6, -1));
     assert exception.getMessage().equals("-1 (columns value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -145,7 +154,8 @@ class SpriteSheetTest {
 
     exception =
         Test.assertThrows(
-            IllegalArgumentException.class, () -> new SpriteSheet(image, -1, -2, -3, -4));
+            IllegalArgumentException.class,
+            () -> SpriteSheet.createSpriteSheet(image, -1, -2, -3, -4));
     assert exception.getMessage().equals("-1 (width value must be a positive number)");
     assert exception.getSuppressed().length == 4;
     assert exception
@@ -170,7 +180,7 @@ class SpriteSheetTest {
 
   @TestMethod
   void testAccessor() {
-    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+    SpriteSheet target = SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
     assert target.getImage().isEmpty();
     assert target.getLocation().equals(new Point());
@@ -260,7 +270,7 @@ class SpriteSheetTest {
 
   @TestMethod
   void testGetImageIndex() {
-    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+    SpriteSheet target = SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6);
 
     target.setIndex(5);
     Exception exception =
@@ -286,7 +296,7 @@ class SpriteSheetTest {
 
   @TestMethod
   void testFirstMethod() {
-    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+    SpriteSheet target = SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
     assert !target.isFirst();
     assert !target.isBeforeFirst();
@@ -303,7 +313,7 @@ class SpriteSheetTest {
 
   @TestMethod
   void testBeforeFirstMethod() {
-    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+    SpriteSheet target = SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
     assert !target.isFirst();
     assert !target.isBeforeFirst();
@@ -327,7 +337,7 @@ class SpriteSheetTest {
 
   @TestMethod
   void testLastMethod() {
-    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+    SpriteSheet target = SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
     assert !target.isFirst();
     assert !target.isBeforeFirst();
@@ -344,7 +354,7 @@ class SpriteSheetTest {
 
   @TestMethod
   void testAfterLastMethod() {
-    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+    SpriteSheet target = SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
     assert !target.isFirst();
     assert !target.isBeforeFirst();
@@ -368,7 +378,7 @@ class SpriteSheetTest {
 
   @TestMethod
   void testPreviousMethod() {
-    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+    SpriteSheet target = SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
     assert !target.isFirst();
     assert !target.isBeforeFirst();
@@ -392,7 +402,7 @@ class SpriteSheetTest {
 
   @TestMethod
   void testNextMethod() {
-    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+    SpriteSheet target = SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
     assert !target.isFirst();
     assert !target.isBeforeFirst();
@@ -424,7 +434,7 @@ class SpriteSheetTest {
 
   @TestMethod
   void testDrawMethod() {
-    SpriteSheet target = new SpriteSheet(image, 32, 32, 3, 6);
+    SpriteSheet target = SpriteSheet.createSpriteSheet(image, 32, 32, 3, 6);
     Test.assertDoesNotThrow(() -> target.draw(null));
 
     target.first();

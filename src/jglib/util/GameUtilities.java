@@ -242,7 +242,7 @@ public final class GameUtilities {
       URL url, int width, int height, int rows, int columns) {
     SpriteSheet spriteSheet;
     try {
-      spriteSheet = new SpriteSheet(ImageIO.read(url), width, height, rows, columns);
+      spriteSheet = SpriteSheet.createSpriteSheet(ImageIO.read(url), width, height, rows, columns);
     } catch (Exception e) {
       (new IOException("Load failed: " + url, e)).printStackTrace();
       spriteSheet = null;
@@ -264,7 +264,7 @@ public final class GameUtilities {
       File file, int width, int height, int rows, int columns) {
     SpriteSheet spriteSheet;
     try {
-      spriteSheet = new SpriteSheet(ImageIO.read(file), width, height, rows, columns);
+      spriteSheet = SpriteSheet.createSpriteSheet(ImageIO.read(file), width, height, rows, columns);
     } catch (Exception e) {
       (new IOException("Load failed: " + file, e)).printStackTrace();
       spriteSheet = null;

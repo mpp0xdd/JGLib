@@ -16,6 +16,11 @@ import java.util.Optional;
  */
 public class SpriteSheet {
 
+  public static SpriteSheet createSpriteSheet(
+      BufferedImage image, int width, int height, int rows, int columns) {
+    return new SpriteSheet(image, width, height, rows, columns);
+  }
+
   /** スプライトシートそのものを表します。 */
   private final BufferedImage image;
 
@@ -54,7 +59,7 @@ public class SpriteSheet {
    * @throws RuntimeException SpriteSheetの構築に失敗した場合
    * @see getIndex()
    */
-  public SpriteSheet(BufferedImage image, int width, int height, int rows, int columns) {
+  private SpriteSheet(BufferedImage image, int width, int height, int rows, int columns) {
     this.image = Objects.requireNonNull(image);
     this.width = width;
     this.height = height;
