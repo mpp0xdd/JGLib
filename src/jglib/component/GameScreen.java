@@ -1,6 +1,8 @@
 package jglib.component;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.Objects;
 import javax.swing.JPanel;
 import jglib.util.GameUtilities;
@@ -127,5 +129,17 @@ public abstract class GameScreen extends JPanel implements Runnable {
       runGameLoop();
       GameUtilities.sleep(gameLoopInterval);
     }
+  }
+
+  /**
+   * サブスクリーンの描画を行います。
+   *
+   * @param g サブスクリーンの描画に使用するグラフィックスコンテキスト。
+   * @param subscreen サブスクリーン。
+   */
+  protected final void paintSubGameScreen(Graphics g, SubGameScreen subscreen) {
+    Image image = createImage(subscreen.width(), subscreen.height());
+    subscreen.draw(image.getGraphics());
+    g.drawImage(image, subscreen.x(), subscreen.y(), this);
   }
 }
