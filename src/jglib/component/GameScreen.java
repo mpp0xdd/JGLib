@@ -119,9 +119,6 @@ public abstract class GameScreen extends JPanel implements Runnable {
     }
   }
 
-  /** ゲームループの実際の処理を行います。 */
-  protected abstract void runGameLoop();
-
   @Override
   public final void run() {
     Thread thisThread = Thread.currentThread();
@@ -130,6 +127,9 @@ public abstract class GameScreen extends JPanel implements Runnable {
       GameUtilities.sleep(gameLoopInterval);
     }
   }
+
+  /** ゲームループの実際の処理を行います。 */
+  protected abstract void runGameLoop();
 
   /**
    * サブスクリーンの描画を行います。
