@@ -17,12 +17,6 @@ interface Test {
 
   void test() throws Exception;
 
-  public static void complete() {
-    boolean isComplete = false;
-    assert isComplete = completeImpl();
-    if (!isComplete) throw new AssertionError();
-  }
-
   public static Exception assertThrows(Class<? extends Exception> expected, Test test) {
     Exception exception;
     Class<? extends Exception> actual;
@@ -85,10 +79,4 @@ interface Test {
   @Target({ElementType.METHOD})
   @Retention(RetentionPolicy.RUNTIME)
   public @interface TestMethod {}
-
-  private static boolean completeImpl() {
-    System.err.println();
-    System.err.println("All tests completed successfully.");
-    return true;
-  }
 }
