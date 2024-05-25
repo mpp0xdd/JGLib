@@ -26,7 +26,7 @@ public interface SpriteSheet {
    * @throws RuntimeException SpriteSheetの構築に失敗した場合
    * @see getIndex()
    */
-  public static SpriteSheet createSpriteSheet(
+  public static SpriteSheet create(
       BufferedImage image, int width, int height, int rows, int columns) {
     return new SpriteSheetImpl(image, width, height, rows, columns);
   }
