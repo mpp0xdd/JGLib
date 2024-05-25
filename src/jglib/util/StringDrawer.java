@@ -65,4 +65,16 @@ public enum StringDrawer {
    * @param lines 描画する文字列。
    */
   public abstract void draw(Graphics g, int x, int y, String... lines);
+
+  /**
+   * このドロワーを使用して座標(x, y) に文字列 を描画します。
+   *
+   * @param g 文字列の描画に使用するグラフィックスコンテキスト。
+   * @param x 文字列のx座標。
+   * @param y 文字列のy座標。
+   * @param str 描画する文字列。
+   */
+  public void draw(Graphics g, int x, int y, String str) {
+    draw(g, x, y, str.split("\\R"));
+  }
 }
