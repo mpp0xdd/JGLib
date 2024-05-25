@@ -32,6 +32,7 @@ public enum StringDrawer {
       final int height = fontMetrics.getMaxDescent() + fontMetrics.getMaxAscent();
 
       y += (fontMetrics.getMaxAscent() - fontMetrics.getMaxDescent()) / 2;
+      y -= height * (lines.length - 1) / 2;
       for (String line : lines) {
         g.drawString(line, x - fontMetrics.stringWidth(line) / 2, y);
         y += height;
