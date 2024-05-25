@@ -3,48 +3,15 @@ package jglib.image;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
- * イメージ（ {@link BufferedImage} ）をラップし，スプライトシート(*) として扱えるようにするクラスです。<br>
+ * スプライトシート(*) です。<br>
  * (*) 複数のグラフィックをタイル状（グリッド状）に並べたイメージファイル
  *
  * @author mpp
  */
-public class SpriteSheet {
-
-  public static SpriteSheet createSpriteSheet(
-      BufferedImage image, int width, int height, int rows, int columns) {
-    return new SpriteSheet(image, width, height, rows, columns);
-  }
-
-  /** スプライトシートそのものを表します。 */
-  private final BufferedImage image;
-
-  /** 各グラフィックの横幅を表します。 */
-  private final int width;
-
-  /** 各グラフィックの縦幅を表します。 */
-  private final int height;
-
-  /** スプライトシートの行数（並べられているグラフィックの数）を表します。 */
-  private final int rows;
-
-  /** スプライトシートの列数（並べられているグラフィックの数）を表します。 */
-  private final int columns;
-
-  /** この SpriteSheet の座標を表します。初期値は座標空間の原点 (0, 0) です。 */
-  private final Point point;
-
-  /**
-   * {@link draw(Graphics)} で描画されるスプライトシートのグラフィック番号（添え字）を表します。<br>
-   *
-   * @see getIndex()
-   */
-  private int index;
+public interface SpriteSheet {
 
   /**
    * 指定された {@link BufferedImage} で新しい SpriteSheet を構築します。<br>
@@ -59,61 +26,9 @@ public class SpriteSheet {
    * @throws RuntimeException SpriteSheetの構築に失敗した場合
    * @see getIndex()
    */
-  private SpriteSheet(BufferedImage image, int width, int height, int rows, int columns) {
-    this.image = Objects.requireNonNull(image);
-    this.width = width;
-    this.height = height;
-    this.rows = rows;
-    this.columns = columns;
-    this.point = new Point();
-
-    // Validate each field except image
-    final List<RuntimeException> validationResults = new ArrayList<>();
-    if (this.width <= 0) {
-      validationResults.add(
-          new IllegalArgumentException(
-              String.format("%s (width value must be a positive number)", this.width)));
-    }
-    if (this.height <= 0) {
-      validationResults.add(
-          new IllegalArgumentException(
-              String.format("%s (height value must be a positive number)", this.height)));
-    }
-    if (this.rows <= 0) {
-      validationResults.add(
-          new IllegalArgumentException(
-              String.format("%s (rows value must be a positive number)", this.rows)));
-    }
-    if (this.columns <= 0) {
-      validationResults.add(
-          new IllegalArgumentException(
-              String.format("%s (columns value must be a positive number)", this.columns)));
-    }
-    if (this.image.getWidth() * this.image.getHeight()
-        != (this.width * this.height) * (this.rows * this.columns)) {
-      validationResults.add(
-          new IllegalArgumentException(
-              String.format(
-                  "The size of the image (%d*%d) and the total size of the grid (%d*%d*%d*%d) must"
-                      + " be equal",
-                  this.image.getWidth(),
-                  this.image.getHeight(),
-                  this.width,
-                  this.height,
-                  this.rows,
-                  this.columns)));
-    }
-    Optional<RuntimeException> exception =
-        validationResults.stream()
-            .reduce(
-                (e1, e2) -> {
-                  e1.addSuppressed(e2);
-                  return e1;
-                });
-    if (exception.isPresent()) {
-      throw exception.get();
-    }
-    this.afterLast();
+  public static SpriteSheet createSpriteSheet(
+      BufferedImage image, int width, int height, int rows, int columns) {
+    return new SpriteSheetImpl(image, width, height, rows, columns);
   }
 
   /**
@@ -121,54 +36,42 @@ public class SpriteSheet {
    *
    * @return このスプライトシートの X 座標
    */
-  public int getX() {
-    return this.point.x;
-  }
+  int getX();
 
   /**
    * この SpriteSheet の X 座標を設定します。
    *
    * @param x 設定される X 座標
    */
-  public void setX(int x) {
-    this.point.x = x;
-  }
+  void setX(int x);
 
   /**
    * この SpriteSheet の Y 座標を返します。
    *
    * @return このスプライトシートの Y 座標
    */
-  public int getY() {
-    return this.point.y;
-  }
+  int getY();
 
   /**
    * この SpriteSheet の Y 座標を設定します。
    *
    * @param y 設定される Y 座標
    */
-  public void setY(int y) {
-    this.point.y = y;
-  }
+  void setY(int y);
 
   /**
    * この SpriteSheet の位置を返します。
    *
    * @return 同じ位置の，点のコピー
    */
-  public Point getLocation() {
-    return this.point.getLocation();
-  }
+  Point getLocation();
 
   /**
    * この SpriteSheet の位置を，指定された位置に設定します。
    *
    * @param p この SpriteSheet の新しい位置になる点
    */
-  public void setLocation(Point p) {
-    this.point.setLocation(p);
-  }
+  void setLocation(Point p);
 
   /**
    * この SpriteSheet の位置を指定された位置に変更します。
@@ -176,9 +79,7 @@ public class SpriteSheet {
    * @param x 新しい位置の X 座標
    * @param y 新しい位置の Y 座標
    */
-  public void setLocation(int x, int y) {
-    this.point.setLocation(x, y);
-  }
+  void setLocation(int x, int y);
 
   /**
    * この SpriteSheet の {@link getIndex()} が返すグラフィック番号（現在のグラフィック番号）が指すグラフィックを返します。<br>
@@ -189,12 +90,7 @@ public class SpriteSheet {
    * @see getIndex()
    * @see setIndex(int)
    */
-  public Optional<BufferedImage> getImage() {
-    if (isBeforeFirst() || isAfterLast()) return Optional.empty();
-    return Optional.of(
-        image.getSubimage(
-            (getIndex() % columns) * width, (getIndex() / columns) * height, width, height));
-  }
+  Optional<BufferedImage> getImage();
 
   /**
    * 指定されたグラフィック番号が指すグラフィックを返します（この SpriteSheet の現在のグラフィック番号の値は変更されません）。<br>
@@ -209,15 +105,7 @@ public class SpriteSheet {
    * @see setIndex(int)
    * @throws IndexOutOfBoundsException グラフィック番号に無効な値を指定された場合
    */
-  public Optional<BufferedImage> getImage(int index) {
-    final int currentIndex = getIndex(); // Back up the current index
-    try {
-      setIndex(index);
-      return getImage();
-    } finally {
-      setIndex(currentIndex); // Restore the index
-    }
-  }
+  Optional<BufferedImage> getImage(int index);
 
   /**
    * この SpriteSheet の描画を行います。<br>
@@ -229,9 +117,7 @@ public class SpriteSheet {
    * @see getIndex()
    * @see setIndex(int)
    */
-  public void draw(Graphics g) {
-    getImage().ifPresent(image -> g.drawImage(image, point.x, point.y, null));
-  }
+  void draw(Graphics g);
 
   /**
    * {@link draw(Graphics)} で描画されるスプライトシートのグラフィック番号（添え字）を返します。<br>
@@ -291,9 +177,7 @@ public class SpriteSheet {
    *
    * @return グラフィック番号
    */
-  public int getIndex() {
-    return this.index;
-  }
+  int getIndex();
 
   /**
    * {@link draw(Graphics)} で描画されるスプライトシートのグラフィック番号を設定します。<br>
@@ -304,85 +188,57 @@ public class SpriteSheet {
    * @throws IndexOutOfBoundsException グラフィック番号に無効な値を設定しようとした場合
    * @see getIndex()
    */
-  public void setIndex(int index) {
-    if (index < -1 || index > this.rows * this.columns) {
-      throw (new IndexOutOfBoundsException(
-          String.format("%d (index must be between -1 and %d)", index, rows * columns)));
-    }
-    this.index = index;
-  }
+  void setIndex(int index);
 
   /** この SpriteSheet のグラフィック番号をスプライトシートの先頭に移動させます。 */
-  public void first() {
-    setIndex(0);
-  }
+  void first();
 
   /**
    * この SpriteSheet のグラフィック番号がスプライトシートの先頭にあるかどうかを取得します。
    *
    * @return グラフィック番号が先頭にある場合はtrue、そうでない場合はfalse
    */
-  public boolean isFirst() {
-    return getIndex() == 0;
-  }
+  boolean isFirst();
 
   /** この SpriteSheet のグラフィック番号をスプライトシートの先端，つまり先頭の直前（1つ前）に移動します。 */
-  public void beforeFirst() {
-    first();
-    previous();
-  }
+  void beforeFirst();
 
   /**
    * この SpriteSheet のグラフィック番号がスプライトシートの先端（先頭の直前（1つ前））にあるかどうかを取得します。
    *
    * @return グラフィック番号が先端にある場合はtrue、そうでない場合はfalse
    */
-  public boolean isBeforeFirst() {
-    return getIndex() == -1;
-  }
+  boolean isBeforeFirst();
 
   /** この SpriteSheet のグラフィック番号をスプライトシートの最後に移動させます。 */
-  public void last() {
-    setIndex(this.rows * this.columns - 1);
-  }
+  void last();
 
   /**
    * この SpriteSheet のグラフィック番号がスプライトシートの最後にあるかどうかを取得します。
    *
    * @return グラフィック番号が最後にある場合はtrue、そうでない場合はfalse
    */
-  public boolean isLast() {
-    return getIndex() == this.rows * this.columns - 1;
-  }
+  boolean isLast();
 
   /** この SpriteSheet のグラフィック番号をスプライトシートの終端，つまり最後の直後（1つ後）に移動します。 */
-  public void afterLast() {
-    last();
-    next();
-  }
+  void afterLast();
 
   /**
    * この SpriteSheet のグラフィック番号がスプライトシートの終端（最後の直後（1つ後））にあるかどうかを取得します。
    *
    * @return グラフィック番号が終端にある場合はtrue、そうでない場合はfalse
    */
-  public boolean isAfterLast() {
-    return getIndex() == this.rows * this.columns;
-  }
+  boolean isAfterLast();
 
   /**
    * この SpriteSheet のグラフィック番号を一つ前の番号に移動します。<br>
    * ただし，{@link isBeforeFirst()} が trueを返す場合（現在のグラフィック番号が最小値の場合）は移動を行いません。
    */
-  public void previous() {
-    if (!isBeforeFirst()) setIndex(getIndex() - 1);
-  }
+  void previous();
 
   /**
    * この SpriteSheet のグラフィック番号を現在の位置から順方向に1つ移動します。<br>
    * ただし，{@link isAfterLast()} が trueを返す場合（現在のグラフィック番号が最大値の場合）は移動を行いません。
    */
-  public void next() {
-    if (!isAfterLast()) setIndex(getIndex() + 1);
-  }
+  void next();
 }
