@@ -38,6 +38,7 @@ class TestExecutor {
     TestExecutor executor = new TestExecutor();
 
     executor.register(new SpriteSheetTest());
+    executor.register(new StringDrawerTest());
 
     executor.execute();
   }
