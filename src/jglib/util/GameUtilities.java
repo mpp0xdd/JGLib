@@ -3,6 +3,7 @@ package jglib.util;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
@@ -34,6 +35,17 @@ public final class GameUtilities {
     } catch (InterruptedException ie) {
       ie.printStackTrace();
     }
+  }
+
+  /**
+   * {@code clazz.getResource(name)} で取得したURLからopen済みのClipを取得します。
+   *
+   * @param clazz Class
+   * @param name 要求されるリソースの名前
+   * @return open済みのClip
+   */
+  public static Optional<Clip> loadClip(Class<?> clazz, String name) {
+    return load(clazz, name, GameUtilities::loadClip);
   }
 
   /**
@@ -125,6 +137,17 @@ public final class GameUtilities {
   }
 
   /**
+   * {@code clazz.getResource(name)} で取得したURLからImageを取得します。
+   *
+   * @param clazz Class
+   * @param name 要求されるリソースの名前
+   * @return Image
+   */
+  public static Optional<BufferedImage> loadImage(Class<?> clazz, String name) {
+    return load(clazz, name, GameUtilities::loadImage);
+  }
+
+  /**
    * 指定されたURLからImageを取得します。
    *
    * @param url Imageを構築するURL
@@ -166,6 +189,23 @@ public final class GameUtilities {
    */
   public static Optional<BufferedImage> loadImage(String pathname) {
     return loadImage(new File(pathname));
+  }
+
+  /**
+   * {@code clazz.getResource(name)} で取得したURLからSpriteSheetを取得します。
+   *
+   * @param clazz Class
+   * @param name 要求されるリソースの名前
+   * @param width 各グラフィックの横幅
+   * @param height 各グラフィックの縦幅
+   * @param rows スプライトシートの行数（並べられているグラフィックの数）
+   * @param columns スプライトシートの列数（並べられているグラフィックの数）
+   * @return SpriteSheet
+   */
+  public static Optional<SpriteSheet> loadSpriteSheet(
+      Class<?> clazz, String name, int width, int height, int rows, int columns) {
+    return getResource(clazz, name)
+        .flatMap(url -> loadSpriteSheet(url, width, height, rows, columns));
   }
 
   /**
@@ -225,5 +265,26 @@ public final class GameUtilities {
   public static Optional<SpriteSheet> loadSpriteSheet(
       String pathname, int width, int height, int rows, int columns) {
     return loadSpriteSheet(new File(pathname), width, height, rows, columns);
+  }
+
+  private static Optional<URL> getResource(Class<?> clazz, String name) {
+    try {
+      URL url =
+          Objects.requireNonNull(clazz.getResource(name), "Resource with given name not found");
+      return Optional.of(url);
+    } catch (NullPointerException npe) {
+      GameLogger.getLogger().warning(new LoadException(name, npe));
+      return Optional.empty();
+    }
+  }
+
+  private static <R> Optional<R> load(
+      Class<?> clazz, String name, Loader<URL, Optional<R>> loader) {
+    return getResource(clazz, name).flatMap(loader::load);
+  }
+
+  @FunctionalInterface
+  private interface Loader<N, R> {
+    R load(N name);
   }
 }
