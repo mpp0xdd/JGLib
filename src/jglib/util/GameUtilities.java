@@ -45,7 +45,7 @@ public final class GameUtilities {
    * @return open済みのClip
    */
   public static Optional<Clip> loadClip(Class<?> clazz, String name) {
-    return load(clazz, name, GameUtilities::loadClip);
+    return getResource(clazz, name).flatMap(GameUtilities::loadClip);
   }
 
   /**
@@ -144,7 +144,7 @@ public final class GameUtilities {
    * @return Image
    */
   public static Optional<BufferedImage> loadImage(Class<?> clazz, String name) {
-    return load(clazz, name, GameUtilities::loadImage);
+    return getResource(clazz, name).flatMap(GameUtilities::loadImage);
   }
 
   /**
@@ -276,15 +276,5 @@ public final class GameUtilities {
       GameLogger.getLogger().warning(new LoadException(name, npe));
       return Optional.empty();
     }
-  }
-
-  private static <R> Optional<R> load(
-      Class<?> clazz, String name, Loader<URL, Optional<R>> loader) {
-    return getResource(clazz, name).flatMap(loader::load);
-  }
-
-  @FunctionalInterface
-  private interface Loader<N, R> {
-    R load(N name);
   }
 }
