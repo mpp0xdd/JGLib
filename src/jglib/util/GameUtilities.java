@@ -2,7 +2,6 @@ package jglib.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -52,7 +51,7 @@ public final class GameUtilities {
         clip.open(stream);
       }
     } catch (Exception e) {
-      (new IOException("Load failed: " + url, e)).printStackTrace();
+      GameLogger.getLogger().warning(new LoadException(url, e));
       clip = null;
     }
     return Optional.ofNullable(clip);
@@ -74,7 +73,7 @@ public final class GameUtilities {
         clip.open(stream);
       }
     } catch (Exception e) {
-      (new IOException("Load failed: " + file, e)).printStackTrace();
+      GameLogger.getLogger().warning(new LoadException(file, e));
       clip = null;
     }
     return Optional.ofNullable(clip);
@@ -136,7 +135,7 @@ public final class GameUtilities {
     try {
       image = ImageIO.read(url);
     } catch (Exception e) {
-      (new IOException("Load failed: " + url, e)).printStackTrace();
+      GameLogger.getLogger().warning(new LoadException(url, e));
       image = null;
     }
     return Optional.ofNullable(image);
@@ -153,7 +152,7 @@ public final class GameUtilities {
     try {
       image = ImageIO.read(file);
     } catch (Exception e) {
-      (new IOException("Load failed: " + file, e)).printStackTrace();
+      GameLogger.getLogger().warning(new LoadException(file, e));
       image = null;
     }
     return Optional.ofNullable(image);
@@ -185,7 +184,7 @@ public final class GameUtilities {
     try {
       spriteSheet = SpriteSheet.create(ImageIO.read(url), width, height, rows, columns);
     } catch (Exception e) {
-      (new IOException("Load failed: " + url, e)).printStackTrace();
+      GameLogger.getLogger().warning(new LoadException(url, e));
       spriteSheet = null;
     }
     return Optional.ofNullable(spriteSheet);
@@ -207,7 +206,7 @@ public final class GameUtilities {
     try {
       spriteSheet = SpriteSheet.create(ImageIO.read(file), width, height, rows, columns);
     } catch (Exception e) {
-      (new IOException("Load failed: " + file, e)).printStackTrace();
+      GameLogger.getLogger().warning(new LoadException(file, e));
       spriteSheet = null;
     }
     return Optional.ofNullable(spriteSheet);
