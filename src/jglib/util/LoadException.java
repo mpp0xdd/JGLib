@@ -2,7 +2,7 @@ package jglib.util;
 
 import jglib.base.GameException;
 
-class LoadException extends GameException {
+public class LoadException extends GameException {
 
   private static String message(Object name) {
     return String.format("Load failed: %s", name);

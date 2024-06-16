@@ -17,7 +17,15 @@ public final class GameLogger {
   }
 
   public void warning(GameThrowable<?> gameThrowable) {
+    log(System.Logger.Level.WARNING, gameThrowable);
+  }
+
+  public void error(GameThrowable<?> gameThrowable) {
+    log(System.Logger.Level.ERROR, gameThrowable);
+  }
+
+  private void log(System.Logger.Level level, GameThrowable<?> gameThrowable) {
     Throwable thrown = gameThrowable.toThrowable();
-    logger.log(System.Logger.Level.WARNING, thrown.getMessage(), thrown);
+    logger.log(level, thrown.getMessage(), thrown);
   }
 }
