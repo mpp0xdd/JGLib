@@ -1,6 +1,6 @@
 package jglib.base;
 
-public abstract class GameException extends Exception implements GameThrowable<GameException> {
+public class GameException extends Exception implements GameThrowable<GameException> {
 
   public GameException() {}
 

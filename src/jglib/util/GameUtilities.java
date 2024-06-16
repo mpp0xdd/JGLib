@@ -11,6 +11,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import jglib.base.GameException;
 import jglib.image.SpriteSheet;
 
 /**
@@ -33,7 +34,7 @@ public final class GameUtilities {
     try {
       TimeUnit.MILLISECONDS.sleep(millis);
     } catch (InterruptedException ie) {
-      ie.printStackTrace();
+      GameLogger.getLogger().warning(new GameException(ie));
     }
   }
 

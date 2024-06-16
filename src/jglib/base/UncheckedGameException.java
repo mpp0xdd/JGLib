@@ -1,6 +1,6 @@
 package jglib.base;
 
-public abstract class UncheckedGameException extends RuntimeException
+public class UncheckedGameException extends RuntimeException
     implements GameThrowable<UncheckedGameException> {
 
   public UncheckedGameException() {}
