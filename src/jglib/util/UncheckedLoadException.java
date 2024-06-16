@@ -1,11 +1,12 @@
 package jglib.util;
 
+import static java.util.Objects.requireNonNull;
 import jglib.base.UncheckedGameException;
 
 public class UncheckedLoadException extends UncheckedGameException {
 
   public UncheckedLoadException(LoadException cause) {
-    super(cause);
+    super(requireNonNull(cause));
   }
 
   @Override
