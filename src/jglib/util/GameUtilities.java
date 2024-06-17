@@ -12,6 +12,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import jglib.base.GameException;
+import jglib.base.GameLogger;
 import jglib.image.SpriteSheet;
 
 /**

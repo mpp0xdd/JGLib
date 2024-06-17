@@ -1,6 +1,4 @@
-package jglib.util;
-
-import jglib.base.GameThrowable;
+package jglib.base;
 
 public final class GameLogger {
 

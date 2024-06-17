@@ -1,7 +1,6 @@
 package jglib.base;
 
 import java.lang.Thread.UncaughtExceptionHandler;
-import jglib.util.GameLogger;
 
 final class UncaughtGameExceptionHandler implements UncaughtExceptionHandler {
 
