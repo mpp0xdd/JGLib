@@ -80,6 +80,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
     }
 
     gameLoopThread = new Thread(this);
+    gameLoopThread.setUncaughtExceptionHandler(new UncaughtGameScreenExceptionHandler());
     gameLoopThread.start();
   }
 
