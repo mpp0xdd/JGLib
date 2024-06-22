@@ -1,16 +1,22 @@
 package jglib.base;
 
+import java.util.Optional;
+
 public abstract class Game {
 
-  public static void launch(Class<? extends Game> gameClass) {
+  public static <T extends Game> Optional<T> launch(Class<T> gameClass) {
+    T game;
+
     try {
-      Game game = gameClass.getDeclaredConstructor().newInstance();
+      game = gameClass.getDeclaredConstructor().newInstance();
       game.start();
     } catch (Exception e) {
       GameError error = new GameError(e);
       GameLogger.getLogger().error(error);
-      System.exit(1);
+      game = null;
     }
+
+    return Optional.ofNullable(game);
   }
 
   protected Game() {

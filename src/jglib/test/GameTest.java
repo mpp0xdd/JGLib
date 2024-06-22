@@ -1,5 +1,6 @@
 package jglib.test;
 
+import java.util.Optional;
 import jglib.base.Game;
 import jglib.test.Test.TestClass;
 import jglib.test.Test.TestMethod;
@@ -20,7 +21,9 @@ class GameTest {
   @TestMethod
   void test() {
     launchCount = 0;
-    Test.assertDoesNotThrow(() -> Game.launch(NormalGame.class));
+
+    Optional<NormalGame> game = Game.launch(NormalGame.class);
     assert launchCount == 1 : "launchCount should be 1 but was " + launchCount;
+    assert game.isPresent();
   }
 }
