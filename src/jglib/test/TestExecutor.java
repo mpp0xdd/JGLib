@@ -37,6 +37,7 @@ class TestExecutor {
   public static void main(String[] args) {
     TestExecutor executor = new TestExecutor();
 
+    executor.register(new GameTest());
     executor.register(new SpriteSheetTest());
     executor.register(new StringDrawerTest());
 
