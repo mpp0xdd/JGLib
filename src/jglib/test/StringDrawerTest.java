@@ -26,9 +26,7 @@ class StringDrawerTest {
     protected void runGameLoop() {}
 
     @Override
-    protected void paintComponent(Graphics g) {
-      super.paintComponent(g);
-
+    protected void paintGameComponent(Graphics g) {
       drawGrid(g, 80);
 
       g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 43));

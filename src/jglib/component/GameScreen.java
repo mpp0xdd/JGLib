@@ -132,6 +132,19 @@ public abstract class GameScreen extends JPanel implements Runnable {
   /** ゲームループの実際の処理を行います。 */
   protected abstract void runGameLoop();
 
+  @Override
+  protected final void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    this.paintGameComponent(g);
+  }
+
+  /**
+   * ゲーム画面の描画処理を行います。
+   *
+   * @param g Graphicsコンテキスト
+   */
+  protected abstract void paintGameComponent(Graphics g);
+
   /**
    * サブスクリーンの描画を行います。
    *
