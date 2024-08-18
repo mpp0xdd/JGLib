@@ -125,6 +125,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
     Thread thisThread = Thread.currentThread();
     while (thisThread == gameLoopThread) {
       runGameLoop();
+      repaint();
       GameUtilities.sleep(gameLoopInterval);
     }
   }
