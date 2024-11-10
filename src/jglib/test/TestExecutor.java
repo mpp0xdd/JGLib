@@ -41,6 +41,7 @@ class TestExecutor {
     executor.register(new SpriteSheetTest());
     executor.register(new StringDrawerTest());
     executor.register(new StopwatchTest());
+    executor.register(new FrameRateTest());
 
     executor.execute();
   }
