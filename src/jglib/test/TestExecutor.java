@@ -40,6 +40,7 @@ class TestExecutor {
     executor.register(new GameTest());
     executor.register(new SpriteSheetTest());
     executor.register(new StringDrawerTest());
+    executor.register(new StopwatchTest());
 
     executor.execute();
   }
