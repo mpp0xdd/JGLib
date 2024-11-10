@@ -10,6 +10,10 @@ public class Stopwatch {
     return new Stopwatch(timeUnit, clock);
   }
 
+  public static Stopwatch nanoTimeWatch() {
+    return new Stopwatch(TimeUnit.NANOSECONDS, System::nanoTime);
+  }
+
   private final TimeUnit timeUnit;
   private final LongSupplier clock;
   private long startTime, stopTime;
