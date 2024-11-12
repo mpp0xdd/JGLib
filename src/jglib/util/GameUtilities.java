@@ -40,6 +40,23 @@ public final class GameUtilities {
   }
 
   /**
+   * 時間単位を指定して，スリープ(一時的にゲームの実行を停止) させ，実際にスリープしていた時間を {@code Stopwatch} に記録します。
+   *
+   * @param timeout スリープ時間の長さ
+   * @param timeUnit 時間単位
+   * @param stopwatch ストップウォッチ
+   */
+  public static void sleep(long timeout, TimeUnit timeUnit, Stopwatch stopwatch) {
+    try {
+      stopwatch.start();
+      timeUnit.sleep(timeout);
+      stopwatch.stop();
+    } catch (InterruptedException ie) {
+      GameLogger.getLogger().warning(new GameException(ie));
+    }
+  }
+
+  /**
    * {@code clazz.getResource(name)} で取得したURLからopen済みのClipを取得します。
    *
    * @param clazz Class
