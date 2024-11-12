@@ -53,6 +53,7 @@ public final class GameUtilities {
       stopwatch.stop();
     } catch (InterruptedException ie) {
       GameLogger.getLogger().warning(new GameException(ie));
+      stopwatch.reset();
     }
   }
 
