@@ -52,6 +52,12 @@ class StopwatchTest {
     assert underTest.measurementTime(TimeUnit.MILLISECONDS) == 17000L;
     assert underTest.elapsedTime() == 1000L;
     assert underTest.elapsedTime(TimeUnit.MILLISECONDS) == 1000000L;
+
+    underTest.reset();
+    assert underTest.measurementTime() == 0L;
+    assert underTest.measurementTime(TimeUnit.MILLISECONDS) == 0L;
+    assert underTest.elapsedTime() == 2000L;
+    assert underTest.elapsedTime(TimeUnit.MILLISECONDS) == 2000000L;
   }
 
   @TestMethod

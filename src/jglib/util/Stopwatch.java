@@ -21,6 +21,10 @@ public class Stopwatch {
   private Stopwatch(TimeUnit timeUnit, LongSupplier clock) {
     this.timeUnit = Objects.requireNonNull(timeUnit);
     this.clock = Objects.requireNonNull(clock);
+    reset();
+  }
+
+  public void reset() {
     startTime = stopTime = 0L;
   }
 
