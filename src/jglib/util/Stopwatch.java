@@ -2,23 +2,22 @@ package jglib.util;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import java.util.function.LongSupplier;
 
 public class Stopwatch {
 
-  public static Stopwatch create(TimeUnit timeUnit, LongSupplier clock) {
+  public static Stopwatch create(TimeUnit timeUnit, Clock clock) {
     return new Stopwatch(timeUnit, clock);
   }
 
   public static Stopwatch nanoTimeWatch() {
-    return new Stopwatch(TimeUnit.NANOSECONDS, System::nanoTime);
+    return new Stopwatch(TimeUnit.NANOSECONDS, Clock.nanoTimeClock());
   }
 
   private final TimeUnit timeUnit;
-  private final LongSupplier clock;
+  private final Clock clock;
   private long startTime, stopTime;
 
-  private Stopwatch(TimeUnit timeUnit, LongSupplier clock) {
+  private Stopwatch(TimeUnit timeUnit, Clock clock) {
     this.timeUnit = Objects.requireNonNull(timeUnit);
     this.clock = Objects.requireNonNull(clock);
     reset();
@@ -29,11 +28,11 @@ public class Stopwatch {
   }
 
   public void start() {
-    startTime = currentTime();
+    startTime = clock.currentTime();
   }
 
   public void stop() {
-    stopTime = currentTime();
+    stopTime = clock.currentTime();
   }
 
   public long measurementTime() {
@@ -50,14 +49,10 @@ public class Stopwatch {
   }
 
   public long elapsedTime() {
-    return currentTime() - startTime;
+    return clock.currentTime() - startTime;
   }
 
   public long elapsedTime(TimeUnit timeUnit) {
     return timeUnit.convert(elapsedTime(), this.timeUnit);
-  }
-
-  private long currentTime() {
-    return clock.getAsLong();
   }
 }

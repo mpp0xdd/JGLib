@@ -1,21 +1,21 @@
 package jglib.test;
 
 import java.util.concurrent.TimeUnit;
-import java.util.function.LongSupplier;
 import jglib.test.Test.TestClass;
 import jglib.test.Test.TestMethod;
+import jglib.util.Clock;
 import jglib.util.Executable;
 import jglib.util.Stopwatch;
 
 @TestClass
 class ExecutableTest {
 
-  class ClockStub implements LongSupplier {
+  class ClockStub implements Clock {
 
     private long time;
 
     @Override
-    public long getAsLong() {
+    public long currentTime() {
       return time;
     }
   }
