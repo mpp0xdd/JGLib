@@ -3,7 +3,7 @@ package jglib.test;
 import java.util.concurrent.TimeUnit;
 import jglib.test.Test.TestClass;
 import jglib.test.Test.TestMethod;
-import jglib.util.Stopwatch;
+import jglib.util.time.Stopwatch;
 
 @TestClass
 class StopwatchTest {

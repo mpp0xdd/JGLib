@@ -1,5 +1,7 @@
 package jglib.util;
 
+import jglib.util.time.Stopwatch;
+
 @FunctionalInterface
 public interface Executable {
 

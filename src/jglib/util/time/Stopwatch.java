@@ -1,4 +1,4 @@
-package jglib.util;
+package jglib.util.time;
 
 import java.util.ArrayList;
 import java.util.List;

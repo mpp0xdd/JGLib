@@ -2,11 +2,11 @@ package jglib.component;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import jglib.util.Clock;
 import jglib.util.Executable;
 import jglib.util.FrameRate;
 import jglib.util.GameUtilities;
-import jglib.util.Stopwatch;
+import jglib.util.time.Clock;
+import jglib.util.time.Stopwatch;
 
 class GameScreenContext {
 

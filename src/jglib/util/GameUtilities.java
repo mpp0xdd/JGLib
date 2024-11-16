@@ -14,6 +14,7 @@ import javax.sound.sampled.FloatControl;
 import jglib.base.GameException;
 import jglib.image.SpriteSheet;
 import jglib.util.logging.GameLoggingService;
+import jglib.util.time.Stopwatch;
 
 /**
  * Gameのユーティリティ・メソッドのコレクションです。

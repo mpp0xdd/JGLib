@@ -1,7 +1,7 @@
 package jglib.test;
 
 import java.util.concurrent.TimeUnit;
-import jglib.util.Clock;
+import jglib.util.time.Clock;
 
 class ClockStub implements Clock {
 

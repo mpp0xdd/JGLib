@@ -1,4 +1,4 @@
-package jglib.util;
+package jglib.util.time;
 
 @FunctionalInterface
 public interface Clock {
