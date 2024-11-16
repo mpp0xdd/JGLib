@@ -2,7 +2,7 @@ package jglib.base;
 
 public interface GameThrowable<T extends Throwable & GameThrowable<T>> {
 
-  default Throwable toThrowable() {
+  default Throwable asThrowable() {
     return (Throwable) this;
   }
 }

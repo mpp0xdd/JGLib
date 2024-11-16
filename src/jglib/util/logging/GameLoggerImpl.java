@@ -21,7 +21,7 @@ final class GameLoggerImpl implements GameLogger {
   }
 
   private void log(System.Logger.Level level, GameThrowable<?> gameThrowable) {
-    Throwable thrown = gameThrowable.toThrowable();
+    Throwable thrown = gameThrowable.asThrowable();
     logger.log(level, thrown.getMessage(), thrown);
   }
 }
