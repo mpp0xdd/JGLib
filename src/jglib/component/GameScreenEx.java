@@ -2,12 +2,10 @@ package jglib.component;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.util.Objects;
-import javax.swing.JPanel;
 import jglib.util.FrameRate;
 
-public abstract non-sealed class GameScreenEx extends JPanel implements GameScreenRole, Runnable {
+public abstract non-sealed class GameScreenEx extends GameScreenBase implements GameScreenRole, Runnable {
 
   private volatile FrameRate frameRate;
   private volatile OffScreen offScreen;
@@ -58,16 +56,6 @@ public abstract non-sealed class GameScreenEx extends JPanel implements GameScre
           .startStopwatch()
           .skipFrame(this::runGameLoop);
     }
-  }
-
-  protected abstract void runGameLoop();
-
-  protected abstract void paintGameComponent(Graphics g);
-
-  protected void paintSubGameScreen(Graphics g, SubGameScreen subscreen) {
-    Image image = createImage(subscreen.width(), subscreen.height());
-    subscreen.draw(image.getGraphics());
-    g.drawImage(image, subscreen.x(), subscreen.y(), this);
   }
 
   private void createOffScreen() {

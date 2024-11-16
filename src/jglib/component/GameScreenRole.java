@@ -2,7 +2,7 @@ package jglib.component;
 
 import java.awt.Component;
 
-public sealed interface GameScreenRole permits GameScreen, GameScreenEx {
+public sealed interface GameScreenRole permits GameScreenBase, GameScreen, GameScreenEx {
 
   /**
    * ゲーム画面のサイズを変更します。

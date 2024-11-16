@@ -2,9 +2,7 @@ package jglib.component;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.util.Objects;
-import javax.swing.JPanel;
 import jglib.util.GameUtilities;
 
 /**
@@ -12,7 +10,7 @@ import jglib.util.GameUtilities;
  *
  * @author mpp
  */
-public abstract non-sealed class GameScreen extends JPanel implements GameScreenRole, Runnable {
+public abstract non-sealed class GameScreen extends GameScreenBase implements GameScreenRole, Runnable {
 
   /** このゲーム画面のデフォルトのサイズ(横幅) を表します。 */
   public static final int DEFAULT_WIDTH = 640;
@@ -91,31 +89,9 @@ public abstract non-sealed class GameScreen extends JPanel implements GameScreen
     }
   }
 
-  /** ゲームループの実際の処理を行います。 */
-  protected abstract void runGameLoop();
-
   @Override
   protected final void paintComponent(Graphics g) {
     super.paintComponent(g);
     this.paintGameComponent(g);
-  }
-
-  /**
-   * ゲーム画面の描画処理を行います。
-   *
-   * @param g Graphicsコンテキスト
-   */
-  protected abstract void paintGameComponent(Graphics g);
-
-  /**
-   * サブスクリーンの描画を行います。
-   *
-   * @param g サブスクリーンの描画に使用するグラフィックスコンテキスト。
-   * @param subscreen サブスクリーン。
-   */
-  protected final void paintSubGameScreen(Graphics g, SubGameScreen subscreen) {
-    Image image = createImage(subscreen.width(), subscreen.height());
-    subscreen.draw(image.getGraphics());
-    g.drawImage(image, subscreen.x(), subscreen.y(), this);
   }
 }
