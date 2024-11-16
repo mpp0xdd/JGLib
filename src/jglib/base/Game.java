@@ -1,8 +1,13 @@
 package jglib.base;
 
 import java.util.Optional;
+import jglib.util.logging.GameLoggingService;
 
 public abstract class Game {
+
+  static {
+    GameLoggingService.initialize();
+  }
 
   public static <T extends Game> Optional<T> launch(Class<T> gameClass) {
     T game;
@@ -12,7 +17,7 @@ public abstract class Game {
       game.start();
     } catch (Exception e) {
       GameError error = new GameError(e);
-      GameLogger.getLogger().error(error);
+      GameLoggingService.getLogger().error(error);
       game = null;
     }
 

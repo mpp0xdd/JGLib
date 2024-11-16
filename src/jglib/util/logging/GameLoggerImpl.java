@@ -1,23 +1,21 @@
-package jglib.base;
+package jglib.util.logging;
 
-public final class GameLogger {
+import jglib.base.GameThrowable;
 
-  private static final GameLogger LOGGER = new GameLogger();
-
-  public static GameLogger getLogger() {
-    return LOGGER;
-  }
+final class GameLoggerImpl implements GameLogger {
 
   private final System.Logger logger;
 
-  private GameLogger() {
+  public GameLoggerImpl() {
     logger = System.getLogger(getClass().getName());
   }
 
+  @Override
   public void warning(GameThrowable<?> gameThrowable) {
     log(System.Logger.Level.WARNING, gameThrowable);
   }
 
+  @Override
   public void error(GameThrowable<?> gameThrowable) {
     log(System.Logger.Level.ERROR, gameThrowable);
   }

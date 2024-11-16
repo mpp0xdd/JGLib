@@ -12,8 +12,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import jglib.base.GameException;
-import jglib.base.GameLogger;
 import jglib.image.SpriteSheet;
+import jglib.util.logging.GameLoggingService;
 
 /**
  * Gameのユーティリティ・メソッドのコレクションです。
@@ -35,7 +35,7 @@ public final class GameUtilities {
     try {
       TimeUnit.MILLISECONDS.sleep(millis);
     } catch (InterruptedException ie) {
-      GameLogger.getLogger().warning(new GameException(ie));
+      GameLoggingService.getLogger().warning(new GameException(ie));
     }
   }
 
@@ -49,7 +49,7 @@ public final class GameUtilities {
     try {
       timeUnit.sleep(timeout);
     } catch (InterruptedException ie) {
-      GameLogger.getLogger().warning(new GameException(ie));
+      GameLoggingService.getLogger().warning(new GameException(ie));
     }
   }
 
@@ -66,7 +66,7 @@ public final class GameUtilities {
       timeUnit.sleep(timeout);
       stopwatch.stop();
     } catch (InterruptedException ie) {
-      GameLogger.getLogger().warning(new GameException(ie));
+      GameLoggingService.getLogger().warning(new GameException(ie));
       stopwatch.reset();
     }
   }
@@ -97,7 +97,7 @@ public final class GameUtilities {
         clip.open(stream);
       }
     } catch (Exception e) {
-      GameLogger.getLogger().warning(new LoadException(url, e));
+      GameLoggingService.getLogger().warning(new LoadException(url, e));
       clip = null;
     }
     return Optional.ofNullable(clip);
@@ -119,7 +119,7 @@ public final class GameUtilities {
         clip.open(stream);
       }
     } catch (Exception e) {
-      GameLogger.getLogger().warning(new LoadException(file, e));
+      GameLoggingService.getLogger().warning(new LoadException(file, e));
       clip = null;
     }
     return Optional.ofNullable(clip);
@@ -192,7 +192,7 @@ public final class GameUtilities {
     try {
       image = ImageIO.read(url);
     } catch (Exception e) {
-      GameLogger.getLogger().warning(new LoadException(url, e));
+      GameLoggingService.getLogger().warning(new LoadException(url, e));
       image = null;
     }
     return Optional.ofNullable(image);
@@ -209,7 +209,7 @@ public final class GameUtilities {
     try {
       image = ImageIO.read(file);
     } catch (Exception e) {
-      GameLogger.getLogger().warning(new LoadException(file, e));
+      GameLoggingService.getLogger().warning(new LoadException(file, e));
       image = null;
     }
     return Optional.ofNullable(image);
@@ -258,7 +258,7 @@ public final class GameUtilities {
     try {
       spriteSheet = SpriteSheet.create(ImageIO.read(url), width, height, rows, columns);
     } catch (Exception e) {
-      GameLogger.getLogger().warning(new LoadException(url, e));
+      GameLoggingService.getLogger().warning(new LoadException(url, e));
       spriteSheet = null;
     }
     return Optional.ofNullable(spriteSheet);
@@ -280,7 +280,7 @@ public final class GameUtilities {
     try {
       spriteSheet = SpriteSheet.create(ImageIO.read(file), width, height, rows, columns);
     } catch (Exception e) {
-      GameLogger.getLogger().warning(new LoadException(file, e));
+      GameLoggingService.getLogger().warning(new LoadException(file, e));
       spriteSheet = null;
     }
     return Optional.ofNullable(spriteSheet);
@@ -307,7 +307,7 @@ public final class GameUtilities {
           Objects.requireNonNull(clazz.getResource(name), "Resource with given name not found");
       return Optional.of(url);
     } catch (NullPointerException npe) {
-      GameLogger.getLogger().warning(new LoadException(name, npe));
+      GameLoggingService.getLogger().warning(new LoadException(name, npe));
       return Optional.empty();
     }
   }
