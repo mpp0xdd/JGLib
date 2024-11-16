@@ -1,6 +1,5 @@
 package jglib.component;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Objects;
 import jglib.util.FrameRate;
@@ -13,13 +12,6 @@ public abstract non-sealed class GameScreenEx extends GameScreenBase implements 
 
   public void setFrameRate(FrameRate frameRate) {
     this.frameRate = Objects.requireNonNull(frameRate);
-  }
-
-  @Override
-  public void setScreenSize(int width, int height) {
-    Dimension size = new Dimension(width, height);
-    setPreferredSize(size);
-    setSize(size);
   }
 
   @Override
