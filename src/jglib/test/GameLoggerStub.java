@@ -33,16 +33,18 @@ class GameLoggerStub implements GameLogger {
     return warning;
   }
 
-  public <T extends Throwable> T getWarning(Class<T> clazz, int index) {
-    return clazz.cast(getWarning().get(index));
+  public <T extends Throwable> T getWarningCause(Class<T> clazz, int index) {
+    Throwable cause = getWarning().get(index).asThrowable().getCause();
+    return clazz.cast(cause);
   }
 
   public List<GameThrowable<?>> getError() {
     return error;
   }
 
-  public <T extends Throwable> T getError(Class<T> clazz, int index) {
-    return clazz.cast(getError().get(index));
+  public <T extends Throwable> T getErrorCause(Class<T> clazz, int index) {
+    Throwable cause = getError().get(index).asThrowable().getCause();
+    return clazz.cast(cause);
   }
 
   public void initialize() {
