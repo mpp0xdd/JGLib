@@ -2,9 +2,9 @@ package jglib.component;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import jglib.util.Executable;
 import jglib.util.FrameRate;
 import jglib.util.GameUtilities;
+import jglib.util.function.Executable;
 import jglib.util.time.Clock;
 import jglib.util.time.Stopwatch;
 

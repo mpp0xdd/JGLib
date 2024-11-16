@@ -1,4 +1,4 @@
-package jglib.util;
+package jglib.util.function;
 
 import jglib.util.time.Stopwatch;
 
