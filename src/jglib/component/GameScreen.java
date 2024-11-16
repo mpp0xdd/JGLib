@@ -1,6 +1,5 @@
 package jglib.component;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Objects;
 import jglib.util.GameUtilities;
@@ -40,13 +39,6 @@ public abstract non-sealed class GameScreen extends GameScreenBase implements Ga
   /** サイズが{@value #DEFAULT_WIDTH} * {@value #DEFAULT_HEIGHT} に設定されたゲーム画面を作成します。 */
   public GameScreen() {
     this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-  }
-
-  @Override
-  public final void setScreenSize(int width, int height) {
-    Dimension size = new Dimension(width, height);
-    setPreferredSize(size);
-    setSize(size);
   }
 
   /**
