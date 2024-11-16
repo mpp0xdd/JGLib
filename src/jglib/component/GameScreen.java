@@ -44,12 +44,6 @@ public abstract non-sealed class GameScreen extends JPanel implements GameScreen
     this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
   }
 
-  /**
-   * ゲーム画面のサイズを変更します。
-   *
-   * @param width ゲーム画面の横幅
-   * @param height ゲーム画面の縦幅
-   */
   @Override
   public final void setScreenSize(int width, int height) {
     Dimension size = new Dimension(width, height);
@@ -67,14 +61,6 @@ public abstract non-sealed class GameScreen extends JPanel implements GameScreen
     this.gameLoopInterval = gameLoopInterval;
   }
 
-  /**
-   * ゲームループを開始します。<br>
-   * このメソッドによって開始されたゲームループを終了したい場合は，{@code stopGameLoop()}を呼び出してください。
-   *
-   * @throws IllegalStateException ゲームループが既に開始されている場合
-   * @see #runGameLoop()
-   * @see #stopGameLoop()
-   */
   @Override
   public final void startGameLoop() {
     if (Objects.nonNull(gameLoopThread)) {
@@ -86,14 +72,6 @@ public abstract non-sealed class GameScreen extends JPanel implements GameScreen
     gameLoopThread.start();
   }
 
-  /**
-   * ゲームループを停止します。<br>
-   * このメソッドによって停止されたゲームループを再び開始したい場合は，{@code startGameLoop()}を呼び出してください。
-   *
-   * @throws IllegalStateException ゲームループが既に停止している場合
-   * @see #runGameLoop()
-   * @see #startGameLoop()
-   */
   @Override
   public final void stopGameLoop() {
     if (Objects.isNull(gameLoopThread)) {
@@ -101,26 +79,6 @@ public abstract non-sealed class GameScreen extends JPanel implements GameScreen
     }
 
     gameLoopThread = null;
-  }
-
-  /**
-   * ゲームループが終了するのを待機します。
-   *
-   * @throws IllegalStateException ゲームループが既に停止している場合
-   * @see #runGameLoop()
-   * @see #startGameLoop()
-   * @see #stopGameLoop()
-   */
-  public final void joinGameLoop() {
-    if (Objects.isNull(gameLoopThread)) {
-      throw (new IllegalStateException("開始していないゲームループの終了を待機することはできません。"));
-    }
-
-    try {
-      gameLoopThread.join();
-    } catch (InterruptedException ie) {
-      ie.printStackTrace();
-    }
   }
 
   @Override
