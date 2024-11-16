@@ -50,6 +50,35 @@ class StopwatchTest {
   }
 
   @TestMethod
+  void testLap() {
+    final ClockStub clockStub = ClockStub.newClock();
+    final Stopwatch underTest = Stopwatch.create(TimeUnit.SECONDS, clockStub);
+
+    clockStub.setCurrentTime(12L);
+    underTest.start();
+
+    clockStub.setCurrentTime(13L);
+    underTest.lap();
+
+    clockStub.setCurrentTime(14L);
+    underTest.lap();
+
+    clockStub.setCurrentTime(20L);
+    underTest.lap();
+
+    assert underTest.lapTime(0) == 1L;
+    assert underTest.lapTime(0, TimeUnit.MILLISECONDS) == 1000L;
+
+    assert underTest.lapTime(1) == 1L;
+    assert underTest.lapTime(1, TimeUnit.MILLISECONDS) == 1000L;
+
+    assert underTest.lapTime(2) == 6L;
+    assert underTest.lapTime(2, TimeUnit.MILLISECONDS) == 6000L;
+
+    Test.assertThrows(IndexOutOfBoundsException.class, () -> underTest.lapTime(3));
+  }
+
+  @TestMethod
   void testIllegalOperation() {
     { // stopの前に結果を取得しようとした場合
       ClockStub clockStub = ClockStub.newClock();
