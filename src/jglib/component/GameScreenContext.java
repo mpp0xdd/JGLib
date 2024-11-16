@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import jglib.util.Clock;
 import jglib.util.Executable;
 import jglib.util.FrameRate;
+import jglib.util.GameUtilities;
 import jglib.util.Stopwatch;
 
 class GameScreenContext {
@@ -69,11 +70,7 @@ class GameScreenContext {
   }
 
   public GameScreenContext sleep() {
-    try {
-      timeUnit.sleep(sleepTime);
-    } catch (InterruptedException ie) {
-      ie.printStackTrace(); // TODO: Use Logger?
-    }
+    GameUtilities.sleep(sleepTime, timeUnit);
     return this;
   }
 
