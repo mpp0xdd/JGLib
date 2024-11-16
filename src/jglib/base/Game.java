@@ -6,7 +6,7 @@ import jglib.util.logging.GameLoggingService;
 public abstract class Game {
 
   static {
-    GameLoggingService.initialize();
+    GameEnvironment.initialize();
   }
 
   public static <T extends Game> Optional<T> launch(Class<T> gameClass) {
