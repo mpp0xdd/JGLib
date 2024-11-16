@@ -7,7 +7,7 @@ import java.util.Objects;
 import javax.swing.JPanel;
 import jglib.util.FrameRate;
 
-public abstract class GameScreenEx extends JPanel implements Runnable {
+public abstract non-sealed class GameScreenEx extends JPanel implements GameScreenRole, Runnable {
 
   private volatile FrameRate frameRate;
   private volatile OffScreen offScreen;
@@ -17,12 +17,14 @@ public abstract class GameScreenEx extends JPanel implements Runnable {
     this.frameRate = Objects.requireNonNull(frameRate);
   }
 
+  @Override
   public void setScreenSize(int width, int height) {
     Dimension size = new Dimension(width, height);
     setPreferredSize(size);
     setSize(size);
   }
 
+  @Override
   public void startGameLoop() {
     if (Objects.nonNull(gameLoopThread)) {
       throw (new IllegalStateException("実行中のゲームループを開始させることはできません。"));
@@ -32,6 +34,7 @@ public abstract class GameScreenEx extends JPanel implements Runnable {
     startGameLoopThread();
   }
 
+  @Override
   public void stopGameLoop() {
     if (Objects.isNull(gameLoopThread)) {
       throw (new IllegalStateException("開始していないゲームループを停止させることはできません。"));

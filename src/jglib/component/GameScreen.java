@@ -12,7 +12,7 @@ import jglib.util.GameUtilities;
  *
  * @author mpp
  */
-public abstract class GameScreen extends JPanel implements Runnable {
+public abstract non-sealed class GameScreen extends JPanel implements GameScreenRole, Runnable {
 
   /** このゲーム画面のデフォルトのサイズ(横幅) を表します。 */
   public static final int DEFAULT_WIDTH = 640;
@@ -50,6 +50,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
    * @param width ゲーム画面の横幅
    * @param height ゲーム画面の縦幅
    */
+  @Override
   public final void setScreenSize(int width, int height) {
     Dimension size = new Dimension(width, height);
     setPreferredSize(size);
@@ -74,6 +75,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
    * @see #runGameLoop()
    * @see #stopGameLoop()
    */
+  @Override
   public final void startGameLoop() {
     if (Objects.nonNull(gameLoopThread)) {
       throw (new IllegalStateException("実行中のゲームループを開始させることはできません。"));
@@ -92,6 +94,7 @@ public abstract class GameScreen extends JPanel implements Runnable {
    * @see #runGameLoop()
    * @see #startGameLoop()
    */
+  @Override
   public final void stopGameLoop() {
     if (Objects.isNull(gameLoopThread)) {
       throw (new IllegalStateException("開始していないゲームループを停止させることはできません。"));
