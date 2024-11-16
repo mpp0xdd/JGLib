@@ -2,7 +2,6 @@ package jglib.component;
 
 import java.awt.Container;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
 
 /**
@@ -46,25 +45,12 @@ public class GameWindow {
    *
    * @param screen 切り替え先のゲーム画面。
    */
-  public void switchGameScreen(GameScreen screen) {
-    switchScreenImpl(screen);
-  }
-
-  /**
-   * このウィンドウ上に表示されているゲーム画面を切り替えます。
-   *
-   * @param screen 切り替え先のゲーム画面。
-   */
-  public void switchGameScreen(GameScreenEx screen) {
-    switchScreenImpl(screen);
-  }
-
-  private void switchScreenImpl(JPanel screen) {
-    Container contentPane = this.frame.getContentPane();
+  public void switchGameScreen(GameScreenRole screen) {
+    Container contentPane = frame.getContentPane();
 
     contentPane.removeAll();
-    contentPane.add(screen);
-    this.frame.validate();
-    this.frame.pack();
+    contentPane.add(screen.asComponent());
+    frame.validate();
+    frame.pack();
   }
 }
