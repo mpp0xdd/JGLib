@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public final class GameLoggingService {
 
-  private static GameLogger logger;
+  private static GameLogger logger = null;
 
   private GameLoggingService() {}
 
@@ -17,6 +17,8 @@ public final class GameLoggingService {
   }
 
   public static void initialize() {
-    initialize(new GameLoggerImpl());
+    if (Objects.isNull(logger)) {
+      initialize(new GameLoggerImpl());
+    }
   }
 }
