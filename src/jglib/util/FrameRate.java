@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 public class FrameRate {
 
+  public static final FrameRate FPS60 = framesPerSecond(60);
+
   public static FrameRate framesPerSecond(int fps) {
     return new FrameRate(fps, TimeUnit.SECONDS);
   }
