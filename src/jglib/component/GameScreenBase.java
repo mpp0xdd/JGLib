@@ -5,6 +5,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
 
+/**
+ * 全てのゲーム画面の抽象基底クラスです。
+ *
+ * @author mpp
+ */
 public abstract sealed class GameScreenBase extends JPanel implements GameScreenRole
     permits GameScreen, GameScreenEx {
 

@@ -4,12 +4,26 @@ import java.awt.Graphics;
 import java.util.Objects;
 import jglib.util.FrameRate;
 
+/**
+ * ゲーム画面の作成を円滑に進めていく為に用意された抽象基底クラスです。
+ *
+ * @author mpp
+ */
 public abstract non-sealed class GameScreenEx extends GameScreenBase implements GameScreenRole, Runnable {
 
   private volatile FrameRate frameRate;
   private volatile OffScreen offScreen;
   private volatile Thread gameLoopThread;
 
+  /**
+   * このゲーム画面が達成すべきフレームレートを設定します。
+   * 
+   * @apiNote
+   *   設定は {@link #startGameLoop()} が呼ばれるよりも前に行われる必要があることに注意してください。
+   *   設定変更は、実行中のゲームループには影響を及ぼしません。
+   * 
+   * @param frameRate フレームレート
+   */
   public void setFrameRate(FrameRate frameRate) {
     this.frameRate = Objects.requireNonNull(frameRate);
   }

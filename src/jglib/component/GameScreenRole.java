@@ -2,6 +2,11 @@ package jglib.component;
 
 import java.awt.Component;
 
+/**
+ * ゲーム画面の役割を表します。
+ *
+ * @author mpp
+ */
 public sealed interface GameScreenRole permits GameScreenBase, GameScreen, GameScreenEx {
 
   /**
@@ -30,6 +35,11 @@ public sealed interface GameScreenRole permits GameScreenBase, GameScreen, GameS
    */
   void stopGameLoop();
 
+  /**
+   * ゲーム画面を {@link Component} として扱うためのユーティリティメソッドです。
+   *
+   * @return Component
+   */
   default Component asComponent() {
     return (Component) this;
   }
