@@ -40,6 +40,20 @@ public final class GameUtilities {
   }
 
   /**
+   * 時間単位を指定して，スリープ(一時的にゲームの実行を停止) させます。
+   *
+   * @param timeout スリープ時間の長さ
+   * @param timeUnit 時間単位
+   */
+  public static void sleep(long timeout, TimeUnit timeUnit) {
+    try {
+      timeUnit.sleep(timeout);
+    } catch (InterruptedException ie) {
+      GameLogger.getLogger().warning(new GameException(ie));
+    }
+  }
+
+  /**
    * 時間単位を指定して，スリープ(一時的にゲームの実行を停止) させ，実際にスリープしていた時間を {@code Stopwatch} に記録します。
    *
    * @param timeout スリープ時間の長さ
