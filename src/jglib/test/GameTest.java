@@ -3,9 +3,9 @@ package jglib.test;
 import java.util.Optional;
 import jglib.base.Game;
 import jglib.base.GameEnvironment;
+import jglib.service.logging.GameLoggingService;
 import jglib.test.Test.TestClass;
 import jglib.test.Test.TestMethod;
-import jglib.util.logging.GameLoggingService;
 
 @TestClass
 class GameTest {

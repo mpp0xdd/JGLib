@@ -1,6 +1,6 @@
 package jglib.base;
 
-import jglib.util.logging.GameLoggingService;
+import jglib.service.logging.GameLoggingService;
 
 public class GameEnvironment {
 

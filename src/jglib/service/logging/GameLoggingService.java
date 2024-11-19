@@ -1,4 +1,4 @@
-package jglib.util.logging;
+package jglib.service.logging;
 
 import java.util.Objects;
 

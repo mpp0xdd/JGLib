@@ -3,7 +3,7 @@ package jglib.test;
 import java.util.ArrayList;
 import java.util.List;
 import jglib.base.GameThrowable;
-import jglib.util.logging.GameLogger;
+import jglib.service.logging.GameLogger;
 
 class GameLoggerStub implements GameLogger {
 

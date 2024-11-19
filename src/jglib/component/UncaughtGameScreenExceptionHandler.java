@@ -2,7 +2,7 @@ package jglib.component;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import jglib.base.GameError;
-import jglib.util.logging.GameLoggingService;
+import jglib.service.logging.GameLoggingService;
 
 final class UncaughtGameScreenExceptionHandler implements UncaughtExceptionHandler {
 

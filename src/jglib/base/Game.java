@@ -1,7 +1,7 @@
 package jglib.base;
 
 import java.util.Optional;
-import jglib.util.logging.GameLoggingService;
+import jglib.service.logging.GameLoggingService;
 
 public abstract class Game {
 
