@@ -2,17 +2,12 @@ package jglib.test;
 
 import java.util.Optional;
 import jglib.base.Game;
-import jglib.base.GameEnvironment;
 import jglib.service.logging.GameLoggingService;
 import jglib.test.Test.TestClass;
 import jglib.test.Test.TestMethod;
 
 @TestClass
 class GameTest {
-
-  static {
-    GameEnvironment.initialize();
-  }
 
   private static int launchCount = 0;
 

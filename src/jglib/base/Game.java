@@ -5,10 +5,6 @@ import jglib.service.logging.GameLoggingService;
 
 public abstract class Game {
 
-  static {
-    GameEnvironment.initialize();
-  }
-
   public static <T extends Game> Optional<T> launch(Class<T> gameClass) {
     T game;
 
