@@ -59,13 +59,12 @@ interface Test {
     try {
       System.err.printf("> Start %s%n", object.getClass().getSimpleName());
       for (Method testMethod : testMethods) {
-        System.err.println();
-        System.err.printf(String.format(">> Start %s()%n", testMethod.getName()));
+        System.err.printf(String.format(">> %s()", testMethod.getName()));
         testMethod.invoke(object);
-        System.err.printf(String.format(">> %s() completed successfully.%n", testMethod.getName()));
+        System.err.println(" completed successfully.");
       }
-      System.err.println();
       System.err.printf("> %s completed successfully.%n", object.getClass().getSimpleName());
+      System.err.println();
     } catch (Exception e) {
       e.printStackTrace();
       System.exit(1);

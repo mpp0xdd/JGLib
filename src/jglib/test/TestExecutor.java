@@ -30,7 +30,6 @@ class TestExecutor {
   }
 
   private void done() {
-    System.err.println();
     System.err.println("All tests completed successfully.");
   }
 
