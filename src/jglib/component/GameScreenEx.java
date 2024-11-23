@@ -9,7 +9,7 @@ import jglib.util.FrameRate;
  *
  * @author mpp
  */
-public abstract non-sealed class GameScreenEx extends UpdatableGameScreenBase implements UpdatableGameScreenRole, Runnable {
+public abstract non-sealed class GameScreenEx extends UpdatableGameScreenBase implements Runnable {
 
   private volatile FrameRate frameRate;
   private volatile OffScreen offScreen;

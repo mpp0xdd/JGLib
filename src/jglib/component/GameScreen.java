@@ -9,7 +9,7 @@ import jglib.util.GameUtilities;
  *
  * @author mpp
  */
-public abstract non-sealed class GameScreen extends UpdatableGameScreenBase implements UpdatableGameScreenRole, Runnable {
+public abstract non-sealed class GameScreen extends UpdatableGameScreenBase implements Runnable {
 
   /** このゲーム画面のデフォルトのサイズ(横幅) を表します。 */
   public static final int DEFAULT_WIDTH = 640;

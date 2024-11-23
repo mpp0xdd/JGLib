@@ -7,7 +7,7 @@ import java.awt.Component;
  *
  * @author mpp
  */
-public sealed interface GameScreenRole permits UpdatableGameScreenRole {
+public sealed interface GameScreenRole permits UpdatableGameScreenRole, GameScreenBase {
 
   /**
    * ゲーム画面のサイズを変更します。
