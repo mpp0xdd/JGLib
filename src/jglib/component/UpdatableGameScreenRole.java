@@ -1,7 +1,13 @@
 package jglib.component;
 
+/**
+ * 更新可能なゲーム画面の役割を表します。
+ *
+ * @author mpp
+ */
 public sealed interface UpdatableGameScreenRole extends GameScreenRole
     permits UpdatableGameScreenBase {
+
   /**
    * ゲームループを開始します。<br>
    * このメソッドによって開始されたゲームループを終了したい場合は，{@code stopGameLoop()}を呼び出してください。
