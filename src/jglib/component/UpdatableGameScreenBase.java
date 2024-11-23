@@ -6,12 +6,12 @@ import java.awt.Image;
 import javax.swing.JPanel;
 
 /**
- * 全てのゲーム画面の抽象基底クラスです。
+ * 更新可能なゲーム画面の抽象基底クラスです。
  *
  * @author mpp
  */
-public abstract sealed class GameScreenBase extends JPanel implements UpdatableGameScreenRole
-    permits GameScreen, GameScreenEx {
+public abstract sealed class UpdatableGameScreenBase extends JPanel
+    implements UpdatableGameScreenRole permits GameScreen, GameScreenEx {
 
   @Override
   public void setScreenSize(int width, int height) {

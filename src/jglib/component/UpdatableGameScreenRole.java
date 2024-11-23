@@ -1,7 +1,7 @@
 package jglib.component;
 
 public sealed interface UpdatableGameScreenRole extends GameScreenRole
-    permits GameScreenBase, GameScreen, GameScreenEx {
+    permits UpdatableGameScreenBase, GameScreen, GameScreenEx {
   /**
    * ゲームループを開始します。<br>
    * このメソッドによって開始されたゲームループを終了したい場合は，{@code stopGameLoop()}を呼び出してください。
