@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  * @author mpp
  */
 public abstract sealed class GameScreenBase extends JPanel implements GameScreenRole
-    permits UpdatableGameScreenBase {
+    permits SimpleGameScreen, UpdatableGameScreenBase {
 
   @Override
   public void setScreenSize(int width, int height) {
