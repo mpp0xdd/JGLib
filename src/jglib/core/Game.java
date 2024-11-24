@@ -1,4 +1,4 @@
-package jglib.base;
+package jglib.core;
 
 import java.util.Optional;
 import jglib.service.logging.GameLoggingService;

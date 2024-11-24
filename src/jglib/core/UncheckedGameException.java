@@ -1,4 +1,4 @@
-package jglib.base;
+package jglib.core;
 
 public class UncheckedGameException extends RuntimeException
     implements GameThrowable<UncheckedGameException> {

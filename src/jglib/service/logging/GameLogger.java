@@ -1,6 +1,6 @@
 package jglib.service.logging;
 
-import jglib.base.GameThrowable;
+import jglib.core.GameThrowable;
 
 public interface GameLogger {
 

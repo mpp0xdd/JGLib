@@ -1,4 +1,4 @@
-package jglib.base;
+package jglib.core;
 
 public class GameError extends Error implements GameThrowable<GameError> {
 

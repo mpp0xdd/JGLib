@@ -1,4 +1,4 @@
-package jglib.base;
+package jglib.core;
 
 public class GameException extends Exception implements GameThrowable<GameException> {
 

@@ -1,4 +1,4 @@
-package jglib.base;
+package jglib.core;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import jglib.service.logging.GameLoggingService;

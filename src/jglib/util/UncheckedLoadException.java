@@ -1,7 +1,7 @@
 package jglib.util;
 
 import static java.util.Objects.requireNonNull;
-import jglib.base.UncheckedGameException;
+import jglib.core.UncheckedGameException;
 
 public class UncheckedLoadException extends UncheckedGameException {
 

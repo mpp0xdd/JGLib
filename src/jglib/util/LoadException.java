@@ -1,6 +1,6 @@
 package jglib.util;
 
-import jglib.base.GameException;
+import jglib.core.GameException;
 
 public class LoadException extends GameException {
 

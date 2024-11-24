@@ -1,4 +1,4 @@
-package jglib.base;
+package jglib.core;
 
 public interface GameThrowable<T extends Throwable & GameThrowable<T>> {
 
