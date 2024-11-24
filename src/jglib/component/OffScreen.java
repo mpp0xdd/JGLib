@@ -4,8 +4,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.Objects;
 import java.util.function.Consumer;
+import jglib.util.spec.Drawable;
 
-class OffScreen {
+class OffScreen implements Drawable {
 
   public static OffScreen create(Image offScreen) {
     return new OffScreen(offScreen);
@@ -35,6 +36,7 @@ class OffScreen {
     renderer.accept(graphics);
   }
 
+  @Override
   public void draw(Graphics g) {
     g.drawImage(offScreen, 0, 0, null);
   }

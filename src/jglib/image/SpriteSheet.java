@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
+import jglib.util.spec.Drawable;
 
 /**
  * スプライトシート(*) です。<br>
@@ -11,7 +12,7 @@ import java.util.Optional;
  *
  * @author mpp
  */
-public interface SpriteSheet {
+public interface SpriteSheet extends Drawable {
 
   /**
    * 指定された {@link BufferedImage} で新しい SpriteSheet を構築します。<br>
@@ -117,6 +118,7 @@ public interface SpriteSheet {
    * @see getIndex()
    * @see setIndex(int)
    */
+  @Override
   void draw(Graphics g);
 
   /**

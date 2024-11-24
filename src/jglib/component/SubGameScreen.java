@@ -1,13 +1,14 @@
 package jglib.component;
 
 import java.awt.Graphics;
+import jglib.util.spec.Drawable;
 
 /**
  * サブゲーム画面を表すインターフェイスです。
  *
  * @author mpp
  */
-public interface SubGameScreen {
+public interface SubGameScreen extends Drawable {
 
   /** @return サブゲーム画面のx座標。 */
   int x();
@@ -26,5 +27,6 @@ public interface SubGameScreen {
    *
    * @param g サブゲーム画面の描画に使用するグラフィックスコンテキスト。
    */
+  @Override
   void draw(Graphics g);
 }
