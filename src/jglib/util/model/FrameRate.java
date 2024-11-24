@@ -1,4 +1,4 @@
-package jglib.util;
+package jglib.util.model;
 
 import java.time.Duration;
 import java.util.Objects;

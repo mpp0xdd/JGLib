@@ -2,7 +2,7 @@ package jglib.component;
 
 import java.awt.Graphics;
 import java.util.Objects;
-import jglib.util.FrameRate;
+import jglib.util.model.FrameRate;
 
 /**
  * ゲーム画面の作成を円滑に進めていく為に用意された抽象基底クラスです。

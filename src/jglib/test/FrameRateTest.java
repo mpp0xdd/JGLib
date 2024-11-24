@@ -2,7 +2,7 @@ package jglib.test;
 
 import jglib.test.Test.TestClass;
 import jglib.test.Test.TestMethod;
-import jglib.util.FrameRate;
+import jglib.util.model.FrameRate;
 
 @TestClass
 class FrameRateTest {
