@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  *
  * @author mpp
  */
-public abstract sealed class GameScreenBase extends JPanel implements GameScreenRole
+abstract sealed class GameScreenBase extends JPanel implements GameScreenRole
     permits SimpleGameScreen, UpdatableGameScreenBase {
 
   @Override

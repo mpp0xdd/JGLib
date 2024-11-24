@@ -5,7 +5,7 @@ package jglib.component;
  *
  * @author mpp
  */
-public abstract sealed class UpdatableGameScreenBase extends GameScreenBase
+abstract sealed class UpdatableGameScreenBase extends GameScreenBase
     implements UpdatableGameScreenRole permits GameScreen, GameScreenEx {
 
   /** ゲームループの実際の処理を行います。 */
