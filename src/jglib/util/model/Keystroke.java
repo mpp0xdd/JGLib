@@ -2,14 +2,14 @@ package jglib.util.model;
 
 public enum Keystroke {
   PRESSED,
-  NOT_PRESSED,
+  RELEASED,
   ;
 
   public boolean isPressed() {
     return this.equals(PRESSED);
   }
 
-  public boolean isNotPressed() {
-    return this.equals(NOT_PRESSED);
+  public boolean isReleased() {
+    return this.equals(RELEASED);
   }
 }
