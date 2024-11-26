@@ -1,5 +1,7 @@
 package jglib.test;
 
+import static jglib.test.Assertions.assertDoesNotThrow;
+import static jglib.test.Assertions.assertThrows;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -46,14 +48,13 @@ class SpriteSheetTest {
 
   @TestMethod
   void testCreateSpriteSheet() {
-    Test.assertDoesNotThrow(() -> SpriteSheet.create(image, 32, 32, 3, 6));
-    Test.assertDoesNotThrow(() -> SpriteSheet.create(image, 32, 32, 6, 3));
+    assertDoesNotThrow(() -> SpriteSheet.create(image, 32, 32, 3, 6));
+    assertDoesNotThrow(() -> SpriteSheet.create(image, 32, 32, 6, 3));
 
-    Test.assertThrows(NullPointerException.class, () -> SpriteSheet.create(null, 32, 32, 6, 3));
+    assertThrows(NullPointerException.class, () -> SpriteSheet.create(null, 32, 32, 6, 3));
 
     Exception exception =
-        Test.assertThrows(
-            IllegalArgumentException.class, () -> SpriteSheet.create(image, 0, 32, 6, 3));
+        assertThrows(IllegalArgumentException.class, () -> SpriteSheet.create(image, 0, 32, 6, 3));
     assert exception.getMessage().equals("0 (width value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -63,8 +64,7 @@ class SpriteSheetTest {
             "The size of the image (192*96) and the total size of the grid (0*32*6*3) must be"
                 + " equal");
     exception =
-        Test.assertThrows(
-            IllegalArgumentException.class, () -> SpriteSheet.create(image, -1, 32, 6, 3));
+        assertThrows(IllegalArgumentException.class, () -> SpriteSheet.create(image, -1, 32, 6, 3));
     assert exception.getMessage().equals("-1 (width value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -75,8 +75,7 @@ class SpriteSheetTest {
                 + " equal");
 
     exception =
-        Test.assertThrows(
-            IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, 0, 6, 3));
+        assertThrows(IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, 0, 6, 3));
     assert exception.getMessage().equals("0 (height value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -86,8 +85,7 @@ class SpriteSheetTest {
             "The size of the image (192*96) and the total size of the grid (32*0*6*3) must be"
                 + " equal");
     exception =
-        Test.assertThrows(
-            IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, -1, 6, 3));
+        assertThrows(IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, -1, 6, 3));
     assert exception.getMessage().equals("-1 (height value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -98,8 +96,7 @@ class SpriteSheetTest {
                 + " equal");
 
     exception =
-        Test.assertThrows(
-            IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, 32, 0, 3));
+        assertThrows(IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, 32, 0, 3));
     assert exception.getMessage().equals("0 (rows value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -109,7 +106,7 @@ class SpriteSheetTest {
             "The size of the image (192*96) and the total size of the grid (32*32*0*3) must be"
                 + " equal");
     exception =
-        Test.assertThrows(
+        assertThrows(
             IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, 32, -1, 3));
     assert exception.getMessage().equals("-1 (rows value must be a positive number)");
     assert exception.getSuppressed().length == 1;
@@ -121,8 +118,7 @@ class SpriteSheetTest {
                 + " equal");
 
     exception =
-        Test.assertThrows(
-            IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, 32, 6, 0));
+        assertThrows(IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, 32, 6, 0));
     assert exception.getMessage().equals("0 (columns value must be a positive number)");
     assert exception.getSuppressed().length == 1;
     assert exception
@@ -132,7 +128,7 @@ class SpriteSheetTest {
             "The size of the image (192*96) and the total size of the grid (32*32*6*0) must be"
                 + " equal");
     exception =
-        Test.assertThrows(
+        assertThrows(
             IllegalArgumentException.class, () -> SpriteSheet.create(image, 32, 32, 6, -1));
     assert exception.getMessage().equals("-1 (columns value must be a positive number)");
     assert exception.getSuppressed().length == 1;
@@ -144,7 +140,7 @@ class SpriteSheetTest {
                 + " equal");
 
     exception =
-        Test.assertThrows(
+        assertThrows(
             IllegalArgumentException.class, () -> SpriteSheet.create(image, -1, -2, -3, -4));
     assert exception.getMessage().equals("-1 (width value must be a positive number)");
     assert exception.getSuppressed().length == 4;
@@ -203,7 +199,7 @@ class SpriteSheetTest {
     assert target.getX() == 100;
     assert target.getY() == 200;
 
-    Test.assertThrows(NullPointerException.class, () -> target.setLocation(null));
+    assertThrows(NullPointerException.class, () -> target.setLocation(null));
 
     target.setIndex(-1);
     assert target.getIndex() == -1;
@@ -248,12 +244,11 @@ class SpriteSheetTest {
     assert !target.isLast();
     assert target.isAfterLast();
 
-    Exception exception =
-        Test.assertThrows(IndexOutOfBoundsException.class, () -> target.setIndex(-2));
+    Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> target.setIndex(-2));
     assert exception.getMessage().equals("-2 (index must be between -1 and 18)");
     assert exception.getSuppressed().length == 0;
 
-    exception = Test.assertThrows(IndexOutOfBoundsException.class, () -> target.setIndex(19));
+    exception = assertThrows(IndexOutOfBoundsException.class, () -> target.setIndex(19));
     assert exception.getMessage().equals("19 (index must be between -1 and 18)");
     assert exception.getSuppressed().length == 0;
   }
@@ -263,11 +258,10 @@ class SpriteSheetTest {
     SpriteSheet target = SpriteSheet.create(image, 32, 32, 3, 6);
 
     target.setIndex(5);
-    Exception exception =
-        Test.assertThrows(IndexOutOfBoundsException.class, () -> target.getImage(-2));
+    Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> target.getImage(-2));
     assert exception.getMessage().equals("-2 (index must be between -1 and 18)");
     assert exception.getSuppressed().length == 0;
-    exception = Test.assertThrows(IndexOutOfBoundsException.class, () -> target.getImage(19));
+    exception = assertThrows(IndexOutOfBoundsException.class, () -> target.getImage(19));
     assert exception.getMessage().equals("19 (index must be between -1 and 18)");
     assert exception.getSuppressed().length == 0;
     assert target.getIndex() == 5;
@@ -425,15 +419,15 @@ class SpriteSheetTest {
   @TestMethod
   void testDrawMethod() {
     SpriteSheet target = SpriteSheet.create(image, 32, 32, 3, 6);
-    Test.assertDoesNotThrow(() -> target.draw(null));
+    assertDoesNotThrow(() -> target.draw(null));
 
     target.first();
-    Test.assertThrows(NullPointerException.class, () -> target.draw(null));
+    assertThrows(NullPointerException.class, () -> target.draw(null));
 
     target.last();
-    Test.assertThrows(NullPointerException.class, () -> target.draw(null));
+    assertThrows(NullPointerException.class, () -> target.draw(null));
 
     target.afterLast();
-    Test.assertDoesNotThrow(() -> target.draw(null));
+    assertDoesNotThrow(() -> target.draw(null));
   }
 }

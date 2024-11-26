@@ -1,7 +1,5 @@
 package jglib.test;
 
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -16,27 +14,6 @@ import java.util.stream.Stream;
 interface Test {
 
   void test() throws Exception;
-
-  public static Exception assertThrows(Class<? extends Exception> expected, Test test) {
-    Exception exception;
-    Class<? extends Exception> actual;
-    try {
-      test.test();
-      exception = null;
-      actual = null;
-    } catch (Exception e) {
-      exception = e;
-      actual = e.getClass();
-    }
-    assert nonNull(expected)
-        ? nonNull(exception) && expected.equals(actual)
-        : isNull(exception) && isNull(actual);
-    return exception;
-  }
-
-  public static void assertDoesNotThrow(Test test) {
-    assertThrows(null, test);
-  }
 
   public static void invokeTestClass(Object object) {
     requireNonNull(object);

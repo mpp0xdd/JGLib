@@ -1,5 +1,6 @@
 package jglib.test;
 
+import static jglib.test.Assertions.assertThrows;
 import java.util.concurrent.TimeUnit;
 import jglib.test.Test.TestClass;
 import jglib.test.Test.TestMethod;
@@ -75,7 +76,7 @@ class StopwatchTest {
     assert underTest.lapTime(2) == 6L;
     assert underTest.lapTime(2, TimeUnit.MILLISECONDS) == 6000L;
 
-    Test.assertThrows(IndexOutOfBoundsException.class, () -> underTest.lapTime(3));
+    assertThrows(IndexOutOfBoundsException.class, () -> underTest.lapTime(3));
   }
 
   @TestMethod
@@ -86,8 +87,8 @@ class StopwatchTest {
 
       clockStub.setCurrentTime(12L);
       underTest.start();
-      Test.assertThrows(IllegalStateException.class, () -> underTest.measurementTime());
-      Test.assertThrows(
+      assertThrows(IllegalStateException.class, () -> underTest.measurementTime());
+      assertThrows(
           IllegalStateException.class, () -> underTest.measurementTime(TimeUnit.MILLISECONDS));
       assert underTest.elapsedTime() == 0L;
       assert underTest.elapsedTime(TimeUnit.MILLISECONDS) == 0L;
@@ -106,8 +107,8 @@ class StopwatchTest {
 
       clockStub.setCurrentTime(13L);
       underTest.start();
-      Test.assertThrows(IllegalStateException.class, () -> underTest.measurementTime());
-      Test.assertThrows(
+      assertThrows(IllegalStateException.class, () -> underTest.measurementTime());
+      assertThrows(
           IllegalStateException.class, () -> underTest.measurementTime(TimeUnit.MILLISECONDS));
       assert underTest.elapsedTime() == 0L;
       assert underTest.elapsedTime(TimeUnit.MILLISECONDS) == 0L;
