@@ -14,8 +14,8 @@ class TestExecutor {
     testClasses = new ArrayList<>();
   }
 
-  public void register(Class<?> testClass) {
-    testClasses.add(testClass);
+  public void register(Class<?> clazz) {
+    testClasses.add(requireTestClass(clazz));
   }
 
   public void execute() {
@@ -25,8 +25,6 @@ class TestExecutor {
   }
 
   private void instantiateAndTest(Class<?> clazz) {
-    requireTestClass(clazz);
-
     List<Method> testMethods = getTestMethodsOrElseThrow(clazz);
 
     System.err.printf("> Start %s%n", clazz.getSimpleName());
