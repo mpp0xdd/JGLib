@@ -1,5 +1,7 @@
 package jglib.test;
 
+import jglib.test.Tests.Test;
+
 class Assertions {
 
   static {

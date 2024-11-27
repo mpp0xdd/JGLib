@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import jglib.test.Test.TestClass;
-import jglib.test.Test.TestMethod;
+import jglib.test.Tests.TestClass;
+import jglib.test.Tests.TestMethod;
 
 class TestExecutor {
 

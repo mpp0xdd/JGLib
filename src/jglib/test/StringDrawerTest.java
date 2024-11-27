@@ -7,8 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import jglib.component.GameScreen;
 import jglib.component.GameWindow;
-import jglib.test.Test.TestClass;
-import jglib.test.Test.TestMethod;
+import jglib.test.Tests.TestClass;
+import jglib.test.Tests.TestMethod;
 import jglib.util.StringDrawer;
 
 @TestClass

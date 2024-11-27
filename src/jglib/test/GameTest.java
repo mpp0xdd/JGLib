@@ -3,8 +3,8 @@ package jglib.test;
 import java.util.Optional;
 import jglib.core.Game;
 import jglib.service.logging.GameLoggingService;
-import jglib.test.Test.TestClass;
-import jglib.test.Test.TestMethod;
+import jglib.test.Tests.TestClass;
+import jglib.test.Tests.TestMethod;
 
 @TestClass
 class GameTest {

@@ -2,8 +2,8 @@ package jglib.test;
 
 import static jglib.test.Assertions.assertThrows;
 import java.util.concurrent.TimeUnit;
-import jglib.test.Test.TestClass;
-import jglib.test.Test.TestMethod;
+import jglib.test.Tests.TestClass;
+import jglib.test.Tests.TestMethod;
 import jglib.util.time.Stopwatch;
 
 @TestClass

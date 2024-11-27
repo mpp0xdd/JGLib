@@ -2,8 +2,8 @@ package jglib.test;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
-import jglib.test.Test.TestClass;
-import jglib.test.Test.TestMethod;
+import jglib.test.Tests.TestClass;
+import jglib.test.Tests.TestMethod;
 import jglib.util.model.Key;
 import jglib.util.model.Keyboard;
 
