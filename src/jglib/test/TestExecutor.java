@@ -39,18 +39,10 @@ class TestExecutor {
       throw new RuntimeException("Test method not found: " + clazz);
     }
 
-    try {
-      System.err.printf("> Start %s%n", clazz.getSimpleName());
-      for (Method testMethod : testMethods) {
-        System.err.printf(String.format(">> %s()", testMethod.getName()));
-        testMethod.invoke(instance);
-        System.err.println(" completed successfully.");
-      }
-      System.err.printf("> %s completed successfully.%n", clazz.getSimpleName());
-      System.err.println();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+    System.err.printf("> Start %s%n", clazz.getSimpleName());
+    invokeTestMethods(instance, testMethods);
+    System.err.printf("> %s completed successfully.%n", clazz.getSimpleName());
+    System.err.println();
   }
 
   private boolean isNotTestClass(Class<?> clazz) {
@@ -69,6 +61,18 @@ class TestExecutor {
     return Stream.of(testClass.getDeclaredMethods())
         .filter(method -> method.isAnnotationPresent(TestMethod.class))
         .collect(Collectors.toUnmodifiableList());
+  }
+
+  private void invokeTestMethods(Object instance, List<Method> testMethods) {
+    try {
+      for (Method testMethod : testMethods) {
+        System.err.printf(String.format(">> %s()", testMethod.getName()));
+        testMethod.invoke(instance);
+        System.err.println(" completed successfully.");
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 
   private void done() {
