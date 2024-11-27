@@ -26,35 +26,35 @@ class TestExecutor {
     done();
   }
 
-  private <T> void instantiateAndTest(Class<T> testClass) {
-    if (isNotTestClass(testClass)) {
-      throw new RuntimeException("Not a test class: " + testClass);
+  private <T> void instantiateAndTest(Class<T> clazz) {
+    if (isNotTestClass(clazz)) {
+      throw new RuntimeException("Not a test class: " + clazz);
     }
 
     T testInstance;
     try {
-      testInstance = testClass.getDeclaredConstructor().newInstance();
+      testInstance = clazz.getDeclaredConstructor().newInstance();
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
 
     final List<Method> testMethods =
-        Stream.of(testClass.getDeclaredMethods())
+        Stream.of(clazz.getDeclaredMethods())
             .filter(method -> method.isAnnotationPresent(TestMethod.class))
             .collect(Collectors.toUnmodifiableList());
 
     if (testMethods.isEmpty()) {
-      throw new RuntimeException("Test method not found: " + testClass);
+      throw new RuntimeException("Test method not found: " + clazz);
     }
 
     try {
-      System.err.printf("> Start %s%n", testClass.getSimpleName());
+      System.err.printf("> Start %s%n", clazz.getSimpleName());
       for (Method testMethod : testMethods) {
         System.err.printf(String.format(">> %s()", testMethod.getName()));
         testMethod.invoke(testInstance);
         System.err.println(" completed successfully.");
       }
-      System.err.printf("> %s completed successfully.%n", testClass.getSimpleName());
+      System.err.printf("> %s completed successfully.%n", clazz.getSimpleName());
       System.err.println();
     } catch (Exception e) {
       throw new RuntimeException(e);
