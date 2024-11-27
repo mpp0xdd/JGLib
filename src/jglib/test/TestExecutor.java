@@ -27,7 +27,7 @@ class TestExecutor {
   }
 
   private <T> void instantiateAndExecute(Class<T> testClass) {
-    if (!testClass.isAnnotationPresent(TestClass.class)) {
+    if (isNotTestClass(testClass)) {
       throw new RuntimeException("Not a test class: " + testClass);
     }
 
@@ -59,6 +59,10 @@ class TestExecutor {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
+  }
+
+  private boolean isNotTestClass(Class<?> clazz) {
+    return !clazz.isAnnotationPresent(TestClass.class);
   }
 
   private void done() {
