@@ -66,9 +66,8 @@ class TestExecutor {
   private void invokeTestMethods(Object instance, List<Method> testMethods) {
     try {
       for (Method testMethod : testMethods) {
-        System.err.printf(String.format(">> %s()", testMethod.getName()));
         testMethod.invoke(instance);
-        System.err.println(" completed successfully.");
+        System.err.printf(">> %s() completed successfully%n", testMethod.getName());
       }
     } catch (Exception e) {
       throw new RuntimeException(e);
