@@ -26,12 +26,12 @@ class TestExecutor {
     done();
   }
 
-  private <T> void instantiateAndTest(Class<T> clazz) {
+  private void instantiateAndTest(Class<?> clazz) {
     if (isNotTestClass(clazz)) {
       throw new RuntimeException("Not a test class: " + clazz);
     }
 
-    T instance = newInstance(clazz);
+    Object instance = newInstance(clazz);
 
     List<Method> testMethods = getTestMethods(clazz);
 
@@ -49,7 +49,7 @@ class TestExecutor {
     return !clazz.isAnnotationPresent(TestClass.class);
   }
 
-  private <T> T newInstance(Class<T> clazz) {
+  private Object newInstance(Class<?> clazz) {
     try {
       return clazz.getDeclaredConstructor().newInstance();
     } catch (Exception e) {
