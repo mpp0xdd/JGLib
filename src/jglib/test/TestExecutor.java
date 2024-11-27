@@ -41,7 +41,7 @@ class TestExecutor {
 
     System.err.printf("> Start %s%n", clazz.getSimpleName());
     invokeTestMethods(instance, testMethods);
-    System.err.printf("> %s completed successfully.%n", clazz.getSimpleName());
+    System.err.printf("> %s completed successfully%n", clazz.getSimpleName());
     System.err.println();
   }
 
@@ -75,7 +75,7 @@ class TestExecutor {
   }
 
   private void done() {
-    System.err.println("All tests completed successfully.");
+    System.err.println("All tests completed successfully");
   }
 
   public static void main(String[] args) {
