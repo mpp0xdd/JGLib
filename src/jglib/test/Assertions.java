@@ -2,6 +2,18 @@ package jglib.test;
 
 class Assertions {
 
+  static {
+    requireEnable();
+  }
+
+  public static void requireEnable() {
+    boolean enableAssertions = false;
+    assert enableAssertions = true;
+    if (!enableAssertions) {
+      throw new AssertionError("Assertions are not enabled");
+    }
+  }
+
   public static void assertTrue(boolean condition) {
     assert condition;
   }

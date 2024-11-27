@@ -21,7 +21,7 @@ class TestExecutor {
   }
 
   public void execute() {
-    checkEnableAssertions();
+    Assertions.requireEnable();
     testClasses.forEach(this::instantiateAndExecute);
     done();
   }
@@ -58,14 +58,6 @@ class TestExecutor {
       System.err.println();
     } catch (Exception e) {
       throw new RuntimeException(e);
-    }
-  }
-
-  private void checkEnableAssertions() {
-    boolean enableAssertions = false;
-    assert enableAssertions = true;
-    if (!enableAssertions) {
-      throw new AssertionError("Tests cannot be run because assertions are not enabled");
     }
   }
 
