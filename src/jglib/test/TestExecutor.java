@@ -22,11 +22,11 @@ class TestExecutor {
 
   public void execute() {
     Assertions.requireEnable();
-    testClasses.forEach(this::instantiateAndExecute);
+    testClasses.forEach(this::instantiateAndTest);
     done();
   }
 
-  private <T> void instantiateAndExecute(Class<T> testClass) {
+  private <T> void instantiateAndTest(Class<T> testClass) {
     if (isNotTestClass(testClass)) {
       throw new RuntimeException("Not a test class: " + testClass);
     }
