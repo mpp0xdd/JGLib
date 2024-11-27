@@ -31,7 +31,7 @@ class TestExecutor {
       throw new RuntimeException("Not a test class: " + clazz);
     }
 
-    T testInstance = newInstance(clazz);
+    T instance = newInstance(clazz);
 
     final List<Method> testMethods =
         Stream.of(clazz.getDeclaredMethods())
@@ -46,7 +46,7 @@ class TestExecutor {
       System.err.printf("> Start %s%n", clazz.getSimpleName());
       for (Method testMethod : testMethods) {
         System.err.printf(String.format(">> %s()", testMethod.getName()));
-        testMethod.invoke(testInstance);
+        testMethod.invoke(instance);
         System.err.println(" completed successfully.");
       }
       System.err.printf("> %s completed successfully.%n", clazz.getSimpleName());
