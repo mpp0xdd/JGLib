@@ -29,8 +29,6 @@ class TestExecutor {
   private void instantiateAndTest(Class<?> clazz) {
     requireTestClass(clazz);
 
-    Object instance = newInstance(clazz);
-
     List<Method> testMethods = getTestMethods(clazz);
 
     if (testMethods.isEmpty()) {
@@ -38,7 +36,7 @@ class TestExecutor {
     }
 
     System.err.printf("> Start %s%n", clazz.getSimpleName());
-    invokeTestMethods(instance, testMethods);
+    invokeTestMethods(clazz, testMethods);
     System.err.printf("> %s completed successfully%n", clazz.getSimpleName());
     System.err.println();
   }
@@ -53,14 +51,6 @@ class TestExecutor {
     }
   }
 
-  private Object newInstance(Class<?> clazz) {
-    try {
-      return clazz.getDeclaredConstructor().newInstance();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-  }
-
   private boolean isTestMethod(Method method) {
     return method.isAnnotationPresent(TestMethod.class);
   }
@@ -71,8 +61,9 @@ class TestExecutor {
         .collect(Collectors.toUnmodifiableList());
   }
 
-  private void invokeTestMethods(Object instance, List<Method> testMethods) {
+  private void invokeTestMethods(Class<?> testClass, List<Method> testMethods) {
     try {
+      Object instance = testClass.getDeclaredConstructor().newInstance();
       for (Method testMethod : testMethods) {
         testMethod.invoke(instance);
         System.err.printf(">> %s() completed successfully%n", testMethod.getName());
