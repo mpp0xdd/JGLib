@@ -33,10 +33,7 @@ class TestExecutor {
 
     T instance = newInstance(clazz);
 
-    final List<Method> testMethods =
-        Stream.of(clazz.getDeclaredMethods())
-            .filter(method -> method.isAnnotationPresent(TestMethod.class))
-            .collect(Collectors.toUnmodifiableList());
+    List<Method> testMethods = getTestMethods(clazz);
 
     if (testMethods.isEmpty()) {
       throw new RuntimeException("Test method not found: " + clazz);
@@ -66,6 +63,12 @@ class TestExecutor {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
+  }
+
+  private List<Method> getTestMethods(Class<?> testClass) {
+    return Stream.of(testClass.getDeclaredMethods())
+        .filter(method -> method.isAnnotationPresent(TestMethod.class))
+        .collect(Collectors.toUnmodifiableList());
   }
 
   private void done() {
