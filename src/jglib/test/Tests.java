@@ -19,4 +19,20 @@ class Tests {
   @Target({ElementType.METHOD})
   @Retention(RetentionPolicy.RUNTIME)
   public @interface TestMethod {}
+
+  public static boolean isTestClass(Class<?> clazz) {
+    return clazz.isAnnotationPresent(TestClass.class);
+  }
+
+  public static boolean isNotTestClass(Class<?> clazz) {
+    return !isTestClass(clazz);
+  }
+
+  public static <T> Class<T> requireTestClass(Class<T> clazz) {
+    if (isTestClass(clazz)) {
+      return clazz;
+    }
+
+    throw new AssertionError("Not a test class: " + clazz);
+  }
 }

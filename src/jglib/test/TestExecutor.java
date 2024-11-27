@@ -1,11 +1,11 @@
 package jglib.test;
 
+import static jglib.test.Tests.requireTestClass;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import jglib.test.Tests.TestClass;
 import jglib.test.Tests.TestMethod;
 
 class TestExecutor {
@@ -35,16 +35,6 @@ class TestExecutor {
     invokeTestMethods(clazz, testMethods);
     System.err.printf("> %s completed successfully%n", clazz.getSimpleName());
     System.err.println();
-  }
-
-  private boolean isNotTestClass(Class<?> clazz) {
-    return !clazz.isAnnotationPresent(TestClass.class);
-  }
-
-  private void requireTestClass(Class<?> clazz) {
-    if (isNotTestClass(clazz)) {
-      throw new AssertionError("Not a test class: " + clazz);
-    }
   }
 
   private boolean isTestMethod(Method method) {
