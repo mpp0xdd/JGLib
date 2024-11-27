@@ -61,9 +61,13 @@ class TestExecutor {
     }
   }
 
+  private boolean isTestMethod(Method method) {
+    return method.isAnnotationPresent(TestMethod.class);
+  }
+
   private List<Method> getTestMethods(Class<?> testClass) {
     return Stream.of(testClass.getDeclaredMethods())
-        .filter(method -> method.isAnnotationPresent(TestMethod.class))
+        .filter(this::isTestMethod)
         .collect(Collectors.toUnmodifiableList());
   }
 
