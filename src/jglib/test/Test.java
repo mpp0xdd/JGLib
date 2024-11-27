@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @FunctionalInterface
 interface Test {
 
-  void test() throws Throwable;
+  void execute() throws Throwable;
 
   @Target({ElementType.TYPE})
   @Retention(RetentionPolicy.RUNTIME)

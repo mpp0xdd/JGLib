@@ -24,7 +24,7 @@ class Assertions {
 
   public static <T extends Throwable> T assertThrows(Class<T> expected, Test test) {
     try {
-      test.test();
+      test.execute();
       assert false;
       return null;
     } catch (Throwable actual) {
@@ -35,7 +35,7 @@ class Assertions {
 
   public static void assertDoesNotThrow(Test test) {
     try {
-      test.test();
+      test.execute();
     } catch (Throwable unexpected) {
       assert false : unexpected;
     }
