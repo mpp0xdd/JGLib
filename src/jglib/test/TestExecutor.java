@@ -27,9 +27,7 @@ class TestExecutor {
   }
 
   private void instantiateAndTest(Class<?> clazz) {
-    if (isNotTestClass(clazz)) {
-      throw new RuntimeException("Not a test class: " + clazz);
-    }
+    requireTestClass(clazz);
 
     Object instance = newInstance(clazz);
 
@@ -47,6 +45,12 @@ class TestExecutor {
 
   private boolean isNotTestClass(Class<?> clazz) {
     return !clazz.isAnnotationPresent(TestClass.class);
+  }
+
+  private void requireTestClass(Class<?> clazz) {
+    if (isNotTestClass(clazz)) {
+      throw new AssertionError("Not a test class: " + clazz);
+    }
   }
 
   private Object newInstance(Class<?> clazz) {
