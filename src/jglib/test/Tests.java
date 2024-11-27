@@ -48,10 +48,12 @@ class Tests {
     return !isTestMethod(method);
   }
 
+  public static Stream<Method> testMethodsStream(Class<?> testClass) {
+    return Stream.of(testClass.getDeclaredMethods()).filter(Tests::isTestMethod);
+  }
+
   public static List<Method> getTestMethods(Class<?> testClass) {
-    return Stream.of(testClass.getDeclaredMethods())
-        .filter(Tests::isTestMethod)
-        .collect(Collectors.toUnmodifiableList());
+    return testMethodsStream(testClass).collect(Collectors.toUnmodifiableList());
   }
 
   public static List<Method> getTestMethodsOrElseThrow(Class<?> testClass) {
