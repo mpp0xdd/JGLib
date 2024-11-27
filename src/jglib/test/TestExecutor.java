@@ -31,12 +31,7 @@ class TestExecutor {
       throw new RuntimeException("Not a test class: " + clazz);
     }
 
-    T testInstance;
-    try {
-      testInstance = clazz.getDeclaredConstructor().newInstance();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+    T testInstance = newInstance(clazz);
 
     final List<Method> testMethods =
         Stream.of(clazz.getDeclaredMethods())
@@ -63,6 +58,14 @@ class TestExecutor {
 
   private boolean isNotTestClass(Class<?> clazz) {
     return !clazz.isAnnotationPresent(TestClass.class);
+  }
+
+  private <T> T newInstance(Class<T> clazz) {
+    try {
+      return clazz.getDeclaredConstructor().newInstance();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 
   private void done() {
