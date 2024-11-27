@@ -2,6 +2,14 @@ package jglib.test;
 
 class Assertions {
 
+  public static void assertTrue(boolean condition) {
+    assert condition;
+  }
+
+  public static void assertFalse(boolean condition) {
+    assert !condition;
+  }
+
   public static <T extends Throwable> T assertThrows(Class<T> expected, Test test) {
     try {
       test.test();
