@@ -29,11 +29,7 @@ class TestExecutor {
   private void instantiateAndTest(Class<?> clazz) {
     requireTestClass(clazz);
 
-    List<Method> testMethods = getTestMethods(clazz);
-
-    if (testMethods.isEmpty()) {
-      throw new RuntimeException("Test method not found: " + clazz);
-    }
+    List<Method> testMethods = getTestMethodsOrElseThrow(clazz);
 
     System.err.printf("> Start %s%n", clazz.getSimpleName());
     invokeTestMethods(clazz, testMethods);
@@ -59,6 +55,16 @@ class TestExecutor {
     return Stream.of(testClass.getDeclaredMethods())
         .filter(this::isTestMethod)
         .collect(Collectors.toUnmodifiableList());
+  }
+
+  private List<Method> getTestMethodsOrElseThrow(Class<?> testClass) {
+    List<Method> testMethods = getTestMethods(testClass);
+
+    if (testMethods.isEmpty()) {
+      throw new AssertionError("Test method not found: " + testClass);
+    }
+
+    return testMethods;
   }
 
   private void invokeTestMethods(Class<?> testClass, List<Method> testMethods) {
