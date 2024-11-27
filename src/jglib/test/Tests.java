@@ -4,6 +4,10 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class Tests {
 
@@ -34,5 +38,29 @@ class Tests {
     }
 
     throw new AssertionError("Not a test class: " + clazz);
+  }
+
+  public static boolean isTestMethod(Method method) {
+    return method.isAnnotationPresent(TestMethod.class);
+  }
+
+  public static boolean isNotTestMethod(Method method) {
+    return !isTestMethod(method);
+  }
+
+  public static List<Method> getTestMethods(Class<?> testClass) {
+    return Stream.of(testClass.getDeclaredMethods())
+        .filter(Tests::isTestMethod)
+        .collect(Collectors.toUnmodifiableList());
+  }
+
+  public static List<Method> getTestMethodsOrElseThrow(Class<?> testClass) {
+    List<Method> testMethods = getTestMethods(testClass);
+
+    if (testMethods.isEmpty()) {
+      throw new AssertionError("Test method not found: " + testClass);
+    }
+
+    return testMethods;
   }
 }

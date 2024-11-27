@@ -1,12 +1,10 @@
 package jglib.test;
 
+import static jglib.test.Tests.getTestMethodsOrElseThrow;
 import static jglib.test.Tests.requireTestClass;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import jglib.test.Tests.TestMethod;
 
 class TestExecutor {
 
@@ -35,26 +33,6 @@ class TestExecutor {
     invokeTestMethods(clazz, testMethods);
     System.err.printf("> %s completed successfully%n", clazz.getSimpleName());
     System.err.println();
-  }
-
-  private boolean isTestMethod(Method method) {
-    return method.isAnnotationPresent(TestMethod.class);
-  }
-
-  private List<Method> getTestMethods(Class<?> testClass) {
-    return Stream.of(testClass.getDeclaredMethods())
-        .filter(this::isTestMethod)
-        .collect(Collectors.toUnmodifiableList());
-  }
-
-  private List<Method> getTestMethodsOrElseThrow(Class<?> testClass) {
-    List<Method> testMethods = getTestMethods(testClass);
-
-    if (testMethods.isEmpty()) {
-      throw new AssertionError("Test method not found: " + testClass);
-    }
-
-    return testMethods;
   }
 
   private void invokeTestMethods(Class<?> testClass, List<Method> testMethods) {
