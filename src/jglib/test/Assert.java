@@ -21,4 +21,12 @@ class Assert<T> {
   public void isEqualTo(T expected) {
     assert Objects.equals(expected, actual);
   }
+
+  public void isNull() {
+    assert actual == null;
+  }
+
+  public void nonNull() {
+    assert actual != null;
+  }
 }
