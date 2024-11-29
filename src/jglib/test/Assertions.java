@@ -16,6 +16,10 @@ class Assertions {
     }
   }
 
+  public static <T> Assert<T> assertThat(T actual) {
+    return Assert.of(actual);
+  }
+
   public static void assertTrue(boolean condition) {
     assert condition;
   }
