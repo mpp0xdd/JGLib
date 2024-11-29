@@ -41,7 +41,8 @@ class TestExecutor {
         System.err.printf(">> %s() completed successfully%n", testMethod.getName());
       }
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      e.printStackTrace();
+      System.exit(1);
     }
   }
 
