@@ -1,5 +1,7 @@
 package jglib.test;
 
+import static jglib.test.Assertions.assertFalse;
+import static jglib.test.Assertions.assertTrue;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import jglib.test.Tests.TestClass;
@@ -31,37 +33,37 @@ class KeyboardTest {
   void test() {
     Keyboard<TestKey> underTest = Keyboard.create(TestKey.values());
 
-    assert !underTest.isPressed(TestKey.A);
-    assert underTest.isReleased(TestKey.A);
+    assertFalse(underTest.isPressed(TestKey.A));
+    assertTrue(underTest.isReleased(TestKey.A));
 
-    assert !underTest.isPressed(TestKey.B);
-    assert underTest.isReleased(TestKey.B);
+    assertFalse(underTest.isPressed(TestKey.B));
+    assertTrue(underTest.isReleased(TestKey.B));
 
-    assert !underTest.isPressed(TestKey.C);
-    assert underTest.isReleased(TestKey.C);
+    assertFalse(underTest.isPressed(TestKey.C));
+    assertTrue(underTest.isReleased(TestKey.C));
 
     underTest.keyPressed(eventAt(TestKey.A));
 
-    assert underTest.isPressed(TestKey.A);
-    assert !underTest.isReleased(TestKey.A);
+    assertTrue(underTest.isPressed(TestKey.A));
+    assertFalse(underTest.isReleased(TestKey.A));
 
-    assert !underTest.isPressed(TestKey.B);
-    assert underTest.isReleased(TestKey.B);
+    assertFalse(underTest.isPressed(TestKey.B));
+    assertTrue(underTest.isReleased(TestKey.B));
 
-    assert !underTest.isPressed(TestKey.C);
-    assert underTest.isReleased(TestKey.C);
+    assertFalse(underTest.isPressed(TestKey.C));
+    assertTrue(underTest.isReleased(TestKey.C));
 
     underTest.keyReleased(eventAt(TestKey.A));
     underTest.keyPressed(eventAt(TestKey.C));
 
-    assert !underTest.isPressed(TestKey.A);
-    assert underTest.isReleased(TestKey.A);
+    assertFalse(underTest.isPressed(TestKey.A));
+    assertTrue(underTest.isReleased(TestKey.A));
 
-    assert !underTest.isPressed(TestKey.B);
-    assert underTest.isReleased(TestKey.B);
+    assertFalse(underTest.isPressed(TestKey.B));
+    assertTrue(underTest.isReleased(TestKey.B));
 
-    assert underTest.isPressed(TestKey.C);
-    assert !underTest.isReleased(TestKey.C);
+    assertTrue(underTest.isPressed(TestKey.C));
+    assertFalse(underTest.isReleased(TestKey.C));
   }
 
   private KeyEvent eventAt(TestKey key) {
