@@ -49,14 +49,18 @@ class Tests {
   }
 
   public static Stream<Method> testMethodsStream(Class<?> testClass) {
+    assert isTestClass(testClass);
     return Stream.of(testClass.getDeclaredMethods()).filter(Tests::isTestMethod);
   }
 
   public static List<Method> testMethods(Class<?> testClass) {
+    assert isTestClass(testClass);
     return testMethodsStream(testClass).collect(Collectors.toUnmodifiableList());
   }
 
   public static List<Method> testMethodsOrElseThrow(Class<?> testClass) {
+    assert isTestClass(testClass);
+
     List<Method> testMethods = testMethods(testClass);
 
     if (testMethods.isEmpty()) {
