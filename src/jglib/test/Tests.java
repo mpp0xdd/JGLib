@@ -52,12 +52,12 @@ class Tests {
     return Stream.of(testClass.getDeclaredMethods()).filter(Tests::isTestMethod);
   }
 
-  public static List<Method> getTestMethods(Class<?> testClass) {
+  public static List<Method> testMethods(Class<?> testClass) {
     return testMethodsStream(testClass).collect(Collectors.toUnmodifiableList());
   }
 
-  public static List<Method> getTestMethodsOrElseThrow(Class<?> testClass) {
-    List<Method> testMethods = getTestMethods(testClass);
+  public static List<Method> testMethodsOrElseThrow(Class<?> testClass) {
+    List<Method> testMethods = testMethods(testClass);
 
     if (testMethods.isEmpty()) {
       throw new AssertionError("Test method not found: " + testClass);

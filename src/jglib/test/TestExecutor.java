@@ -1,6 +1,6 @@
 package jglib.test;
 
-import static jglib.test.Tests.getTestMethodsOrElseThrow;
+import static jglib.test.Tests.testMethodsOrElseThrow;
 import static jglib.test.Tests.requireTestClass;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ class TestExecutor {
   }
 
   private void instantiateAndTest(Class<?> clazz) {
-    List<Method> testMethods = getTestMethodsOrElseThrow(clazz);
+    List<Method> testMethods = testMethodsOrElseThrow(clazz);
 
     System.err.printf("> Start %s%n", clazz.getSimpleName());
     invokeTestMethods(clazz, testMethods);
