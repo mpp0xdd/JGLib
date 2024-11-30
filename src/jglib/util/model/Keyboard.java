@@ -7,7 +7,8 @@ import java.util.Map;
 
 public class Keyboard<K extends Key> implements KeyListener {
 
-  public static <K extends Key> Keyboard<K> create(Key... keys) {
+  @SafeVarargs
+  public static <K extends Key> Keyboard<K> create(K... keys) {
     return new Keyboard<K>(keys);
   }
 
