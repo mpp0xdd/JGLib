@@ -58,7 +58,7 @@ public class Stopwatch {
   }
 
   public long lapTime(int no) {
-    return no == 0 ? splitTime.get(0) : splitTime.get(no) - splitTime.get(no - 1);
+    return no == 0 ? splitTime(0) : splitTime(no) - splitTime(no - 1);
   }
 
   public long lapTime(int no, TimeUnit timeUnit) {
