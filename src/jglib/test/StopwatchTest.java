@@ -51,6 +51,35 @@ class StopwatchTest {
   }
 
   @TestMethod
+  void testSplit() {
+    final ClockStub clockStub = ClockStub.newClock();
+    final Stopwatch underTest = Stopwatch.create(TimeUnit.SECONDS, clockStub);
+
+    clockStub.setCurrentTime(12L);
+    underTest.start();
+
+    clockStub.setCurrentTime(13L);
+    underTest.split();
+
+    clockStub.setCurrentTime(14L);
+    underTest.split();
+
+    clockStub.setCurrentTime(20L);
+    underTest.split();
+
+    assert underTest.splitTime(0) == 1L;
+    assert underTest.splitTime(0, TimeUnit.MILLISECONDS) == 1000L;
+
+    assert underTest.splitTime(1) == 2L;
+    assert underTest.splitTime(1, TimeUnit.MILLISECONDS) == 2000L;
+
+    assert underTest.splitTime(2) == 8L;
+    assert underTest.splitTime(2, TimeUnit.MILLISECONDS) == 8000L;
+
+    assertThrows(IndexOutOfBoundsException.class, () -> underTest.splitTime(3));
+  }
+
+  @TestMethod
   void testLap() {
     final ClockStub clockStub = ClockStub.newClock();
     final Stopwatch underTest = Stopwatch.create(TimeUnit.SECONDS, clockStub);
