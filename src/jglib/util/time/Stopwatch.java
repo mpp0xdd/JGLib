@@ -41,8 +41,12 @@ public class Stopwatch {
     stopTime = clock.currentTime();
   }
 
-  public void lap() {
+  public void split() {
     splitTime.add(clock.currentTime() - startTime);
+  }
+
+  public void lap() {
+    split();
   }
 
   public long lapTime(int no) {
