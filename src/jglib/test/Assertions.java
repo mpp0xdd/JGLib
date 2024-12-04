@@ -16,6 +16,10 @@ class Assertions {
     }
   }
 
+  public static NumberAssert assertThat(Number actual) {
+    return NumberAssert.of(actual);
+  }
+
   public static <T> Assert<T> assertThat(T actual) {
     return Assert.of(actual);
   }
