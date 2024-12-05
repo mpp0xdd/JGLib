@@ -19,10 +19,11 @@ class NumberAssert {
   }
 
   public void isEqualTo(Number expected) {
-    assert expected.equals(actual);
+    assert expected.equals(actual) : AssertionErrorMessage.of(expected, actual);
   }
 
   public void isZero() {
-    assert actual.longValue() == 0L && actual.doubleValue() == 0.0d;
+    assert actual.longValue() == 0L && actual.doubleValue() == 0.0d
+        : AssertionErrorMessage.of(0, actual);
   }
 }
