@@ -20,10 +20,10 @@ class BooleanAssert {
   }
 
   public void isTrue() {
-    assert actual;
+    assert actual : AssertionErrorMessage.of(true, actual);
   }
 
   public void isFalse() {
-    assert !actual;
+    assert !actual : AssertionErrorMessage.of(false, actual);
   }
 }
