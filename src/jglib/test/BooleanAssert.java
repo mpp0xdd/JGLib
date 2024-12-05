@@ -6,8 +6,8 @@ class BooleanAssert {
     Assertions.requireEnable();
   }
 
-  private static final BooleanAssert TRUE = of(true);
-  private static final BooleanAssert FALSE = of(false);
+  private static final BooleanAssert TRUE = new BooleanAssert(true);
+  private static final BooleanAssert FALSE = new BooleanAssert(false);
 
   public static BooleanAssert of(boolean actual) {
     return actual ? TRUE : FALSE;

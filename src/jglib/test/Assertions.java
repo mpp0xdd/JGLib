@@ -29,11 +29,11 @@ class Assertions {
   }
 
   public static void assertTrue(boolean condition) {
-    assert condition;
+    assertThat(condition).isTrue();
   }
 
   public static void assertFalse(boolean condition) {
-    assert !condition;
+    assertThat(condition).isFalse();
   }
 
   public static <T extends Throwable> T assertThrows(Class<T> expected, Test test) {
