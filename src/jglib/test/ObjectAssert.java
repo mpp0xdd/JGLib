@@ -23,10 +23,10 @@ class ObjectAssert<T> {
   }
 
   public void isNull() {
-    assert actual == null;
+    assert actual == null : AssertionErrorMessage.of(null, actual);
   }
 
   public void nonNull() {
-    assert actual != null;
+    assert actual != null : actual;
   }
 }
