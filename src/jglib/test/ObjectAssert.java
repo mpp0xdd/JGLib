@@ -19,7 +19,7 @@ class ObjectAssert<T> {
   }
 
   public void isEqualTo(T expected) {
-    assert Objects.equals(expected, actual);
+    assert Objects.equals(expected, actual) : AssertionErrorMessage.of(expected, actual);
   }
 
   public void isNull() {
