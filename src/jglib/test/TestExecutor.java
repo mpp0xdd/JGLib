@@ -1,7 +1,7 @@
 package jglib.test;
 
-import static jglib.test.Tests.testMethodsOrElseThrow;
 import static jglib.test.Tests.requireTestClass;
+import static jglib.test.Tests.testMethodsOrElseThrow;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,13 @@ class TestExecutor {
         System.err.printf(">> %s() completed successfully%n", testMethod.getName());
       }
     } catch (Exception e) {
-      e.printStackTrace();
+
+      for (Throwable cause = e.getCause(); cause != null; cause = cause.getCause()) {
+        if (cause instanceof AssertionError) {
+          cause.printStackTrace();
+        }
+      }
+
       System.exit(1);
     }
   }
