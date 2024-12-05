@@ -4,7 +4,7 @@ import jglib.test.Tests.TestClass;
 import jglib.test.Tests.TestMethod;
 
 @TestClass
-class FailureTest {
+class ManualTest {
 
   @TestMethod
   void test() {
