@@ -24,8 +24,8 @@ class Assertions {
     return NumberAssert.of(actual);
   }
 
-  public static <T> ObjectAssert<T> assertThat(T actual) {
-    return ObjectAssert.of(actual);
+  public static <T> Assert<T> assertThat(T actual) {
+    return Assert.of(actual);
   }
 
   public static void assertTrue(boolean condition) {
