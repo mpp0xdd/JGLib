@@ -52,7 +52,7 @@ class Assertions {
     try {
       test.execute();
     } catch (Throwable unexpected) {
-      assert false : unexpected;
+      fail(AssertionErrorMessage.of(null, unexpected));
     }
   }
 
