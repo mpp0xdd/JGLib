@@ -39,12 +39,13 @@ class Assertions {
   public static <T extends Throwable> T assertThrows(Class<T> expected, Test test) {
     try {
       test.execute();
-      assert false;
-      return null;
     } catch (Throwable actual) {
-      assert expected.equals(actual.getClass()) : actual;
+      assert expected.equals(actual.getClass()) : AssertionErrorMessage.of(expected, actual);
       return expected.cast(actual);
     }
+
+    fail(AssertionErrorMessage.of(expected, null));
+    return null;
   }
 
   public static void assertDoesNotThrow(Test test) {
@@ -53,5 +54,9 @@ class Assertions {
     } catch (Throwable unexpected) {
       assert false : unexpected;
     }
+  }
+
+  public static void fail(AssertionErrorMessage<?, ?> message) {
+    assert false : message;
   }
 }
