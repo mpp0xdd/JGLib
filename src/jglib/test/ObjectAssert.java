@@ -2,19 +2,19 @@ package jglib.test;
 
 import java.util.Objects;
 
-class Assert<T> {
+class ObjectAssert<T> {
 
   static {
     Assertions.requireEnable();
   }
 
-  public static <T> Assert<T> of(T actual) {
-    return new Assert<T>(actual);
+  public static <T> ObjectAssert<T> of(T actual) {
+    return new ObjectAssert<T>(actual);
   }
 
   private final T actual;
 
-  private Assert(T actual) {
+  private ObjectAssert(T actual) {
     this.actual = actual;
   }
 
