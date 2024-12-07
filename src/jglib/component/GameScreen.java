@@ -47,12 +47,12 @@ public abstract non-sealed class GameScreen extends UpdatableGameScreenBase impl
    *
    * @param gameLoopInterval ゲームループの実行間隔(ミリ秒)
    */
-  public final void setGameLoopInterval(long gameLoopInterval) {
+  public void setGameLoopInterval(long gameLoopInterval) {
     this.gameLoopInterval = gameLoopInterval;
   }
 
   @Override
-  public final void startGameLoop() {
+  public void startGameLoop() {
     if (Objects.nonNull(gameLoopThread)) {
       throw (new IllegalStateException("実行中のゲームループを開始させることはできません。"));
     }
@@ -63,7 +63,7 @@ public abstract non-sealed class GameScreen extends UpdatableGameScreenBase impl
   }
 
   @Override
-  public final void stopGameLoop() {
+  public void stopGameLoop() {
     if (Objects.isNull(gameLoopThread)) {
       throw (new IllegalStateException("開始していないゲームループを停止させることはできません。"));
     }
@@ -72,7 +72,7 @@ public abstract non-sealed class GameScreen extends UpdatableGameScreenBase impl
   }
 
   @Override
-  public final void run() {
+  public void run() {
     Thread thisThread = Thread.currentThread();
     while (thisThread == gameLoopThread) {
       runGameLoop();
@@ -82,7 +82,7 @@ public abstract non-sealed class GameScreen extends UpdatableGameScreenBase impl
   }
 
   @Override
-  protected final void paintComponent(Graphics g) {
+  protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     this.paintGameComponent(g);
   }
