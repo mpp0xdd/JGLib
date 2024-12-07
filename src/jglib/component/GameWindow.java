@@ -19,10 +19,10 @@ public class GameWindow {
    * @param title フレームのタイトル。
    */
   public GameWindow(String title) {
-    this.frame = new JFrame(title);
-    this.frame.setLayout(new OverlayLayout(this.frame.getContentPane()));
-    this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.frame.setResizable(false);
+    frame = new JFrame(title);
+    frame.setLayout(new OverlayLayout(this.frame.getContentPane()));
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setResizable(false);
   }
 
   /** 不可視のウィンドウを作成します。 */
@@ -37,7 +37,7 @@ public class GameWindow {
    * @see javax.swing.JFrame#setVisible(boolean)
    */
   public void setVisible(boolean b) {
-    this.frame.setVisible(b);
+    frame.setVisible(b);
   }
 
   /**
