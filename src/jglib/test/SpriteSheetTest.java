@@ -3,7 +3,6 @@ package jglib.test;
 import static jglib.test.Assertions.assertDoesNotThrow;
 import static jglib.test.Assertions.assertThrows;
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 import jglib.image.SpriteSheet;
@@ -169,39 +168,12 @@ class SpriteSheetTest {
     SpriteSheet target = SpriteSheet.create(image, 32, 32, 3, 6);
     assert target.getIndex() == 18;
     assert target.getImage().isEmpty();
-    assert target.getLocation().equals(new Point());
-    assert target.x() == 0;
-    assert target.y() == 0;
     assert target.width() == 32;
     assert target.height() == 32;
     assert !target.isFirst();
     assert !target.isBeforeFirst();
     assert !target.isLast();
     assert target.isAfterLast();
-
-    target.setX(42);
-    assert target.getLocation().equals(new Point(42, 0));
-    assert target.x() == 42;
-    assert target.y() == 0;
-
-    target.setY(24);
-    assert target.getLocation().equals(new Point(42, 24));
-    assert target.x() == 42;
-    assert target.y() == 24;
-
-    target.setLocation(1, 2);
-    assert target.getLocation().equals(new Point(1, 2));
-    assert target.x() == 1;
-    assert target.y() == 2;
-
-    Point newPoint = new Point(100, 200);
-    target.setLocation(newPoint);
-    assert target.getLocation().equals(newPoint);
-    assert target.getLocation() != newPoint;
-    assert target.x() == 100;
-    assert target.y() == 200;
-
-    assertThrows(NullPointerException.class, () -> target.setLocation(null));
 
     target.setIndex(-1);
     assert target.getIndex() == -1;
@@ -421,15 +393,15 @@ class SpriteSheetTest {
   @TestMethod
   void testDrawMethod() {
     SpriteSheet target = SpriteSheet.create(image, 32, 32, 3, 6);
-    assertDoesNotThrow(() -> target.draw(null));
+    assertDoesNotThrow(() -> target.draw(null, 0, 0));
 
     target.first();
-    assertThrows(NullPointerException.class, () -> target.draw(null));
+    assertThrows(NullPointerException.class, () -> target.draw(null, 0, 0));
 
     target.last();
-    assertThrows(NullPointerException.class, () -> target.draw(null));
+    assertThrows(NullPointerException.class, () -> target.draw(null, 0, 0));
 
     target.afterLast();
-    assertDoesNotThrow(() -> target.draw(null));
+    assertDoesNotThrow(() -> target.draw(null, 0, 0));
   }
 }

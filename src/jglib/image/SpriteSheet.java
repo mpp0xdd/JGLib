@@ -1,11 +1,8 @@
 package jglib.image;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
-import jglib.util.spec.Drawable;
-import jglib.util.spec.Rectangular;
 
 /**
  * スプライトシート(*) です。<br>
@@ -13,11 +10,11 @@ import jglib.util.spec.Rectangular;
  *
  * @author mpp
  */
-public interface SpriteSheet extends Drawable, Rectangular {
+public interface SpriteSheet {
 
   /**
    * 指定された {@link BufferedImage} で新しい SpriteSheet を構築します。<br>
-   * SpriteSheet の座標の初期値は座標空間の原点 (0, 0) に，グラフィック番号（添え字）の初期値は最大値にそれぞれなることに注意してください。<br>
+   * SpriteSheet のグラフィック番号（添え字）の初期値は最大値になることに注意してください。<br>
    * SpriteSheet の構築に失敗した場合（imageにnullが渡された場合など）は， {@link RuntimeException} をスローします。
    *
    * @param image スプライトシート
@@ -33,64 +30,10 @@ public interface SpriteSheet extends Drawable, Rectangular {
     return new SpriteSheetImpl(image, width, height, rows, columns);
   }
 
-  /**
-   * この SpriteSheet の X 座標を返します。
-   *
-   * @return このスプライトシートの X 座標
-   */
-  @Override
-  int x();
-
-  /**
-   * この SpriteSheet の X 座標を設定します。
-   *
-   * @param x 設定される X 座標
-   */
-  void setX(int x);
-
-  /**
-   * この SpriteSheet の Y 座標を返します。
-   *
-   * @return このスプライトシートの Y 座標
-   */
-  @Override
-  int y();
-
-  /**
-   * この SpriteSheet の Y 座標を設定します。
-   *
-   * @param y 設定される Y 座標
-   */
-  void setY(int y);
-
-  /**
-   * この SpriteSheet の位置を返します。
-   *
-   * @return 同じ位置の，点のコピー
-   */
-  Point getLocation();
-
-  /**
-   * この SpriteSheet の位置を，指定された位置に設定します。
-   *
-   * @param p この SpriteSheet の新しい位置になる点
-   */
-  void setLocation(Point p);
-
-  /**
-   * この SpriteSheet の位置を指定された位置に変更します。
-   *
-   * @param x 新しい位置の X 座標
-   * @param y 新しい位置の Y 座標
-   */
-  void setLocation(int x, int y);
-
   /** この SpriteSheet の横幅を返します。 */
-  @Override
   int width();
 
   /** この SpriteSheet の縦幅を返します。 */
-  @Override
   int height();
 
   /**
@@ -120,17 +63,18 @@ public interface SpriteSheet extends Drawable, Rectangular {
   Optional<BufferedImage> getImage(int index);
 
   /**
-   * この SpriteSheet の描画を行います。<br>
+   * この SpriteSheet を指定された位置に描画します。<br>
    * 描画は，この SpriteSheet の {@link getIndex()} が返すグラフィック番号が指すグラフィックが存在する場合のみ行われることに注意してください。<br>
    * （グラフィック番号が指すグラフィックが存在しない場合(*) にこのメソッドが呼び出された時は，このメソッドは何も行いません）<br>
    * (*) {@link isBeforeFirst()} または {@link isAfterLast()} が true を返す場合
    *
    * @param g 文字列の描画に使用するグラフィックスコンテキスト。
+   * @param x x座標
+   * @param x y座標
    * @see getIndex()
    * @see setIndex(int)
    */
-  @Override
-  void draw(Graphics g);
+  void draw(Graphics g, int x, int y);
 
   /**
    * {@link draw(Graphics)} で描画されるスプライトシートのグラフィック番号（添え字）を返します。<br>

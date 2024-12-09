@@ -1,7 +1,6 @@
 package jglib.image;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +24,6 @@ class SpriteSheetImpl implements SpriteSheet {
   /** スプライトシートの列数（並べられているグラフィックの数）を表します。 */
   private final int columns;
 
-  /** この SpriteSheet の座標を表します。初期値は座標空間の原点 (0, 0) です。 */
-  private final Point point;
-
   /**
    * {@link draw(Graphics)} で描画されるスプライトシートのグラフィック番号（添え字）を表します。
    *
@@ -41,7 +37,6 @@ class SpriteSheetImpl implements SpriteSheet {
     this.height = height;
     this.rows = rows;
     this.columns = columns;
-    this.point = new Point();
 
     // Validate each field except image
     final List<RuntimeException> validationResults = new ArrayList<>();
@@ -93,41 +88,6 @@ class SpriteSheetImpl implements SpriteSheet {
   }
 
   @Override
-  public int x() {
-    return this.point.x;
-  }
-
-  @Override
-  public void setX(int x) {
-    this.point.x = x;
-  }
-
-  @Override
-  public int y() {
-    return this.point.y;
-  }
-
-  @Override
-  public void setY(int y) {
-    this.point.y = y;
-  }
-
-  @Override
-  public Point getLocation() {
-    return this.point.getLocation();
-  }
-
-  @Override
-  public void setLocation(Point p) {
-    this.point.setLocation(p);
-  }
-
-  @Override
-  public void setLocation(int x, int y) {
-    this.point.setLocation(x, y);
-  }
-
-  @Override
   public int width() {
     return width;
   }
@@ -157,8 +117,8 @@ class SpriteSheetImpl implements SpriteSheet {
   }
 
   @Override
-  public void draw(Graphics g) {
-    getImage().ifPresent(image -> g.drawImage(image, point.x, point.y, null));
+  public void draw(Graphics g, int x, int y) {
+    getImage().ifPresent(image -> g.drawImage(image, x, y, null));
   }
 
   @Override
