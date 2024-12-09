@@ -37,7 +37,7 @@ public interface SpriteSheet extends Drawable {
    *
    * @return このスプライトシートの X 座標
    */
-  int getX();
+  int x();
 
   /**
    * この SpriteSheet の X 座標を設定します。
@@ -51,7 +51,7 @@ public interface SpriteSheet extends Drawable {
    *
    * @return このスプライトシートの Y 座標
    */
-  int getY();
+  int y();
 
   /**
    * この SpriteSheet の Y 座標を設定します。

@@ -170,8 +170,8 @@ class SpriteSheetTest {
     assert target.getIndex() == 18;
     assert target.getImage().isEmpty();
     assert target.getLocation().equals(new Point());
-    assert target.getX() == 0;
-    assert target.getY() == 0;
+    assert target.x() == 0;
+    assert target.y() == 0;
     assert !target.isFirst();
     assert !target.isBeforeFirst();
     assert !target.isLast();
@@ -179,25 +179,25 @@ class SpriteSheetTest {
 
     target.setX(42);
     assert target.getLocation().equals(new Point(42, 0));
-    assert target.getX() == 42;
-    assert target.getY() == 0;
+    assert target.x() == 42;
+    assert target.y() == 0;
 
     target.setY(24);
     assert target.getLocation().equals(new Point(42, 24));
-    assert target.getX() == 42;
-    assert target.getY() == 24;
+    assert target.x() == 42;
+    assert target.y() == 24;
 
     target.setLocation(1, 2);
     assert target.getLocation().equals(new Point(1, 2));
-    assert target.getX() == 1;
-    assert target.getY() == 2;
+    assert target.x() == 1;
+    assert target.y() == 2;
 
     Point newPoint = new Point(100, 200);
     target.setLocation(newPoint);
     assert target.getLocation().equals(newPoint);
     assert target.getLocation() != newPoint;
-    assert target.getX() == 100;
-    assert target.getY() == 200;
+    assert target.x() == 100;
+    assert target.y() == 200;
 
     assertThrows(NullPointerException.class, () -> target.setLocation(null));
 

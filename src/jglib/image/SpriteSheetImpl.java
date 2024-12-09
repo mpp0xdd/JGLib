@@ -93,7 +93,7 @@ class SpriteSheetImpl implements SpriteSheet {
   }
 
   @Override
-  public int getX() {
+  public int x() {
     return this.point.x;
   }
 
@@ -103,7 +103,7 @@ class SpriteSheetImpl implements SpriteSheet {
   }
 
   @Override
-  public int getY() {
+  public int y() {
     return this.point.y;
   }
 
