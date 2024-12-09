@@ -172,6 +172,8 @@ class SpriteSheetTest {
     assert target.getLocation().equals(new Point());
     assert target.x() == 0;
     assert target.y() == 0;
+    assert target.width() == 32;
+    assert target.height() == 32;
     assert !target.isFirst();
     assert !target.isBeforeFirst();
     assert !target.isLast();

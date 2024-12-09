@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 import jglib.util.spec.Drawable;
+import jglib.util.spec.Rectangular;
 
 /**
  * スプライトシート(*) です。<br>
@@ -12,7 +13,7 @@ import jglib.util.spec.Drawable;
  *
  * @author mpp
  */
-public interface SpriteSheet extends Drawable {
+public interface SpriteSheet extends Drawable, Rectangular {
 
   /**
    * 指定された {@link BufferedImage} で新しい SpriteSheet を構築します。<br>
@@ -37,6 +38,7 @@ public interface SpriteSheet extends Drawable {
    *
    * @return このスプライトシートの X 座標
    */
+  @Override
   int x();
 
   /**
@@ -51,6 +53,7 @@ public interface SpriteSheet extends Drawable {
    *
    * @return このスプライトシートの Y 座標
    */
+  @Override
   int y();
 
   /**
@@ -81,6 +84,14 @@ public interface SpriteSheet extends Drawable {
    * @param y 新しい位置の Y 座標
    */
   void setLocation(int x, int y);
+
+  /** この SpriteSheet の横幅を返します。 */
+  @Override
+  int width();
+
+  /** この SpriteSheet の縦幅を返します。 */
+  @Override
+  int height();
 
   /**
    * この SpriteSheet の {@link getIndex()} が返すグラフィック番号（現在のグラフィック番号）が指すグラフィックを返します。<br>

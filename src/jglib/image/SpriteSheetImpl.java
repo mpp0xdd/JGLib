@@ -128,6 +128,16 @@ class SpriteSheetImpl implements SpriteSheet {
   }
 
   @Override
+  public int width() {
+    return width;
+  }
+
+  @Override
+  public int height() {
+    return height;
+  }
+
+  @Override
   public Optional<BufferedImage> getImage() {
     if (isBeforeFirst() || isAfterLast()) return Optional.empty();
     return Optional.of(
