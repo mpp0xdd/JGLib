@@ -5,9 +5,9 @@ import static jglib.test.Assertions.assertThrows;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-import jglib.image.SpriteSheet;
 import jglib.test.Tests.TestClass;
 import jglib.test.Tests.TestMethod;
+import jglib.util.image.SpriteSheet;
 
 @TestClass
 class SpriteSheetTest {

@@ -1,4 +1,4 @@
-package jglib.image;
+package jglib.util.image;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
