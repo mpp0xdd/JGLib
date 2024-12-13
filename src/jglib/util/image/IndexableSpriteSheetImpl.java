@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 import jglib.util.image.IndexableSpriteSheet.Index;
 
-class IndexableSpriteSheetImpl<I extends Index> implements IndexableSpriteSheet<I> {
+class IndexableSpriteSheetImpl<I extends Index<I>> implements IndexableSpriteSheet<I> {
 
   private final SpriteSheet spriteSheet;
   private I index;

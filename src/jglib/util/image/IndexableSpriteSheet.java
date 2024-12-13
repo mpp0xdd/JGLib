@@ -5,15 +5,19 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 import jglib.util.image.IndexableSpriteSheet.Index;
 
-public interface IndexableSpriteSheet<I extends Index> {
+public interface IndexableSpriteSheet<I extends Index<?>> {
 
-  public static <I extends Index> IndexableSpriteSheet<I> create(
+  public static <I extends Index<I>> IndexableSpriteSheet<I> create(
       BufferedImage image, int width, int height, int rows, int columns, I index) {
     return new IndexableSpriteSheetImpl<I>(image, width, height, rows, columns, index);
   }
 
-  interface Index {
+  interface Index<T extends Index<T>> {
     int index();
+
+    T next();
+
+    T previous();
   }
 
   int width();
