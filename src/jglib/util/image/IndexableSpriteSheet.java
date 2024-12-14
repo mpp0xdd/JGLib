@@ -33,4 +33,8 @@ public interface IndexableSpriteSheet<I extends Index<?>> {
   I getIndex();
 
   void setIndex(I index);
+
+  void next();
+
+  void previous();
 }

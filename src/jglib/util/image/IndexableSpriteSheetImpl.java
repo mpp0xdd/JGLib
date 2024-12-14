@@ -51,4 +51,14 @@ class IndexableSpriteSheetImpl<I extends Index<I>> implements IndexableSpriteShe
     spriteSheet.setIndex(index.index());
     this.index = index;
   }
+
+  @Override
+  public void next() {
+    setIndex(getIndex().next());
+  }
+
+  @Override
+  public void previous() {
+    setIndex(getIndex().previous());
+  }
 }
