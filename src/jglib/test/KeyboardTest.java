@@ -42,7 +42,7 @@ class KeyboardTest {
     assertFalse(underTest.isPressed(TestKey.C));
     assertTrue(underTest.isReleased(TestKey.C));
 
-    underTest.keyPressed(eventAt(TestKey.A));
+    underTest.asKeyListener().keyPressed(eventAt(TestKey.A));
 
     assertTrue(underTest.isPressed(TestKey.A));
     assertFalse(underTest.isReleased(TestKey.A));
@@ -53,8 +53,8 @@ class KeyboardTest {
     assertFalse(underTest.isPressed(TestKey.C));
     assertTrue(underTest.isReleased(TestKey.C));
 
-    underTest.keyReleased(eventAt(TestKey.A));
-    underTest.keyPressed(eventAt(TestKey.C));
+    underTest.asKeyListener().keyReleased(eventAt(TestKey.A));
+    underTest.asKeyListener().keyPressed(eventAt(TestKey.C));
 
     assertFalse(underTest.isPressed(TestKey.A));
     assertTrue(underTest.isReleased(TestKey.A));

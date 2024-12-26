@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Keyboard<K extends Key> implements KeyListener {
+public class Keyboard<K extends Key> {
 
   @SafeVarargs
   public static <K extends Key> Keyboard<K> create(K... keys) {
@@ -28,16 +28,23 @@ public class Keyboard<K extends Key> implements KeyListener {
     return keyboard.get(key.code()) == Keystroke.RELEASED;
   }
 
-  @Override
-  public void keyTyped(KeyEvent e) {}
-
-  @Override
-  public void keyPressed(KeyEvent e) {
-    keyboard.replace(e.getKeyCode(), Keystroke.PRESSED);
+  public KeyListener asKeyListener() {
+    return new KeyListenerImpl();
   }
 
-  @Override
-  public void keyReleased(KeyEvent e) {
-    keyboard.replace(e.getKeyCode(), Keystroke.RELEASED);
+  private class KeyListenerImpl implements KeyListener {
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+      keyboard.replace(e.getKeyCode(), Keystroke.PRESSED);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+      keyboard.replace(e.getKeyCode(), Keystroke.RELEASED);
+    }
   }
 }
