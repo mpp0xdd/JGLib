@@ -36,8 +36,36 @@ public class Keyboard<K extends Key> {
     return keyboard.get(key.code()) == Keystroke.RELEASED;
   }
 
+  public KeyListener asKeyPressListener() {
+    return new KeyListener() {
+      @Override
+      public void keyTyped(KeyEvent e) {}
+
+      @Override
+      public void keyReleased(KeyEvent e) {}
+
+      @Override
+      public void keyPressed(KeyEvent e) {
+        press(e.getKeyCode());
+      }
+    };
+  }
+
   public KeyListener asKeyListener() {
-    return new KeyListenerImpl();
+    return new KeyListener() {
+      @Override
+      public void keyTyped(KeyEvent e) {}
+
+      @Override
+      public void keyReleased(KeyEvent e) {
+        release(e.getKeyCode());
+      }
+
+      @Override
+      public void keyPressed(KeyEvent e) {
+        press(e.getKeyCode());
+      }
+    };
   }
 
   private void press(int keyCode) {
@@ -46,21 +74,5 @@ public class Keyboard<K extends Key> {
 
   private void release(int keyCode) {
     keyboard.replace(keyCode, Keystroke.RELEASED);
-  }
-
-  private class KeyListenerImpl implements KeyListener {
-
-    @Override
-    public void keyTyped(KeyEvent e) {}
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-      press(e.getKeyCode());
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-      release(e.getKeyCode());
-    }
   }
 }
