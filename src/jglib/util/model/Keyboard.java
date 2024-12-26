@@ -20,6 +20,14 @@ public class Keyboard<K extends Key> {
     }
   }
 
+  public void press(K key) {
+    keyboard.replace(key.code(), Keystroke.PRESSED);
+  }
+
+  public void release(K key) {
+    keyboard.replace(key.code(), Keystroke.RELEASED);
+  }
+
   public boolean isPressed(K key) {
     return keyboard.get(key.code()) == Keystroke.PRESSED;
   }

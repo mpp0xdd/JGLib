@@ -30,7 +30,44 @@ class KeyboardTest {
   }
 
   @TestMethod
-  void test() {
+  void testPressAndRelease() {
+    Keyboard<TestKey> underTest = Keyboard.create(TestKey.values());
+
+    assertFalse(underTest.isPressed(TestKey.A));
+    assertTrue(underTest.isReleased(TestKey.A));
+
+    assertFalse(underTest.isPressed(TestKey.B));
+    assertTrue(underTest.isReleased(TestKey.B));
+
+    assertFalse(underTest.isPressed(TestKey.C));
+    assertTrue(underTest.isReleased(TestKey.C));
+
+    underTest.press(TestKey.A);
+
+    assertTrue(underTest.isPressed(TestKey.A));
+    assertFalse(underTest.isReleased(TestKey.A));
+
+    assertFalse(underTest.isPressed(TestKey.B));
+    assertTrue(underTest.isReleased(TestKey.B));
+
+    assertFalse(underTest.isPressed(TestKey.C));
+    assertTrue(underTest.isReleased(TestKey.C));
+
+    underTest.release(TestKey.A);
+    underTest.press(TestKey.C);
+
+    assertFalse(underTest.isPressed(TestKey.A));
+    assertTrue(underTest.isReleased(TestKey.A));
+
+    assertFalse(underTest.isPressed(TestKey.B));
+    assertTrue(underTest.isReleased(TestKey.B));
+
+    assertTrue(underTest.isPressed(TestKey.C));
+    assertFalse(underTest.isReleased(TestKey.C));
+  }
+
+  @TestMethod
+  void testKeyListener() {
     Keyboard<TestKey> underTest = Keyboard.create(TestKey.values());
 
     assertFalse(underTest.isPressed(TestKey.A));
