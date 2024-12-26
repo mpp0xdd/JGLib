@@ -21,11 +21,11 @@ public class Keyboard<K extends Key> {
   }
 
   public void press(K key) {
-    keyboard.replace(key.code(), Keystroke.PRESSED);
+    press(key.code());
   }
 
   public void release(K key) {
-    keyboard.replace(key.code(), Keystroke.RELEASED);
+    release(key.code());
   }
 
   public boolean isPressed(K key) {
@@ -40,6 +40,14 @@ public class Keyboard<K extends Key> {
     return new KeyListenerImpl();
   }
 
+  private void press(int keyCode) {
+    keyboard.replace(keyCode, Keystroke.PRESSED);
+  }
+
+  private void release(int keyCode) {
+    keyboard.replace(keyCode, Keystroke.RELEASED);
+  }
+
   private class KeyListenerImpl implements KeyListener {
 
     @Override
@@ -47,12 +55,12 @@ public class Keyboard<K extends Key> {
 
     @Override
     public void keyPressed(KeyEvent e) {
-      keyboard.replace(e.getKeyCode(), Keystroke.PRESSED);
+      press(e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-      keyboard.replace(e.getKeyCode(), Keystroke.RELEASED);
+      release(e.getKeyCode());
     }
   }
 }
