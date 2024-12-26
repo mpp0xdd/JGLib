@@ -20,12 +20,12 @@ public class Keyboard<K extends Key> {
     }
   }
 
-  public void press(K key) {
-    press(key.code());
+  public boolean press(K key) {
+    return press(key.code()) == Keystroke.RELEASED;
   }
 
-  public void release(K key) {
-    release(key.code());
+  public boolean release(K key) {
+    return release(key.code()) == Keystroke.PRESSED;
   }
 
   public boolean isPressed(K key) {
@@ -68,11 +68,11 @@ public class Keyboard<K extends Key> {
     };
   }
 
-  private void press(int keyCode) {
-    keyboard.replace(keyCode, Keystroke.PRESSED);
+  private Keystroke press(int keyCode) {
+    return keyboard.replace(keyCode, Keystroke.PRESSED);
   }
 
-  private void release(int keyCode) {
-    keyboard.replace(keyCode, Keystroke.RELEASED);
+  private Keystroke release(int keyCode) {
+    return keyboard.replace(keyCode, Keystroke.RELEASED);
   }
 }
