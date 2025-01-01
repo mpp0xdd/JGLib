@@ -1,4 +1,4 @@
-package jglib.component;
+package jglib.screen;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

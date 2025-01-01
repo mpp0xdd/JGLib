@@ -1,4 +1,4 @@
-package jglib.component;
+package jglib.screen;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import jglib.core.GameError;

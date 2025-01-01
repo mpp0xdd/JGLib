@@ -1,4 +1,4 @@
-package jglib.component;
+package jglib.screen;
 
 /**
  * 更新可能なゲーム画面の役割を表します。

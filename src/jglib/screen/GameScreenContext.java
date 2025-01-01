@@ -1,4 +1,4 @@
-package jglib.component;
+package jglib.screen;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
