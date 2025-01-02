@@ -18,7 +18,7 @@ public sealed interface GameScreenRole permits UpdatableGameScreenRole, GameScre
   void setScreenSize(int width, int height);
 
   /**
-   * ゲーム画面を {@link Component} として扱うためのユーティリティメソッドです。
+   * ゲーム画面を {@link Component} として扱えるようにします。
    *
    * @return Component
    */
