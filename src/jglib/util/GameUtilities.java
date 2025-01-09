@@ -302,7 +302,14 @@ public final class GameUtilities {
     return loadSpriteSheet(new File(pathname), width, height, rows, columns);
   }
 
-  private static Optional<URL> getResource(Class<?> clazz, String name) {
+  /**
+   * リソースを取得します。
+   *
+   * @param clazz クラス
+   * @param name リソースの名前
+   * @return リソース
+   */
+  public static Optional<URL> getResource(Class<?> clazz, String name) {
     try {
       URL url =
           Objects.requireNonNull(clazz.getResource(name), "Resource with given name not found");
